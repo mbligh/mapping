@@ -36,6 +36,9 @@ jobs:
         run: |
           mkdir -p build public
           python3 scripts/build_geojsonseq . -o build/flock.geojsonseq
+      - name: Diagnose known NJ location in source data
+        run: |
+          python3 scripts/nearest.py build/flock.geojsonseq --lat 40.72542 --lon -74.77641
       - name: Build PMTiles
         run: |
           tippecanoe -o public/flock.pmtiles -l flock -Z 8 -z 15 \
