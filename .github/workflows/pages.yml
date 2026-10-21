@@ -7,6 +7,8 @@ on:
       - 'scripts/**'
       - 'site/**'
       - '.github/workflows/pages.yml'
+  schedule:
+    - cron: '23 7 * * 0'
   workflow_dispatch:
 
 permissions:
@@ -30,7 +32,7 @@ jobs:
       - name: Install Tippecanoe
         run: |
           sudo apt-get update
-          sudo apt-get install -y tippecanoe
+          sudo apt-get install -y tippecanoe osmium-tool
           tippecanoe --version
       - name: Convert ArcGIS JSON to GeoJSON sequence
         run: |
@@ -45,6 +47,23 @@ jobs:
             --no-feature-limit --no-tile-size-limit --drop-rate=1 --base-zoom=8 \
             --force -P build/flock.geojsonseq
           ls -lh public/flock.pmtiles
+      - name: Download and filter New Jersey OpenStreetMap data
+        run: |
+          curl --fail --location --retry 3 -o build/new-jersey.osm.pbf \
+            https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf
+          osmium tags-filter build/new-jersey.osm.pbf \
+            nwr/man_made=surveillance nwr/highway=speed_camera \
+            -o build/osm-cameras.osm.pbf --overwrite
+          osmium export build/osm-cameras.osm.pbf \
+            -f geojsonseq -o build/osm-cameras.geojsonseq --overwrite
+          python3 scripts/osm_camera_points.py \
+            build/osm-cameras.geojsonseq build/osm-camera-points.geojsonseq
+      - name: Build OSM camera PMTiles
+        run: |
+          tippecanoe -o public/osm-surveillance.pmtiles -l osm_surveillance \
+            -Z 0 -z 15 --no-feature-limit --no-tile-size-limit \
+            --force -P build/osm-camera-points.geojsonseq
+          ls -lh public/osm-surveillance.pmtiles
       - name: Upload PMTiles to Cloudflare R2
         if: ${{ vars.R2_ACCOUNT_ID != '' && vars.R2_BUCKET != '' }}
         env:
@@ -56,10 +75,12 @@ jobs:
         run: |
           : "${AWS_ACCESS_KEY_ID:?Missing R2_ACCESS_KEY_ID secret}"
           : "${AWS_SECRET_ACCESS_KEY:?Missing R2_SECRET_ACCESS_KEY secret}"
-          aws s3 cp public/flock.pmtiles "s3://${R2_BUCKET}/flock.pmtiles" \
-            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
-            --content-type application/octet-stream \
-            --cache-control "public, max-age=300"
+          for name in flock osm-surveillance; do
+            aws s3 cp "public/${name}.pmtiles" "s3://${R2_BUCKET}/${name}.pmtiles" \
+              --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+              --content-type application/octet-stream \
+              --cache-control "public, max-age=300"
+          done
       - name: Prepare Pages site
         env:
           R2_PUBLIC_URL: ${{ vars.R2_PUBLIC_URL }}
