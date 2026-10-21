@@ -1,0 +1,38 @@
+{
+  "verified_at": "2026-07-15",
+  "source": "raw_evidence/ArcGIS/flocksafety_prod_arcgis_data/features_*.json",
+  "method": "field scan of attributes.status and attributes.active across all feature chunk files",
+  "total": 335701,
+  "statusBreakdown": {
+    "inService": 214073,
+    "inPlanning": 83427,
+    "decommissioned": 38190,
+    "unknown": 11
+  },
+  "activeFlagBreakdown": {
+    "active_1": 214233,
+    "active_0": 121468
+  },
+  "notes": [
+    "status values inService / inPlanning / decommissioned / unknown are authoritative for scale claims in the master report",
+    "unknown corresponds to attributes.status null in the feature export (11 records)",
+    "active=1 count (214233) differs from inService (214073); document both — do not treat active flag as a substitute for status",
+    "inService + inPlanning = 297500 active/planned deployment records used for detection-exposure framing; decommissioned excluded from reachability studies"
+  ],
+  "comparison_to_analysis_summary_json": {
+    "analysis_summary_path": "raw_evidence/ArcGIS/flocksafety_prod_arcgis_data/analysis_summary.json",
+    "totalDevices_match": true,
+    "statusBreakdown_match": true,
+    "activeCount_matches_active_1": true,
+    "inactiveCount_matches_active_0": true,
+    "analysis_summary_totalDevices": 335701,
+    "analysis_summary_activeCount": 214233,
+    "analysis_summary_inactiveCount": 121468,
+    "analysis_summary_statusBreakdown": {
+      "inService": 214073,
+      "inPlanning": 83427,
+      "decommissioned": 38190,
+      "unknown": 11
+    }
+  }
+}
