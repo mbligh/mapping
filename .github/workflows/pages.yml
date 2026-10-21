@@ -42,7 +42,7 @@ jobs:
       - name: Build PMTiles
         run: |
           tippecanoe -o public/flock.pmtiles -l flock -Z 8 -z 15 \
-            --no-feature-limit --no-tile-size-limit \
+            --no-feature-limit --no-tile-size-limit --drop-rate=1 --base-zoom=8 \
             --force -P build/flock.geojsonseq
           ls -lh public/flock.pmtiles
       - name: Prepare Pages site
