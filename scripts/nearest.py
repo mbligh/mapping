@@ -19,6 +19,7 @@ def main():
     ap.add_argument("--count", type=int, default=10)
     args=ap.parse_args()
     nearest=[]
+    sequence=0
     within={100:0,500:0,1000:0,5000:0}
     with open(args.file, encoding="utf-8") as f:
         for line in f:
@@ -27,13 +28,14 @@ def main():
             d=distance_m(args.lat,args.lon,lat,lon)
             for radius in within:
                 if d<=radius: within[radius]+=1
+            sequence+=1
             if len(nearest)<args.count:
-                heapq.heappush(nearest,(-d,feat))
+                heapq.heappush(nearest,(-d,sequence,feat))
             elif d < -nearest[0][0]:
-                heapq.heapreplace(nearest,(-d,feat))
+                heapq.heapreplace(nearest,(-d,sequence,feat))
     print(f"Reference point: {args.lat}, {args.lon}")
     print("Counts by radius (metres):", within)
-    for neg_d, feat in sorted(nearest,reverse=True):
+    for neg_d, _, feat in sorted(nearest,reverse=True):
         print(f"{-neg_d:.0f}m",feat["geometry"]["coordinates"],json.dumps(feat["properties"],ensure_ascii=False))
 
 if __name__=="__main__":
