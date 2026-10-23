@@ -41,12 +41,6 @@ jobs:
       - name: Diagnose known NJ location in source data
         run: |
           python3 scripts/nearest.py build/flock.geojsonseq --lat 40.72542 --lon -74.77641
-      - name: Build PMTiles
-        run: |
-          tippecanoe -o public/flock.pmtiles -l flock -Z 8 -z 15 \
-            --no-feature-limit --no-tile-size-limit --drop-rate=1 --base-zoom=8 \
-            --force -P build/flock.geojsonseq
-          ls -lh public/flock.pmtiles
       - name: Download and filter New Jersey OpenStreetMap data
         run: |
           curl --fail --location --retry 3 -o build/new-jersey.osm.pbf \
@@ -58,12 +52,13 @@ jobs:
             -f geojsonseq -o build/osm-cameras.geojsonseq --overwrite
           python3 scripts/osm_camera_points.py \
             build/osm-cameras.geojsonseq build/osm-camera-points.geojsonseq
-      - name: Build OSM camera PMTiles
+      - name: Build combined surveillance PMTiles
         run: |
-          tippecanoe -o public/osm-surveillance.pmtiles -l osm_surveillance \
-            -Z 0 -z 15 --no-feature-limit --no-tile-size-limit \
-            --force -P build/osm-camera-points.geojsonseq
-          ls -lh public/osm-surveillance.pmtiles
+          tippecanoe -o public/surveillance.pmtiles -l surveillance \
+            -Z 8 -z 15 --no-feature-limit --no-tile-size-limit \
+            --drop-rate=1 --base-zoom=8 --force -P \
+            build/flock.geojsonseq build/osm-camera-points.geojsonseq
+          ls -lh public/surveillance.pmtiles
       - name: Upload PMTiles to Cloudflare R2
         if: ${{ vars.R2_ACCOUNT_ID != '' && vars.R2_BUCKET != '' }}
         env:
@@ -75,7 +70,7 @@ jobs:
         run: |
           : "${AWS_ACCESS_KEY_ID:?Missing R2_ACCESS_KEY_ID secret}"
           : "${AWS_SECRET_ACCESS_KEY:?Missing R2_SECRET_ACCESS_KEY secret}"
-          for name in flock osm-surveillance; do
+          for name in surveillance; do
             aws s3 cp "public/${name}.pmtiles" "s3://${R2_BUCKET}/${name}.pmtiles" \
               --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
               --content-type application/octet-stream \
@@ -92,8 +87,8 @@ jobs:
           from pathlib import Path
           path = Path('public/index.html')
           content = path.read_text()
-          url = os.environ['R2_PUBLIC_URL'].rstrip('/') + '/flock.pmtiles'
-          content = content.replace("new URL('flock.pmtiles', location.href).href", "R2_TILE_URL")
+          url = os.environ['R2_PUBLIC_URL'].rstrip('/') + '/surveillance.pmtiles'
+          content = content.replace("new URL('surveillance.pmtiles', location.href).href", "R2_TILE_URL")
           content = content.replace("'pmtiles://' + R2_TILE_URL", repr('pmtiles://' + url))
           path.write_text(content)
           PY

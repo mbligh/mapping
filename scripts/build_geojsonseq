@@ -36,6 +36,8 @@ def main():
                     continue
                 attrs = record.get("attributes") or {}
                 props = {key: attrs[key] for key in FIELDS if attrs.get(key) is not None}
+                props["source"] = "Flock"
+                props["camera_title"] = "Flock Surveillance camera"
                 props["readsLicensePlates"] = "readsLicensePlates" in (attrs.get("features") or "").split(",")
                 feature = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [lon, lat]}, "properties": props}
                 out.write(json.dumps(feature, separators=(",", ":"), ensure_ascii=False) + "\n")

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Flock device locations</title>
+  <title>Surveillance camera locations</title>
   <link href="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.css" rel="stylesheet">
   <style>
     html,body,#map { margin:0; width:100%; height:100%; }
@@ -12,7 +12,7 @@
 </head>
 <body>
   <div id="map"></div>
-  <div id="info">Flock device snapshot · zoom to 8+ to see devices</div>
+  <div id="info">Flock + OSM surveillance · zoom to 8+ to see cameras</div>
   <script src="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/pmtiles@4.3.0/dist/pmtiles.js"></script>
   <script>
@@ -25,30 +25,33 @@
     });
     map.addControl(new maplibregl.NavigationControl());
     map.on('load', () => {
-      map.addSource('flock', {type:'vector', url:'pmtiles://' + new URL('flock.pmtiles', location.href).href});
+      map.addSource('surveillance', {type:'vector', url:'pmtiles://' + new URL('surveillance.pmtiles', location.href).href});
       map.addLayer({
-        id:'flock-devices', type:'circle', source:'flock', 'source-layer':'flock',
+        id:'surveillance-devices', type:'circle', source:'surveillance', 'source-layer':'surveillance',
         minzoom:8,
         paint:{
-          'circle-radius':['interpolate',['linear'],['zoom'],8,2,14,5],
-          'circle-color':['match',['get','status'],'inService','#d23b38','inPlanning','#e8a328','decommissioned','#888888','#555555'],
-          'circle-opacity':0.8,
+          'circle-radius':['interpolate',['linear'],['zoom'],4,2.5,12,5,16,7],
+          'circle-color':'#ed174b',
+          'circle-opacity':0.9,
           'circle-stroke-color':'#ffffff',
-          'circle-stroke-width':0.5
+          'circle-stroke-width':1.5
         }
       });
-      map.on('click','flock-devices',e=>{
+      map.on('click','surveillance-devices',e=>{
         const p=e.features[0].properties;
         const div=document.createElement('div');
-        for(const key of ['name','deviceType','status','id','features','rotationAngle']){
+        const title=document.createElement('strong');
+        title.textContent=p.camera_title || (p.source==='OSM'?'OSM surveillance camera':'Flock Surveillance camera');
+        div.append(title);
+        for(const key of Object.keys(p)){
           const line=document.createElement('div');
           const strong=document.createElement('strong'); strong.textContent=key+': ';
           line.append(strong,document.createTextNode(String(p[key]??''))); div.append(line);
         }
         new maplibregl.Popup().setLngLat(e.lngLat).setDOMContent(div).addTo(map);
       });
-      map.on('mouseenter','flock-devices',()=>map.getCanvas().style.cursor='pointer');
-      map.on('mouseleave','flock-devices',()=>map.getCanvas().style.cursor='');
+      map.on('mouseenter','surveillance-devices',()=>map.getCanvas().style.cursor='pointer');
+      map.on('mouseleave','surveillance-devices',()=>map.getCanvas().style.cursor='');
     });
   </script>
 </body>

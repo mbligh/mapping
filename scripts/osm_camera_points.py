@@ -26,6 +26,8 @@ with open(sys.argv[1], encoding="utf-8") as source, open(sys.argv[2], "w", encod
         else:
             location = [sum(c[i] for c in coords) / len(coords) for i in (0, 1)]
         props = feature.get("properties") or {}
+        props["source"] = "OSM"
+        props["camera_title"] = "OSM surveillance camera"
         feature["geometry"] = {"type": "Point", "coordinates": location}
         feature["properties"] = props
         target.write(json.dumps(feature, separators=(",", ":")) + "\n")
