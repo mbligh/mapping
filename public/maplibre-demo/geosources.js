@@ -23,8 +23,31 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
           map.addLayer({...item.style, id: item.id, source: item.id,
             layout: {...item.style.layout, visibility: 'visible'}});
         }
-        if (map.getLayer(item.id)) {
-          map.setLayoutProperty(item.id, 'visibility', group.check.checked ? 'visible' : 'none');
+        if (group.check.checked && item.label && !map.getLayer(item.id + '-label')) {
+          map.addLayer({
+            id: item.id + '-label',
+            type: 'symbol',
+            source: item.id,
+            minzoom: item.label.minzoom ?? 13,
+            layout: {
+              'text-field': ['to-string', ['coalesce', ['get', item.label.field], '']],
+              'text-size': item.label.size ?? 12,
+              'text-anchor': 'bottom',
+              'text-offset': [0, -0.8],
+              'text-allow-overlap': false,
+              'text-optional': true
+            },
+            paint: {
+              'text-color': '#222222',
+              'text-halo-color': '#ffffff',
+              'text-halo-width': 2
+            }
+          });
+        }
+        for (const layerId of [item.id, item.id + '-label']) {
+          if (map.getLayer(layerId)) {
+            map.setLayoutProperty(layerId, 'visibility', group.check.checked ? 'visible' : 'none');
+          }
         }
       } catch (error) {
         group.status.textContent = `${group.name}: ${error.message}`;
@@ -62,7 +85,20 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
           for (const key of ['paint', 'layout', 'filter', 'minzoom', 'maxzoom']) {
             if (data[key] !== undefined) style[key] = data[key];
           }
-          return {id: `geosources-${groupIndex}-${dataIndex}`, url: url.href, style};
+          const label = data.label;
+          if (label !== undefined) {
+            if (!label || typeof label !== 'object' || Array.isArray(label) ||
+                typeof label.field !== 'string' || !label.field.trim()) {
+              throw new Error(`${name}: label.field must be a non-empty property name`);
+            }
+            if (label.minzoom !== undefined && (!Number.isFinite(label.minzoom) || label.minzoom < 0 || label.minzoom > 24)) {
+              throw new Error(`${name}: label.minzoom must be between 0 and 24`);
+            }
+            if (label.size !== undefined && (!Number.isFinite(label.size) || label.size <= 0)) {
+              throw new Error(`${name}: label.size must be positive`);
+            }
+          }
+          return {id: `geosources-${groupIndex}-${dataIndex}`, url: url.href, style, label};
         });
         const label = document.createElement('label');
         const check = document.createElement('input');
