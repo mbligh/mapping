@@ -14,7 +14,8 @@
         },
         {
             "id":"home_depot", "file": "geojson/home_depot", "type": "circle", 
-            "paint": { "circle-color": "#F96302", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#F96302", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         }
     ] },
 
