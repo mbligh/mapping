@@ -25,8 +25,8 @@
   <h1>Tewksbury vector map</h1>
   <label for="style">OpenFreeMap style</label>
   <select id="style">
-    <option value="bright">Bright</option>
-    <option value="hybrid" selected>NJ Satellite + roads/trails/labels</option>
+    <option value="bright" selected>Bright</option>
+    <option value="hybrid">NJ Satellite + roads/trails/labels</option>
   </select>
   <button id="reset" type="button">Tewksbury</button>
   <label><input id="parcels" type="checkbox"> Hunterdon parcels</label>
@@ -356,17 +356,22 @@ try {
   async function changeStyle(choice) {
     const request = ++styleRequest;
     error.textContent = '';
-    if (styles[choice]) { stopDraw(); map.setStyle(styles[choice]); return; }
     try {
       const style = choice === 'satellite'
         ? {version:8,sources:{},layers:[]}
         : await (async () => {
-            const response=await fetch(styles.bright);
+            const response=await fetch(styles[choice] || styles.bright);
             if(!response.ok) throw new Error('OpenFreeMap style HTTP '+response.status);
             return response.json();
           })();
       if(request!==styleRequest) return;
-      style.sources['nj-orthos'] = {
+      if(choice === 'bright') {
+        // Hide OpenMapTiles businesses while retaining roads and place labels.
+        style.layers = style.layers.filter(layer =>
+          layer['source-layer'] !== 'poi' &&
+          !/(^|[-_])poi(s)?($|[-_])/.test(layer.id.toLowerCase()));
+      }
+      if(choice !== 'bright') style.sources['nj-orthos'] = {
         type:'raster', tiles:[orthos], tileSize:256,
         attribution:'2020 aerial imagery © NJ Office of GIS'
       };
@@ -386,7 +391,7 @@ try {
           }
         }
       }
-      style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos'});
+      if(choice !== 'bright') style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos'});
       stopDraw();
       map.setStyle(style);
     } catch(e) {
@@ -398,7 +403,7 @@ try {
   document.getElementById('style').addEventListener('change', event => {
     changeStyle(event.target.value);
   });
-  changeStyle('hybrid');
+  changeStyle('bright');
   document.getElementById('reset').addEventListener('click', () => map.flyTo({...HOME, bearing:0, pitch:0}));
 } catch (e) {
   error.textContent = 'Map initialization failed: ' + (e?.message || e);
