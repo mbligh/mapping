@@ -245,6 +245,34 @@
     "confidence": 0.9519274234771729,
     "operating_status": "open"
    }
-  }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.84334564208984,
+     40.72713851928711
+    ]
+   },
+   "properties": {
+    "id": "9f096600-4b0e-460c-baaf-5dacbf6c500f",
+    "name": "Oscar's Gourmet Cafe",
+    "street": "438 County Rd 513",
+    "city": "Califon",
+    "region": "NJ",
+    "postcode": "07830",
+    "basic_category": "casual_eatery",
+    "category": "delicatessen",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "delicatessen"
+    ],
+    "phone": "+19088329494",
+    "website": "http://oscarsgourmetcafe.com/",
+    "confidence": 0.9755206108093262,
+    "operating_status": "open"
+   }
  ]
 }
