@@ -21,8 +21,8 @@
             "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
-            "id":"chase", "file": "geojson/chase", "type": "circle", 
-            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "id":"chase", "file": "geojson/chase",
+            "icon": { "url": "icons/chase.png", "size": 20 },
             "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
