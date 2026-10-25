@@ -22,7 +22,7 @@
         },
         {
             "id":"chase", "file": "geojson/chase",
-            "icon": { "url": "icons/chase.png", "size": 20 },
+            "type": "symbol", "icon": { "url": "icons/chase.png", "size": 20 },
             "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
