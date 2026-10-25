@@ -123,9 +123,10 @@ scripts/address "174 Lamington Road, Oldwick, NJ 08858"
 
 `scripts/address` joins all arguments with spaces and prints `latitude, longitude`
 followed by a tab and the matched address, one line per distinct result. It uses
-indexed case-insensitive street lookups and accepts an optional postal community,
-state, ZIP, or their combination. Street spelling and abbreviations must match
-`FULLADDR`; it does not perform fuzzy geocoding. Multiple matching locations are
+an indexed house-number prefix lookup, then normalizes common street abbreviations
+(Road/Rd, Street/St, North/N, etc.), case, periods, commas, and whitespace in the
+candidate rows. It accepts an optional postal community, state, ZIP, or their
+combination. Street names must otherwise match; it does not perform fuzzy geocoding. Multiple matching locations are
 all printed, while identical selected records are collapsed. Missing coordinates
 are reported on stderr. Exit status is 0 if any coordinates were printed, 1 for
 no match/no available coordinates, or 2 for usage/database errors.

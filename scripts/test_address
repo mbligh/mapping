@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Offline regression checks for scripts/address."""
+from pathlib import Path
+import runpy
+import sqlite3
+import unittest
+
+lookup = runpy.run_path(str(Path(__file__).with_name('address')))['lookup']
+
+
+class AddressTests(unittest.TestCase):
+    def setUp(self):
+        self.db = sqlite3.connect(':memory:')
+        self.addCleanup(self.db.close)
+        self.db.execute('CREATE TABLE addresses (FULLADDR TEXT, STATE TEXT, '
+                        'POST_COMM TEXT, POST_CODE TEXT, LAT REAL, LONG_ REAL)')
+        self.db.execute('CREATE INDEX addresses_fulladdr ON addresses '
+                        '(FULLADDR COLLATE NOCASE, POST_CODE)')
+        self.db.executemany('INSERT INTO addresses VALUES (?,?,?,?,?,?)', [
+            ('174 Lamington Rd', 'NJ', 'Oldwick', '08858', 40.67, -74.75),
+            ('174 Lamington Rd', 'NJ', 'Oldwick', '08858', 40.67, -74.75),
+            ('174 Lamington Rd', 'NJ', 'Other Town', '08800', 40.2, -74.1),
+            ('12 North Main Street', 'NJ', 'Oldwick', '08858', 40.6, -74.7),
+            ('1740 Lamington Rd', 'NJ', 'Oldwick', '08858', 40.1, -74.2)])
+
+    def test_reported_road_abbreviation(self):
+        rows = lookup(self.db, '174 Lamington Road Oldwick NJ 08858')
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0][0], '174 Lamington Rd')
+
+    def test_punctuation_and_reverse_abbreviations(self):
+        self.assertEqual(len(lookup(self.db, '12 N. Main St., Oldwick, NJ 08858')), 1)
+
+    def test_locality_and_number_do_not_get_ignored(self):
+        for query in ('174 Lamington Road Wrong NJ', '174 Lamington Road NJ 99999',
+                      '17 Lamington Road', "174% Lamington Road", "174' OR 1=1 --"):
+            with self.subTest(query=query):
+                self.assertEqual(lookup(self.db, query), [])
+
+    def test_ambiguity_is_preserved_and_duplicates_collapsed(self):
+        self.assertEqual(len(lookup(self.db, '174 Lamington Road')), 2)
+
+    def test_house_prefix_uses_index(self):
+        plan = self.db.execute("EXPLAIN QUERY PLAN SELECT * FROM addresses "
+                               "WHERE FULLADDR LIKE ? ESCAPE '\\'", ('174 %',)).fetchall()
+        self.assertTrue(any('SEARCH' in row[3] and 'addresses_fulladdr' in row[3]
+                            for row in plan), plan)
+
+
+if __name__ == '__main__':
+    unittest.main()

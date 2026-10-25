@@ -3,7 +3,7 @@
 
 Use njaddress.db in the repository root (or build/njaddress/njaddress.db).
 Set NJADDRESS_DB to use another database path. Matching is case-insensitive;
-street spelling must match FULLADDR in the source, including abbreviations.
+common street abbreviations and punctuation are normalized.
 """
 
 import os
@@ -11,33 +11,41 @@ from pathlib import Path
 import sqlite3
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from mapping_quality import SUFFIXES
+
 
 def words(value):
-    return " ".join(str(value or "").upper().replace(",", " ").split())
+    return " ".join(str(value or "").upper().replace(",", " ").replace(".", "").split())
 
 
 def lookup(db, address):
     tokens = words(address).split()
-    # Probe street prefixes using addresses_fulladdr, then check any locality.
-    for end in range(len(tokens), 0, -1):
-        street, suffix = " ".join(tokens[:end]), " ".join(tokens[end:])
-        matches = []
-        for row in db.execute(
-            "SELECT FULLADDR, STATE, POST_COMM, POST_CODE, LAT, LONG_ "
-            "FROM addresses WHERE FULLADDR = ? COLLATE NOCASE", (street,)
-        ):
-            fulladdr, state, city, zipcode, lat, lon = row
-            city, state, zipcode = map(words, (city, state, zipcode))
-            localities = {
-                words(" ".join(parts))
-                for parts in ((city,), (state,), (zipcode,), (city, state),
-                              (city, zipcode), (state, zipcode), (city, state, zipcode))
-            }
-            if not suffix or suffix in localities:
-                matches.append(row)
-        if matches:
-            return sorted(set(matches), key=lambda row: tuple(str(v) for v in row))
-    return []
+    if not tokens:
+        return []
+    # Narrow candidates with an indexed house-number prefix; normalize only
+    # those rows, rather than applying a Python/SQL function to all 3.8M rows.
+    prefix = tokens[0].replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + " %"
+    matches = []
+    for row in db.execute(
+        "SELECT FULLADDR, STATE, POST_COMM, POST_CODE, LAT, LONG_ "
+        "FROM addresses WHERE FULLADDR LIKE ? ESCAPE '\\'", (prefix,)
+    ):
+        fulladdr, state, city, zipcode, lat, lon = row
+        street = words(fulladdr).split()
+        if [SUFFIXES.get(t, t) for t in tokens[:len(street)]] != [
+                SUFFIXES.get(t, t) for t in street]:
+            continue
+        suffix = " ".join(tokens[len(street):])
+        city, state, zipcode = map(words, (city, state, zipcode))
+        localities = {
+            words(" ".join(parts))
+            for parts in ((city,), (state,), (zipcode,), (city, state),
+                          (city, zipcode), (state, zipcode), (city, state, zipcode))
+        }
+        if not suffix or suffix in localities:
+            matches.append(row)
+    return sorted(set(matches), key=lambda row: tuple(str(v) for v in row))
 
 
 def main():
@@ -65,7 +73,7 @@ def main():
         print(f"address: {exc}", file=sys.stderr)
         return 2
     if not rows:
-        print(f"address: no match for {address!r}; check the street spelling and abbreviations",
+        print(f"address: no match for {address!r}; check the street spelling, city, and ZIP",
               file=sys.stderr)
         return 1
     found = False
