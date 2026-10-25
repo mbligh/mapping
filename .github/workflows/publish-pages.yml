@@ -13,7 +13,7 @@ on:
       - 'scripts/build_njaddress'
       - 'scripts/test_njaddress'
   workflow_run:
-    workflows: ['Refresh NJ shipping locations', 'Build NJ contour PMTiles', 'Build NJ address database']
+    workflows: ['NJ shipping locations', 'Build NJ contour PMTiles', 'Build NJ address database']
     types: [completed]
     branches: [main]
   release:
