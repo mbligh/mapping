@@ -1,0 +1,6304 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25285339355469,
+     40.595367431640625
+    ]
+   },
+   "properties": {
+    "id": "c8aef0f0-494f-4a09-a14f-dade76a4b141",
+    "name": "Chase Bank",
+    "street": "481 Blair Rd",
+    "city": "Avenel",
+    "region": "NJ",
+    "postcode": "07001-2218",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17328159780",
+    "website": "http://www.chase.com/",
+    "confidence": 0.7131085395812988,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29248046875,
+     40.58433532714844
+    ]
+   },
+   "properties": {
+    "id": "ee2cbfba-ff45-40b6-b408-12cd987ffd85",
+    "name": "Chase Bank",
+    "street": "1342 St Georges Ave",
+    "city": "Avenel",
+    "region": "NJ",
+    "postcode": "07001-1134",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17327265699",
+    "website": "https://www.chase.com/locator/banking/us/nj/avenel/1342-st-georges-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.57714080810547,
+     40.64391326904297
+    ]
+   },
+   "properties": {
+    "id": "0517ef56-ecd1-4c2e-b0a0-40e9d2526d2e",
+    "name": "Chase",
+    "street": "25 Mountainview Blvd",
+    "city": "Basking Ridge",
+    "region": "NJ",
+    "postcode": "07920-3452",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19086052038",
+    "website": "https://www.chase.com/locator/banking/us/nj/basking-ridge/25-mountainview-blvd",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.57719421386719,
+     40.6439208984375
+    ]
+   },
+   "properties": {
+    "id": "04627c26-5487-4bf0-9a20-c1b43be749b1",
+    "name": "Chase ATM",
+    "street": "25 Mountainview Blvd",
+    "city": "Basking Ridge",
+    "region": "NJ",
+    "postcode": "07920",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/basking-ridge/25-mountainview-blvd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTExNzMxMzQtNTU5LWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9874158442020416
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.11353302001953,
+     40.6691780090332
+    ]
+   },
+   "properties": {
+    "id": "c7579f6c-8663-4b64-bf62-a29f0ec535a6",
+    "name": "Chase Bank",
+    "street": "650 Broadway",
+    "city": "Bayonne",
+    "region": "NJ",
+    "postcode": "07002",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12014363736",
+    "website": "https://locator.chase.com/nj/bayonne/650-broadway?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODExMC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1202163696289,
+     40.66188049316406
+    ]
+   },
+   "properties": {
+    "id": "f49a1e39-6b58-40ab-a70b-60620658d52f",
+    "name": "Chase Bank",
+    "street": "439 Broadway",
+    "city": "Bayonne",
+    "region": "NJ",
+    "postcode": "07002-3625",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12013393018",
+    "website": "http://www.chase.com/",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64020538330078,
+     40.64635467529297
+    ]
+   },
+   "properties": {
+    "id": "55c1d3f8-9e3e-468f-8662-556a8a40362f",
+    "name": "Chase Bank",
+    "street": "215 US-202 #206",
+    "city": "Bedminster",
+    "region": "NJ",
+    "postcode": "07921",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19086583187",
+    "website": "https://locator.chase.com/nj/bedminster/215-us-highway-202-206?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MjkyMS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.18374633789062,
+     40.782020568847656
+    ]
+   },
+   "properties": {
+    "id": "c29319a9-172c-4279-9c47-51853b185c0d",
+    "name": "Chase ATM",
+    "street": "181 Franklin St",
+    "city": "Belleville",
+    "region": "NJ",
+    "postcode": "07109-1066",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/belleville/181-franklin-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYyNi01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.999463315063715,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.99469757080078,
+     40.935367584228516
+    ]
+   },
+   "properties": {
+    "id": "345d53ee-a65d-4f5e-b00c-7b41eb999160",
+    "name": "Chase Bank",
+    "street": "221 N Washington Ave",
+    "city": "Bergenfield",
+    "region": "NJ",
+    "postcode": "07621",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12013389008",
+    "website": "https://www.chase.com/locator/banking/us/nj/bergenfield/221-n-washington-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.9941177368164,
+     40.92864990234375
+    ]
+   },
+   "properties": {
+    "id": "c0e88923-aa18-4574-b559-75fcb71a11e6",
+    "name": "chase",
+    "street": "221",
+    "city": "Bergenfield",
+    "region": "NJ",
+    "postcode": "07621",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 387-1023",
+    "website": "https://www.chase.com",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.54509735107422,
+     40.568023681640625
+    ]
+   },
+   "properties": {
+    "id": "ca647eb4-92fe-4b68-8138-29e2035aceb5",
+    "name": "Chase Bank",
+    "street": "427 W Union Ave",
+    "city": "Bound Brook",
+    "region": "NJ",
+    "postcode": "08805",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323568171",
+    "website": "https://www.chase.com/locator/banking/us/nj/bound-brook/427-w-union-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.01791381835938,
+     40.202423095703125
+    ]
+   },
+   "properties": {
+    "id": "13e00616-ada0-4134-bc35-b96fc70a2fdd",
+    "name": "Chase",
+    "street": "500 Main St",
+    "city": "Bradley Beach",
+    "region": "NJ",
+    "postcode": "07720",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17327745300",
+    "website": "https://www.chase.com/locator/banking/us/nj/bradley-beach/500-main-st",
+    "confidence": 0.9664633274078369
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1539535522461,
+     40.05608367919922
+    ]
+   },
+   "properties": {
+    "id": "2560d0bc-5121-4bb7-8638-05fd4e35f3ec",
+    "name": "Chase",
+    "street": "499 Route 70",
+    "city": "Brick",
+    "region": "NJ",
+    "postcode": "08723",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17324771012",
+    "website": "https://www.chase.com/locator/banking/us/nj/brick/499-route-70",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0570068359375,
+     40.826480865478516
+    ]
+   },
+   "properties": {
+    "id": "842fefcc-1893-4ab2-b4f9-1edc1dbdc0fa",
+    "name": "Chase",
+    "street": "650 Washington Ave",
+    "city": "Carlstadt",
+    "region": "NJ",
+    "postcode": "07072-2902",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019394259",
+    "website": "http://www.thechasetoronto.com",
+    "confidence": 0.8965000000000001,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2307357788086,
+     40.85597229003906
+    ]
+   },
+   "properties": {
+    "id": "130fe993-cf3d-4f6b-b495-704cde0a9195",
+    "name": "Chase Bank",
+    "street": "664 Pompton Ave",
+    "city": "Cedar Grove",
+    "region": "NJ",
+    "postcode": "07009",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19735712350",
+    "website": "https://www.chase.com/locator/banking/us/nj/cedar-grove/664-pompton-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.68335723876953,
+     40.78798294067383
+    ]
+   },
+   "properties": {
+    "id": "877aa6f3-c021-4f7a-987f-d0b7812c9859",
+    "name": "Chase Bank",
+    "street": "444 Main St",
+    "city": "Chester",
+    "region": "NJ",
+    "postcode": "07930",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19088797700",
+    "website": "https://www.chase.com/locator/banking/us/nj/chester/444-e-main-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.00955963134766,
+     39.9885139465332
+    ]
+   },
+   "properties": {
+    "id": "7923c74b-4234-445f-aefd-7bf8f2b0419a",
+    "name": "Chase Bank",
+    "street": "113 US-130",
+    "city": "Cinnaminson Twp",
+    "region": "NJ",
+    "postcode": "08077",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+18564996042",
+    "website": "http://www.chase.com",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16085815429688,
+     40.864990234375
+    ]
+   },
+   "properties": {
+    "id": "d53f1e8e-e8cd-42fd-b51d-3a84d8acab38",
+    "name": "Chase",
+    "street": "963 Van Houten Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07013",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+19733654088",
+    "website": "https://locator.chase.com/nj/clifton/963-van-houten-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzU5Mi01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9998414085626602
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.89485168457031,
+     40.63936996459961
+    ]
+   },
+   "properties": {
+    "id": "87b1f42b-10ab-4b17-8c46-5324efd705ba",
+    "name": "Chase ATM",
+    "street": "190 Center St",
+    "city": "Clinton",
+    "region": "NJ",
+    "postcode": "08809",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/clinton/190-center-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_ODg2MDU0NC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9105258584022522
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.89488220214844,
+     40.63936233520508
+    ]
+   },
+   "properties": {
+    "id": "f9ac9ee0-4b60-4cb9-9337-4e40a028f27b",
+    "name": "Chase Bank",
+    "street": "190 Center St",
+    "city": "Clinton",
+    "region": "NJ",
+    "postcode": "08809",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19082384263",
+    "website": "https://www.chase.com/locator/banking/us/nj/clinton/190-center-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.95818328857422,
+     40.97056198120117
+    ]
+   },
+   "properties": {
+    "id": "a30c6b67-c647-48a7-b97f-14c11249bf31",
+    "name": "Chase Bank",
+    "street": "17 Vervalen St",
+    "city": "Closter",
+    "region": "NJ",
+    "postcode": "07624-2699",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12016606210",
+    "website": "https://www.chase.com/locator/banking/us/nj/closter/17-ver-valen-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32721710205078,
+     40.598941802978516
+    ]
+   },
+   "properties": {
+    "id": "f34e6106-091d-4dbb-8499-1246fddce4e8",
+    "name": "Chase Bank",
+    "street": "576 Inman Ave",
+    "city": "Colonia",
+    "region": "NJ",
+    "postcode": "07067-1028",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17329434451",
+    "website": "https://www.chase.com/locator/banking/us/nj/colonia/576-inman-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55858612060547,
+     40.88651657104492
+    ]
+   },
+   "properties": {
+    "id": "566ab2fb-dc4e-4a60-8fd4-70833e3e7f24",
+    "name": "Chase ATM",
+    "street": "1 E Clinton St",
+    "city": "Dover",
+    "region": "NJ",
+    "postcode": "07801",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/dover/1-e-clinton-st",
+    "confidence": 0.9660656452178955
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55856323242188,
+     40.88652420043945
+    ]
+   },
+   "properties": {
+    "id": "6d0e676f-f97b-4e32-add0-24b53e55795d",
+    "name": "Chase Mortgage",
+    "street": "1 E Clinton St",
+    "city": "Dover",
+    "region": "NJ",
+    "postcode": "07801",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19733662000",
+    "website": "https://www.chase.com/locator/banking/us/nj/dover/1-e-clinton-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.38783264160156,
+     40.40858459472656
+    ]
+   },
+   "properties": {
+    "id": "433bc826-dab8-43b5-b711-79842e8a10d1",
+    "name": "Chase Bank",
+    "street": "377 Summerhill Rd",
+    "city": "East Brunswick",
+    "region": "NJ",
+    "postcode": "08816",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323535670",
+    "website": "https://locator.chase.com/nj/east-brunswick/377-summerhill-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjM2MDcxNzAtNTU5LWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09457397460938,
+     40.83281707763672
+    ]
+   },
+   "properties": {
+    "id": "e82392aa-1a6b-4705-97b2-8d7354db8752",
+    "name": "Chase Bank",
+    "street": "90 Hackensack St",
+    "city": "East Rutherford",
+    "region": "NJ",
+    "postcode": "07073",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12019394133",
+    "website": "https://www.chase.com/locator/banking/us/nj/east-rutherford/90-hackensack-st",
+    "confidence": 0.9999083093643188
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.537109375,
+     40.2750129699707
+    ]
+   },
+   "properties": {
+    "id": "c3ae0cb5-b129-443f-86e5-c110b8459eb7",
+    "name": "Chase Bank",
+    "street": "392 US-130",
+    "city": "East Windsor Twp",
+    "region": "NJ",
+    "postcode": "08520",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16094434104",
+    "website": "https://www.chase.com/locator/banking/us/nj/east-windsor/392-us-highway-130",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.97341918945312,
+     40.827415466308594
+    ]
+   },
+   "properties": {
+    "id": "b3a7eb83-c929-44b9-b401-97250b3a10ed",
+    "name": "Chase",
+    "street": "950 River Rd",
+    "city": "Edgewater",
+    "region": "NJ",
+    "postcode": "07020",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019699629",
+    "website": "https://www.chase.com/locator/banking/us/nj/edgewater/950-river-rd",
+    "confidence": 0.9998839460194111
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.38479614257812,
+     40.57678985595703
+    ]
+   },
+   "properties": {
+    "id": "38eaea2f-5469-47e3-9316-58f18bc1cabe",
+    "name": "Chase ATM",
+    "street": "2163 Oak Tree Rd",
+    "city": "Edison",
+    "region": "NJ",
+    "postcode": "08820",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/edison/2163-oak-tree-rd",
+    "confidence": 0.999832895231247,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.21495056152344,
+     40.671051025390625
+    ]
+   },
+   "properties": {
+    "id": "98ed3a53-4481-4d08-b899-bd859f473aaa",
+    "name": "Chase",
+    "street": "339 N Broad St",
+    "city": "Elizabeth",
+    "region": "NJ",
+    "postcode": "07208-3722",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19082827001",
+    "website": "https://www.chase.com/locator/banking/us/nj/elizabeth/339-n-broad-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1227035522461,
+     40.91923904418945
+    ]
+   },
+   "properties": {
+    "id": "65dda29b-24cb-4cf3-b008-46cdd0815b36",
+    "name": "Chase",
+    "street": "100 Broadway",
+    "city": "Elmwood Park",
+    "region": "NJ",
+    "postcode": "07407",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12017038313",
+    "website": "https://www.chase.com/locator/banking/us/nj/elmwood-park/100-broadway",
+    "confidence": 0.9997807274281979
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12318420410156,
+     40.91893768310547
+    ]
+   },
+   "properties": {
+    "id": "7b20f8bd-02b7-46ff-9d09-438f8c908d3c",
+    "name": "Chase ATM",
+    "street": "100 Broadway",
+    "city": "Elmwood Park",
+    "region": "NJ",
+    "postcode": "07407",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/elmwood-park/100-broadway?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEzMS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.8942621946334839
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30679321289062,
+     40.349857330322266
+    ]
+   },
+   "properties": {
+    "id": "4504ae55-870f-4db7-945c-52b5905228a2",
+    "name": "Chase",
+    "street": "138 US-9",
+    "city": "Englishtown",
+    "region": "NJ",
+    "postcode": "07726-8231",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+17325360150",
+    "website": "https://www.chase.com/locator/banking/us/nj/englishtown/146-us-highway-9",
+    "confidence": 0.9994616868376732
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04252624511719,
+     40.36073303222656
+    ]
+   },
+   "properties": {
+    "id": "933d0880-60f6-4fc7-ae16-f1345e75cf73",
+    "name": "Chase Bank",
+    "street": "560 River Rd",
+    "city": "Fair Haven",
+    "region": "NJ",
+    "postcode": "07704",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323832025",
+    "website": "https://locator.chase.com/nj/fair-haven/560-river-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_ODc1OTEwNS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9950539991557598
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.27362823486328,
+     40.8880729675293
+    ]
+   },
+   "properties": {
+    "id": "6868a3aa-53ae-4518-8974-9eb548a7acee",
+    "name": "Chase",
+    "street": "387 Passaic Ave",
+    "city": "Fairfield",
+    "region": "NJ",
+    "postcode": "07004",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+18437548593",
+    "website": "https://www.chase.com/locator/banking/us/nj/fairfield/387-passaic-ave",
+    "confidence": 0.9947139620780945
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85427856445312,
+     40.4990348815918
+    ]
+   },
+   "properties": {
+    "id": "529f68e9-e183-43b7-98f0-22daa95d5bdf",
+    "name": "Chase Bank",
+    "street": "75 Reaville Ave Ste 2",
+    "city": "Flemington",
+    "region": "NJ",
+    "postcode": "08822",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19087827168",
+    "website": "http://www.chase.com/",
+    "confidence": 0.9199122190475464
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.20443725585938,
+     39.859283447265625
+    ]
+   },
+   "properties": {
+    "id": "a9c445f9-e5d9-4e5d-a12c-7f55c8e7ac3f",
+    "name": "Chase Bank",
+    "street": "744 Lacey Rd",
+    "city": "Forked River",
+    "region": "NJ",
+    "postcode": "08731-1306",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16092420132",
+    "website": "https://locator.chase.com/nj/forked-river/744-lacey-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MDg5MS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.96955108642578,
+     40.85102081298828
+    ]
+   },
+   "properties": {
+    "id": "1a513483-23aa-447f-9287-05401461ea73",
+    "name": "Chase Bank",
+    "street": "188-190 Main St",
+    "city": "Fort Lee",
+    "region": "NJ",
+    "postcode": "07024",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12019472686",
+    "website": "https://www.chase.com/locator/banking/us/nj/fort-lee/188-190-main-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.57976531982422,
+     41.1198844909668
+    ]
+   },
+   "properties": {
+    "id": "ed52c103-2783-4da5-95fc-cb7fd135d5b9",
+    "name": "Chase",
+    "street": "300 State Rte 23",
+    "city": "Franklin",
+    "region": "NJ",
+    "postcode": "07416",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738279181",
+    "website": "https://locator.chase.com/nj/franklin/300-state-rte-23?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYzNC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.999896909725666
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55648803710938,
+     40.43012237548828
+    ]
+   },
+   "properties": {
+    "id": "eba59544-e764-4733-b12d-3008a333b54a",
+    "name": "Chase Bank",
+    "street": "3333 State Route 27",
+    "city": "Franklin Park",
+    "region": "NJ",
+    "postcode": "08823-1312",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323988738",
+    "website": "https://www.chase.com/locator/banking/us/nj/franklin-park/3333-sr-27",
+    "confidence": 0.9891006112098694,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2986831665039,
+     40.2435417175293
+    ]
+   },
+   "properties": {
+    "id": "36d1cafb-16c6-4518-b72b-8b8d12e5d0c5",
+    "name": "Chase Bank",
+    "street": "302 W Main St",
+    "city": "Freehold",
+    "region": "NJ",
+    "postcode": "07728-2524",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17322941071",
+    "website": "https://www.chase.com/locator/banking/us/nj/freehold/302-w-main-st",
+    "confidence": 0.9996138245940208
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29430389404297,
+     40.28664016723633
+    ]
+   },
+   "properties": {
+    "id": "35a5febb-4ec4-4090-9d1b-2d346fd7d4d3",
+    "name": "Chase Mortgage",
+    "street": "4413 US-9",
+    "city": "Freehold",
+    "region": "NJ",
+    "postcode": "07728",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17328451870",
+    "website": "https://www.chase.com/locator/banking/us/nj/freehold/4413-us-highway-9",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.10334777832031,
+     40.86685562133789
+    ]
+   },
+   "properties": {
+    "id": "0d89fb92-0c5d-48bc-9286-10022e3e3dd3",
+    "name": "Chase Bank",
+    "street": "136 Passaic St",
+    "city": "Garfield",
+    "region": "NJ",
+    "postcode": "07026",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19734732242",
+    "website": "https://www.chase.com/locator/banking/us/nj/garfield/136-passaic-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.11577606201172,
+     39.721534729003906
+    ]
+   },
+   "properties": {
+    "id": "af4a0386-c887-4ac6-b25e-e9c5de981e70",
+    "name": "Chase Bank",
+    "street": "787 Delsea Dr N",
+    "city": "Glassboro",
+    "region": "NJ",
+    "postcode": "08028",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+18562267225",
+    "website": "https://www.chase.com/locator/banking/us/nj/glassboro/787-delsea-dr-n",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04003143310547,
+     40.89457321166992
+    ]
+   },
+   "properties": {
+    "id": "f45fa15e-121e-4f57-8102-27e3649b7cac",
+    "name": "Chase Bank",
+    "street": "505 Main St",
+    "city": "Hackensack",
+    "region": "NJ",
+    "postcode": "07601",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12013433529",
+    "website": "http://www.chase.com",
+    "confidence": 0.9998682584583759,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.8231201171875,
+     40.83930969238281
+    ]
+   },
+   "properties": {
+    "id": "ea5689e3-316d-4c56-b373-9b546e025c6d",
+    "name": "Chase Bank",
+    "street": "227 Mountain Ave",
+    "city": "Hackettstown",
+    "region": "NJ",
+    "postcode": "07840",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19086848350",
+    "website": "https://www.chase.com/locator/banking/us/nj/hackettstown/227-mountain-ave",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.63905334472656,
+     40.19657897949219
+    ]
+   },
+   "properties": {
+    "id": "a656f27a-1ef3-4902-b00b-6712362022a3",
+    "name": "Chase Bank",
+    "street": "525 Marketplace Blvd",
+    "city": "Hamilton Twp",
+    "region": "NJ",
+    "postcode": "08691",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16095853584",
+    "website": "https://www.chase.com/locator/banking/us/nj/hamilton/525-marketplace-blvd",
+    "confidence": 0.9998765928864479,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.63907623291016,
+     40.19660186767578
+    ]
+   },
+   "properties": {
+    "id": "6f0b0b4f-a473-4868-a638-4218b29adff7",
+    "name": "Chase Home Lending",
+    "street": "525 Marketplace Blvd",
+    "city": "Hamilton Twp",
+    "region": "NJ",
+    "postcode": "08691-2112",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+15039083933",
+    "website": "https://www.chase.com/locator/banking/us/nj/hamilton/525-marketplace-blvd",
+    "confidence": 0.9821149110794067
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15513610839844,
+     40.94959259033203
+    ]
+   },
+   "properties": {
+    "id": "3eed7cb2-2fd6-40a2-b0c6-9a2fd81f67d6",
+    "name": "Chase Bank",
+    "street": "331 Lafayette Ave",
+    "city": "Hawthorne",
+    "region": "NJ",
+    "postcode": "07506",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19732381862",
+    "website": "https://www.chase.com/locator/banking/us/nj/hawthorne/331-lafayette-ave",
+    "confidence": 0.9999130801200866,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17723083496094,
+     40.418338775634766
+    ]
+   },
+   "properties": {
+    "id": "43a4aa41-ee65-4ee8-b6cd-9a63df1dc254",
+    "name": "Chase Bank",
+    "street": "2983 State Route 35",
+    "city": "Hazlet",
+    "region": "NJ",
+    "postcode": "07730",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17322641316",
+    "website": "https://www.chase.com/locator/banking/us/nj/hazlet/2983-state-route-35",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.23738098144531,
+     40.69369125366211
+    ]
+   },
+   "properties": {
+    "id": "47ae7deb-8e86-4c31-a21f-e20a2fd0d54a",
+    "name": "Chase Bank",
+    "street": "1152 Liberty Ave",
+    "city": "Hillside",
+    "region": "NJ",
+    "postcode": "07205",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19083538793",
+    "website": "https://www.chase.com/locator/banking/us/nj/hillside/1152-liberty-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02840423583984,
+     40.73813247680664
+    ]
+   },
+   "properties": {
+    "id": "337eb630-7054-42e7-85ea-adccea8b095d",
+    "name": "Chase Bank",
+    "street": "125 River St",
+    "city": "Hoboken",
+    "region": "NJ",
+    "postcode": "07030",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12015333920",
+    "website": "https://www.chase.com/locator/banking/us/nj/hoboken/125-river-st",
+    "confidence": 0.9998134910047054
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25048828125,
+     40.18571090698242
+    ]
+   },
+   "properties": {
+    "id": "98076b18-b517-4f5d-8f76-c9f6becceb4d",
+    "name": "Chase",
+    "street": "1998 US Highway 9",
+    "city": "Howell",
+    "region": "NJ",
+    "postcode": "07731-3711",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17324627143",
+    "website": "https://locator.chase.com/nj/howell/1998-us-highway-9?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk1My01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22926330566406,
+     40.15498733520508
+    ]
+   },
+   "properties": {
+    "id": "786a58c5-3376-4f3a-811c-c0c17d24d296",
+    "name": "Chase Bank",
+    "street": "4001 US-9",
+    "city": "Howell",
+    "region": "NJ",
+    "postcode": "07731",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17324627143",
+    "website": "https://locator.chase.com/nj/howell/4001-us-highway-9?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjQ3OTY3MjMtNTU5LWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9984686285257339,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29948425292969,
+     40.13998794555664
+    ]
+   },
+   "properties": {
+    "id": "d0e49595-92b6-4edd-b91e-e48fc7e94cd9",
+    "name": "Chase ATM",
+    "street": "332 N County Line Rd",
+    "city": "Jackson",
+    "region": "NJ",
+    "postcode": "08527",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/jackson/332-n-county-line-rd",
+    "confidence": 0.9829944372177124
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29948425292969,
+     40.14000701904297
+    ]
+   },
+   "properties": {
+    "id": "1e379aa6-68b2-4ea1-ac0f-298e730365aa",
+    "name": "Chase Bank",
+    "street": "332 N County Line Rd",
+    "city": "Jackson",
+    "region": "NJ",
+    "postcode": "08527",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17329283640",
+    "website": "https://locator.chase.com/nj/jackson/332-n-county-line-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk3Ni01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9634080529212952
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06385040283203,
+     40.73379135131836
+    ]
+   },
+   "properties": {
+    "id": "ce4d5027-133b-4085-ab20-ad45ed510e5b",
+    "name": "Chase",
+    "street": "2 Journal Square Plz",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07306-4000",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019341435",
+    "website": "https://www.chase.com/locator/banking/us/nj/jersey-city/2-journal-square-plz",
+    "confidence": 0.9996461719632149,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.05040740966797,
+     40.71630859375
+    ]
+   },
+   "properties": {
+    "id": "d5a27d18-51ab-4201-8f90-ecbed3e3a833",
+    "name": "Chase ATM",
+    "street": "355 Grand St",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07302",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "http://www.chase.com",
+    "confidence": 0.60373854637146
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03510284423828,
+     40.728660583496094
+    ]
+   },
+   "properties": {
+    "id": "ef5d8074-b0b5-4d78-ba86-4611149b7c9a",
+    "name": "Chase Bank",
+    "street": "575 Washington Blvd",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07310-1616",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12015955065",
+    "website": "https://locator.chase.com/nj/jersey-city/575-washington-blvd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEyMi01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9999527037143707,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03914642333984,
+     40.71846008300781
+    ]
+   },
+   "properties": {
+    "id": "e29aa151-584b-4b01-bdf2-710b4707548c",
+    "name": "Chase Bank",
+    "street": "56 Christopher Columbus Dr",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07302",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12013323075",
+    "website": "https://www.chase.com/locator/banking/us/nj/jersey-city/56-christopher-columbus-dr",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15757751464844,
+     40.75291061401367
+    ]
+   },
+   "properties": {
+    "id": "af4ca8cf-378d-411b-9173-8b2c81d7c01c",
+    "name": "Chase Bank",
+    "street": "11 Kearny Ave",
+    "city": "Kearny",
+    "region": "NJ",
+    "postcode": "07032",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019916663",
+    "website": "https://www.chase.com/locator/banking/us/nj/kearny/11-kearny-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.21968078613281,
+     40.107906341552734
+    ]
+   },
+   "properties": {
+    "id": "0797cc30-4543-4332-85ae-0c2bd7e675a4",
+    "name": "Chase ATM",
+    "street": "1700 Madison Ave Ste 600",
+    "city": "Lakewood",
+    "region": "NJ",
+    "postcode": "08701",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/lakewood/1700-madison-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTUzNjU0OTEtNTU5LWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.980394858121872
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25457000732422,
+     40.631622314453125
+    ]
+   },
+   "properties": {
+    "id": "2cbfeb72-54bc-4bf7-bab6-0bb6303c5d4a",
+    "name": "Chase Bank",
+    "street": "235 N Wood Ave",
+    "city": "Linden",
+    "region": "NJ",
+    "postcode": "07036",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19085872701",
+    "website": "https://www.chase.com/locator/banking/us/nj/linden/235-n-wood-ave",
+    "confidence": 0.9891512393951416,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06495666503906,
+     40.88700866699219
+    ]
+   },
+   "properties": {
+    "id": "1ae68192-90b6-4b77-980a-d4d34e76a6d6",
+    "name": "Chase Bank",
+    "street": "370 Essex St",
+    "city": "Lodi",
+    "region": "NJ",
+    "postcode": "07644",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12018454868",
+    "website": "https://www.chase.com/locator/banking/us/nj/lodi/370-essex-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.98909759521484,
+     40.28443145751953
+    ]
+   },
+   "properties": {
+    "id": "9f564974-3691-4f93-8c37-f2c4b4e02dbe",
+    "name": "Chase Bank",
+    "street": "160 Brighton Ave",
+    "city": "Long Branch",
+    "region": "NJ",
+    "postcode": "07740",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17322226126",
+    "website": "https://www.chase.com/locator/banking/us/nj/long-branch/160-brighton-ave",
+    "confidence": 0.9998360616147518,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.41500854492188,
+     40.75852966308594
+    ]
+   },
+   "properties": {
+    "id": "adba93fd-9bd8-4909-b560-7745030b15d5",
+    "name": "Chase",
+    "street": "2 Waverly Pl",
+    "city": "Madison",
+    "region": "NJ",
+    "postcode": "07940",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19733772969",
+    "website": "https://locator.chase.com/nj/madison/2-waverly-pl?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYwNC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9997520630002021
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.27508544921875,
+     39.70398712158203
+    ]
+   },
+   "properties": {
+    "id": "77145f2b-4287-4c10-a991-f11c78a2c275",
+    "name": "Chase Bank",
+    "street": "447 Martin Truex Jr Blvd",
+    "city": "Manahawkin",
+    "region": "NJ",
+    "postcode": "08050-2808",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+16095971467",
+    "website": "https://www.chase.com/locator/banking/us/nj/manahawkin/447-martin-truex-jr-blvd",
+    "confidence": 0.9999359044849873,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06909942626953,
+     40.12263870239258
+    ]
+   },
+   "properties": {
+    "id": "b3d3d8c9-4cf0-4b4c-b458-2e037a073938",
+    "name": "Chase Bank",
+    "street": "2500 Highway 35",
+    "city": "Manasquan",
+    "region": "NJ",
+    "postcode": "08736-1902",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17325289100",
+    "website": "https://www.chase.com/locator/banking/us/nj/manasquan/2500-route-35",
+    "confidence": 0.9999417399418354,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29743957519531,
+     40.0135498046875
+    ]
+   },
+   "properties": {
+    "id": "99083793-c3aa-4514-ae5e-17880882dffa",
+    "name": "Chase Bank",
+    "street": "1059 NJ-70",
+    "city": "Manchester Twp",
+    "region": "NJ",
+    "postcode": "08759",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17326575786",
+    "website": "https://www.chase.com/locator/banking/us/nj/manchester/1059-route-70",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24890899658203,
+     40.314517974853516
+    ]
+   },
+   "properties": {
+    "id": "844e8118-10e1-4963-8988-edf6dba6c0bd",
+    "name": "Chase Bank",
+    "street": "2 S Main St",
+    "city": "Marlboro",
+    "region": "NJ",
+    "postcode": "07746",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17328518950",
+    "website": "https://www.chase.com/locator/banking/us/nj/marlboro/2-s-main-st",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.94131469726562,
+     39.907535552978516
+    ]
+   },
+   "properties": {
+    "id": "7c748068-3f1c-4658-b670-38df3b0148c9",
+    "name": "Chase Bank",
+    "street": "1 Greentree Ctr",
+    "city": "Marlton",
+    "region": "NJ",
+    "postcode": "08053-3108",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+18565960400",
+    "website": "http://www.chase.com",
+    "confidence": 0.6863126158714294
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.93895721435547,
+     39.895999908447266
+    ]
+   },
+   "properties": {
+    "id": "09c0c30f-3e49-4d2e-b6ea-ec2e27aadabb",
+    "name": "Chase Bank",
+    "street": "771 W Route 70",
+    "city": "Marlton",
+    "region": "NJ",
+    "postcode": "08053-1643",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+18567032007",
+    "website": "https://www.chase.com/locator/banking/us/nj/marlton/771-route-70-w",
+    "confidence": 0.9994642831981182,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06261444091797,
+     40.91572952270508
+    ]
+   },
+   "properties": {
+    "id": "d02212b5-6785-4503-a051-1cfab4e17301",
+    "name": "Chase Bank",
+    "street": "177 W Spring Valley Ave",
+    "city": "Maywood",
+    "region": "NJ",
+    "postcode": "07607",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12015769460",
+    "website": "https://locator.chase.com/nj/maywood/177-w-spring-valley-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEyMS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9999338197469712,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.5873794555664,
+     40.78263854980469
+    ]
+   },
+   "properties": {
+    "id": "10f5c21e-7f2e-487a-94b3-33ccdffaabc0",
+    "name": "Chase",
+    "street": "98 E Main St",
+    "city": "Mendham",
+    "region": "NJ",
+    "postcode": "07945",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738136034",
+    "website": "https://www.chase.com/locator/banking/us/nj/mendham/98-e-main-st",
+    "confidence": 0.9981992103755474,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36280822753906,
+     40.543270111083984
+    ]
+   },
+   "properties": {
+    "id": "828866fc-9aef-48b8-bd6a-d66bba2cfbc7",
+    "name": "Chase Bank",
+    "street": "475 Main St",
+    "city": "Metuchen",
+    "region": "NJ",
+    "postcode": "08840",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17329063535",
+    "website": "https://locator.chase.com/nj/metuchen/475-main-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk3My01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9999021933376789,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.08797454833984,
+     40.37287139892578
+    ]
+   },
+   "properties": {
+    "id": "76f5ead8-799a-479d-b28d-382b32c8111b",
+    "name": "Chase Bank",
+    "street": "430 NJ-35",
+    "city": "Middletown",
+    "region": "NJ",
+    "postcode": "07701",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+17325301313",
+    "website": "https://locator.chase.com/nj/red-bank/430-state-route-35?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk1OC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30270385742188,
+     40.72484588623047
+    ]
+   },
+   "properties": {
+    "id": "da0d1e16-bdfa-4ff7-9610-32cb8350c773",
+    "name": "Chase",
+    "street": "279 Millburn Ave",
+    "city": "Millburn",
+    "region": "NJ",
+    "postcode": "07041",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19734671403",
+    "website": "https://locator.chase.com/nj/millburn/279-millburn-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYwNS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47246551513672,
+     40.317413330078125
+    ]
+   },
+   "properties": {
+    "id": "5f13aa34-402c-4388-a197-238ac7dbd108",
+    "name": "Chase Bank",
+    "street": "320 Applegarth Rd",
+    "city": "Monroe Twp",
+    "region": "NJ",
+    "postcode": "08831-3847",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+16093950701",
+    "website": "https://www.chase.com/locator/banking/us/nj/monroe/320-applegarth-rd",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.20826721191406,
+     40.841339111328125
+    ]
+   },
+   "properties": {
+    "id": "acd9e049-f140-47ff-a8bb-3d61792fe6a6",
+    "name": "Chase Bank",
+    "street": "600 Valley Rd",
+    "city": "Montclair",
+    "region": "NJ",
+    "postcode": "07043",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19736551824",
+    "website": "https://www.chase.com/locator/banking/us/nj/upper-montclair/600-valley-rd",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.95108032226562,
+     39.96173095703125
+    ]
+   },
+   "properties": {
+    "id": "2ddaf42a-fb81-4cbd-b2a7-d04e18734750",
+    "name": "Chase Bank",
+    "street": "232 W Main St",
+    "city": "Moorestown",
+    "region": "NJ",
+    "postcode": "08057-2357",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+18564373955",
+    "website": "https://locator.chase.com/nj/moorestown/232-w-main-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjgxODA0MzMtNTU5LWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47932434082031,
+     40.826988220214844
+    ]
+   },
+   "properties": {
+    "id": "02a37f40-fc5e-49f0-ac9a-210647966d65",
+    "name": "Chase Bank",
+    "street": "599 Speedwell Ave",
+    "city": "Morris Plains",
+    "region": "NJ",
+    "postcode": "07950",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19735388448",
+    "website": "https://www.chase.com/locator/banking/us/nj/morris-plains/599-speedwell-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47306060791016,
+     40.78883361816406
+    ]
+   },
+   "properties": {
+    "id": "c6cc9daf-3628-40d0-a51d-9c19df69898c",
+    "name": "Chase Bank",
+    "street": "225 South St",
+    "city": "Morristown",
+    "region": "NJ",
+    "postcode": "07960",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738290923",
+    "website": "https://www.chase.com/locator/banking/us/nj/morristown/225-south-st",
+    "confidence": 0.9998191237866878,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.4442138671875,
+     40.496036529541016
+    ]
+   },
+   "properties": {
+    "id": "a76de6dc-a45a-4e89-8890-9d3ee97d50b1",
+    "name": "Chase Mortgage",
+    "street": "390 George St",
+    "city": "New Brunswick",
+    "region": "NJ",
+    "postcode": "08901",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+17322270112",
+    "website": "https://locator.chase.com/nj/new-brunswick/390-george-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTkzMi01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9084810292720795
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.40584564208984,
+     40.703514099121094
+    ]
+   },
+   "properties": {
+    "id": "f7726813-a4a1-47a4-86cb-c04923ad9f28",
+    "name": "Chase Bank",
+    "street": "75 South St",
+    "city": "New Providence",
+    "region": "NJ",
+    "postcode": "07974",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19086739904",
+    "website": "https://www.chase.com/locator/banking/us/nj/new-providence/75-south-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15888214111328,
+     40.72932052612305
+    ]
+   },
+   "properties": {
+    "id": "b418fa7b-32be-421b-80d6-624039c931bb",
+    "name": "Chase Bank",
+    "street": "151 Ferry St",
+    "city": "Newark",
+    "region": "NJ",
+    "postcode": "07105-2177",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+19737767686",
+    "website": "https://www.chase.com/locator/banking/us/nj/newark/151-ferry-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1709976196289,
+     40.73670959472656
+    ]
+   },
+   "properties": {
+    "id": "a433daa5-901e-4630-9ca3-2363725f3952",
+    "name": "Chase Bank",
+    "street": "744 Broad St",
+    "city": "Newark",
+    "region": "NJ",
+    "postcode": "07102-3800",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19737332121",
+    "website": "https://www.chase.com/locator/banking/us/nj/newark/744-broad-st",
+    "confidence": 0.9999372563362121,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16839599609375,
+     40.74200439453125
+    ]
+   },
+   "properties": {
+    "id": "fd5a773f-91a7-4253-9baf-cb9e696086b1",
+    "name": "Chase Bank",
+    "street": "570 Broad St Ste 110 Ste 110",
+    "city": "Newark",
+    "region": "NJ",
+    "postcode": "07102",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19735961207",
+    "website": "https://www.chase.com/locator/banking/us/nj/newark/570-broad-st-ste-110",
+    "confidence": 0.9999414496660233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.73481750488281,
+     41.08131408691406
+    ]
+   },
+   "properties": {
+    "id": "992dedeb-86d4-4a66-8aeb-8ee8e828176c",
+    "name": "Chase Bank",
+    "street": "70 Hampton House Rd",
+    "city": "Newton",
+    "region": "NJ",
+    "postcode": "07860",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19733836434",
+    "website": "https://locator.chase.com/nj/newton/120-hampton-house-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzU5OC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9999384683549404,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.13813781738281,
+     40.782501220703125
+    ]
+   },
+   "properties": {
+    "id": "50467114-96aa-4399-826f-f5d30c251733",
+    "name": "Chase Bank",
+    "street": "23 Ridge Rd",
+    "city": "North Arlington",
+    "region": "NJ",
+    "postcode": "07031",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12019918877",
+    "website": "https://www.chase.com/locator/banking/us/nj/north-arlington/23-ridge-rd",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0170669555664,
+     40.80708312988281
+    ]
+   },
+   "properties": {
+    "id": "4811945b-bef8-41a5-98c8-945cc9e94817",
+    "name": "Chase Bank",
+    "street": "8101 Tonnelle Ave",
+    "city": "North Bergen",
+    "region": "NJ",
+    "postcode": "07047",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12018613130",
+    "website": "https://locator.chase.com/nj/north-bergen/8101-tonnelle-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODE0My01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.94635009765625,
+     41.0148811340332
+    ]
+   },
+   "properties": {
+    "id": "dc55068e-1335-4064-8349-338e19a172de",
+    "name": "Chase Bank",
+    "street": "271A Livingston St",
+    "city": "Northvale",
+    "region": "NJ",
+    "postcode": "07647",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12017844737",
+    "website": "https://www.chase.com/locator/banking/us/nj/northvale/271a-livingston-st",
+    "confidence": 0.999794070738554
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16117858886719,
+     40.814239501953125
+    ]
+   },
+   "properties": {
+    "id": "22f5cc6a-ce66-4b7b-bcee-e22a09a9e598",
+    "name": "Chase ATM",
+    "street": "351 Centre St",
+    "city": "Nutley",
+    "region": "NJ",
+    "postcode": "07110",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/nutley/351-centre-st",
+    "confidence": 0.9514614939689636
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.161376953125,
+     40.814212799072266
+    ]
+   },
+   "properties": {
+    "id": "819c85c2-8c5c-4299-bec3-8075f3f38a43",
+    "name": "Chase Bank",
+    "street": "351 Centre St",
+    "city": "Nutley",
+    "region": "NJ",
+    "postcode": "07110",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19735420205",
+    "website": "https://locator.chase.com/nj/nutley/351-centre-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYxMS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22990417480469,
+     40.7720832824707
+    ]
+   },
+   "properties": {
+    "id": "574c9106-7ba2-405a-ae9c-6eea046372de",
+    "name": "Chase Bank",
+    "street": "300 Main St",
+    "city": "Orange",
+    "region": "NJ",
+    "postcode": "07050",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19736742199",
+    "website": "http://www.chase.com",
+    "confidence": 0.999906722676754,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.98518371582031,
+     40.84577178955078
+    ]
+   },
+   "properties": {
+    "id": "060287a7-da95-4ded-a5d3-fc7c7aab08b9",
+    "name": "Chase Bank",
+    "street": "460 Bergen Blvd Ste 100",
+    "city": "Palisades Park",
+    "region": "NJ",
+    "postcode": "07650",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12019472372",
+    "website": "https://www.chase.com/locator/banking/us/nj/palisades-park/460-bergen-blvd-ste-100",
+    "confidence": 0.9961740374565125
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03169250488281,
+     41.03535842895508
+    ]
+   },
+   "properties": {
+    "id": "c5beb083-fe26-4498-ab82-55101d1b5997",
+    "name": "Chase Bank",
+    "street": "169 Kinderkamack Rd",
+    "city": "Park Ridge",
+    "region": "NJ",
+    "postcode": "07656",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12013913620",
+    "website": "http://www.chase.com",
+    "confidence": 0.9645426273345947,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.31416320800781,
+     40.46559524536133
+    ]
+   },
+   "properties": {
+    "id": "986ff63c-c40d-437d-997f-201a872a1aa1",
+    "name": "Chase Bank",
+    "street": "7 Ernston Rd",
+    "city": "Parlin",
+    "region": "NJ",
+    "postcode": "08859-1769",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323134154",
+    "website": "https://www.chase.com/locator/banking/us/nj/parlin/7-n-ernston-rd",
+    "confidence": 0.9991528268754483,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12489318847656,
+     40.86011505126953
+    ]
+   },
+   "properties": {
+    "id": "dfb37316-295b-4b87-b7e9-076f33ef8937",
+    "name": "Chase",
+    "street": "620 Main Ave",
+    "city": "Passaic",
+    "region": "NJ",
+    "postcode": "07055",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19737790301",
+    "website": "https://www.chase.com/locator/banking/us/nj/passaic/620-main-ave",
+    "confidence": 0.9999119696855545
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17205047607422,
+     40.91647720336914
+    ]
+   },
+   "properties": {
+    "id": "45f1c612-bc01-40e6-82f0-5b0b1e35a3f5",
+    "name": "Chase",
+    "street": "148 Market St",
+    "city": "Paterson",
+    "region": "NJ",
+    "postcode": "07505-1707",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738811968",
+    "website": "https://www.chase.com/locator/banking/us/nj/paterson/148-market-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15518188476562,
+     40.89051055908203
+    ]
+   },
+   "properties": {
+    "id": "ce46d4af-169d-4f81-b91a-d5d75a033fec",
+    "name": "Chase Bank",
+    "street": "1117 Main St #19",
+    "city": "Paterson",
+    "region": "NJ",
+    "postcode": "07503",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+19737423060",
+    "website": "https://www.chase.com/locator/banking/us/nj/paterson/1117-main-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.78115844726562,
+     40.29975891113281
+    ]
+   },
+   "properties": {
+    "id": "f8e9cbe7-f679-4904-b8f9-e50f8f6a9aaa",
+    "name": "Chase Bank",
+    "street": "795 Denow Rd",
+    "city": "Pennington",
+    "region": "NJ",
+    "postcode": "08534-5255",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16097377507",
+    "website": "http://www.chase.com",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26824951171875,
+     40.508766174316406
+    ]
+   },
+   "properties": {
+    "id": "a240a54c-9593-46f7-b99f-f644440666e1",
+    "name": "Chase ATM",
+    "street": "130 Smith St",
+    "city": "Perth Amboy",
+    "region": "NJ",
+    "postcode": "08861",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/perth-amboy/130-smith-st",
+    "confidence": 0.9606311917304993
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.1780776977539,
+     40.69807815551758
+    ]
+   },
+   "properties": {
+    "id": "e92b0199-e20e-4e07-aa0c-6fb6768a4196",
+    "name": "Chase Bank",
+    "street": "306 Roseberry St",
+    "city": "Phillipsburg",
+    "region": "NJ",
+    "postcode": "08865-1634",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19083299031",
+    "website": "https://www.chase.com/locator/banking/us/nj/phillipsburg/306-roseberry-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.45634460449219,
+     40.56716537475586
+    ]
+   },
+   "properties": {
+    "id": "2f1df86e-116f-4692-bee9-62fb315b7b79",
+    "name": "Chase Bank",
+    "street": "233 Stelton Rd",
+    "city": "Piscataway",
+    "region": "NJ",
+    "postcode": "08854",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17329268366",
+    "website": "https://www.chase.com/locator/banking/us/nj/piscataway/233-stelton-rd",
+    "confidence": 0.9997613170325756,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42355346679688,
+     40.61811065673828
+    ]
+   },
+   "properties": {
+    "id": "f983a63f-b58c-442a-a075-a28279dc2030",
+    "name": "Chase",
+    "street": "200 W Second St",
+    "city": "Plainfield",
+    "region": "NJ",
+    "postcode": "07060",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19086684533",
+    "website": "https://www.chase.com/locator/banking/us/nj/plainfield/200-w-second-st",
+    "confidence": 0.9998443413436413
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64949798583984,
+     40.40143585205078
+    ]
+   },
+   "properties": {
+    "id": "4237427d-b0ef-4e21-858f-6ecd0c9cbda0",
+    "name": "Chase Bank",
+    "street": "1217 US Highway 206",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540-1619",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16098063580",
+    "website": "https://www.chase.com/locator/banking/us/nj/princeton/1217-route-206",
+    "confidence": 0.9855164885520935
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1387939453125,
+     41.07597732543945
+    ]
+   },
+   "properties": {
+    "id": "86a0e9e1-22c0-4248-a97b-3304f5583d22",
+    "name": "Chase Bank",
+    "street": "555 N Franklin Tpke",
+    "city": "Ramsey",
+    "region": "NJ",
+    "postcode": "07446",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019341053",
+    "website": "https://www.chase.com/locator/banking/us/nj/ramsey/555-n-franklin-tpke",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.01029205322266,
+     40.833797454833984
+    ]
+   },
+   "properties": {
+    "id": "9cb48c53-b719-4256-be01-e70049c258e5",
+    "name": "Bank of New York",
+    "street": "585 Broad Ave",
+    "city": "Ridgefield",
+    "region": "NJ",
+    "postcode": "07657-1627",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019451536",
+    "website": "http://www.bankofny.com",
+    "confidence": 0.6069366931915283
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.99686431884766,
+     40.82505798339844
+    ]
+   },
+   "properties": {
+    "id": "b0b1800b-58e1-4a41-bf60-08e6c730b4a8",
+    "name": "Chase",
+    "street": "504 Bergen Blvd",
+    "city": "Ridgefield",
+    "region": "NJ",
+    "postcode": "07657",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019456909",
+    "website": "https://locator.chase.com/nj/ridgefield/504-bergen-blvd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODE1Mi01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9999320072710514
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.11843872070312,
+     40.979454040527344
+    ]
+   },
+   "properties": {
+    "id": "d060d6e8-7a5c-4c45-8546-0fead7c58b8e",
+    "name": "Chase ATM",
+    "street": "84 E Ridgewood Ave",
+    "city": "Ridgewood",
+    "region": "NJ",
+    "postcode": "07450",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/ridgewood/84-e-ridgewood-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEyMy01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9998504009231926,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0333023071289,
+     40.931644439697266
+    ]
+   },
+   "properties": {
+    "id": "34f9c363-a99f-4126-b2cb-804459af5b41",
+    "name": "Chase Bank",
+    "street": "686 Kinderkamack Rd",
+    "city": "River Edge",
+    "region": "NJ",
+    "postcode": "07661",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019867884",
+    "website": "https://locator.chase.com/nj/river-edge/686-kinderkamack-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODE1Ni01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3006362915039,
+     40.998802185058594
+    ]
+   },
+   "properties": {
+    "id": "e5bcd926-40fc-42d3-bb61-1096f9823e3e",
+    "name": "Chase Bank",
+    "street": "20 Hamburg Turnpike",
+    "city": "Riverdale",
+    "region": "NJ",
+    "postcode": "07457",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738392900",
+    "website": "https://www.chase.com/locator/banking/us/nj/riverdale/20-hamburg-tpke",
+    "confidence": 0.9998774183094501,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6297607421875,
+     40.21925735473633
+    ]
+   },
+   "properties": {
+    "id": "c53df2e7-0733-498b-9908-cb3b2ce113af",
+    "name": "Chase ATM",
+    "street": "2340 Highway 33",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691-1411",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/robbinsville/2340-route-33",
+    "confidence": 0.9368497729301453
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6297607421875,
+     40.21925735473633
+    ]
+   },
+   "properties": {
+    "id": "fee201b5-b2ae-4b54-aede-a7a17e78026f",
+    "name": "Chase Bank",
+    "street": "2340 NJ-33",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16094014110",
+    "website": "https://www.chase.com/locator/banking/us/nj/robbinsville/2340-route-33",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24565124511719,
+     40.66239929199219
+    ]
+   },
+   "properties": {
+    "id": "5f135e1d-027e-4ee2-8118-cad3f1dc4c15",
+    "name": "Chase",
+    "street": "700 E 1 St Ave",
+    "city": "Roselle",
+    "region": "NJ",
+    "postcode": "07203",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19082983712",
+    "website": "https://www.chase.com/locator/banking/us/nj/roselle/700-e-1st-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0713882446289,
+     40.79482650756836
+    ]
+   },
+   "properties": {
+    "id": "79a9e776-d3a9-4c7e-9145-876b3cce89bc",
+    "name": "Chase",
+    "street": "1 Harmon Plz",
+    "city": "Secaucus",
+    "region": "NJ",
+    "postcode": "07094-2800",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12013483434",
+    "website": "http://www.chase.com/",
+    "confidence": 0.6178228259086609
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04380798339844,
+     40.78792190551758
+    ]
+   },
+   "properties": {
+    "id": "b5438d36-7a55-4f11-9a3b-d2ef93548a4f",
+    "name": "Chase Bank",
+    "street": "450 Plaza Dr",
+    "city": "Secaucus",
+    "region": "NJ",
+    "postcode": "07094",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12013489204",
+    "website": "https://www.chase.com/locator/banking/us/nj/secaucus/450-plaza-dr",
+    "confidence": 0.9680088758468628
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.540771484375,
+     40.52945327758789
+    ]
+   },
+   "properties": {
+    "id": "ad6afaaf-d504-4bec-9db7-179b718e8399",
+    "name": "Chase Bank",
+    "street": "460 Elizabeth Ave",
+    "city": "Somerset",
+    "region": "NJ",
+    "postcode": "08873-5107",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323565819",
+    "website": "https://www.chase.com/locator/banking/us/nj/somerset/460-elizabeth-ave",
+    "confidence": 0.999904614084959,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.616943359375,
+     40.56843566894531
+    ]
+   },
+   "properties": {
+    "id": "97a7278a-f49e-48d0-8777-15c2fda5155d",
+    "name": "Chase ATM",
+    "street": "6 Davenport St",
+    "city": "Somerville",
+    "region": "NJ",
+    "postcode": "08876-2102",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "http://www.chase.com",
+    "confidence": 0.6584432721138
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42760467529297,
+     40.547698974609375
+    ]
+   },
+   "properties": {
+    "id": "2496bf82-b9e4-4fd9-9c4c-a2ca1296a40e",
+    "name": "Chase Bank",
+    "street": "5201 Stelton Rd",
+    "city": "South Plainfield",
+    "region": "NJ",
+    "postcode": "07080",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17325721032",
+    "website": "https://www.chase.com/locator/banking/us/nj/south-plainfield/5201-stelton-rd",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.63887786865234,
+     41.037574768066406
+    ]
+   },
+   "properties": {
+    "id": "972cc72a-adae-456a-898f-2c9ba5f99218",
+    "name": "Chase Bank",
+    "street": "27 Sparta Ave",
+    "city": "Sparta",
+    "region": "NJ",
+    "postcode": "07871-1861",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19737296738",
+    "website": "https://www.chase.com/locator/banking/us/nj/sparta/27-sparta-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.71855926513672,
+     40.93284606933594
+    ]
+   },
+   "properties": {
+    "id": "0c49ca79-2f21-475c-a7d2-f9195051624c",
+    "name": "Chase Bank",
+    "street": "80 US-206",
+    "city": "Stanhope",
+    "region": "NJ",
+    "postcode": "07874-3129",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19734406045",
+    "website": "https://www.chase.com/locator/banking/us/nj/stanhope/80-us-highway-206",
+    "confidence": 0.9994251854151487,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.00505828857422,
+     40.90204620361328
+    ]
+   },
+   "properties": {
+    "id": "5cb54ed8-1403-4e7b-b6ad-d93800fb7968",
+    "name": "Chase ATM",
+    "street": "170 The Plaza",
+    "city": "Teaneck",
+    "region": "NJ",
+    "postcode": "07666",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "http://www.chase.com/",
+    "confidence": 0.8466036915779114
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.00505828857422,
+     40.90204620361328
+    ]
+   },
+   "properties": {
+    "id": "3f83fcef-0361-4226-884c-279c7bbff4f1",
+    "name": "Chase Bank",
+    "street": "170 The Plaza",
+    "city": "Teaneck",
+    "region": "NJ",
+    "postcode": "07666",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "+12018379425",
+    "website": "https://www.chase.com/locator/banking/us/nj/teaneck/170-the-plaza",
+    "confidence": 0.975028932094574,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.20260620117188,
+     39.966121673583984
+    ]
+   },
+   "properties": {
+    "id": "c9817ddc-7aaf-42ca-8b94-233a61d04c24",
+    "name": "Chase Bank",
+    "street": "2 NJ-37",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08753",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17325040281",
+    "website": "https://www.chase.com/locator/banking/us/nj/toms-river/2-route-37-w",
+    "confidence": 0.9991097654402256,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.75430297851562,
+     40.21080780029297
+    ]
+   },
+   "properties": {
+    "id": "b2a2b144-c116-4963-8004-8ecc77f4c9ef",
+    "name": "Chase Bank",
+    "street": "635 S Clinton Ave",
+    "city": "Trenton",
+    "region": "NJ",
+    "postcode": "08611",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16093923124",
+    "website": "https://locator.chase.com/nj/trenton/635-s-clinton-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MDg5My01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9891512393951416,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03203582763672,
+     40.7747802734375
+    ]
+   },
+   "properties": {
+    "id": "a7bb4aca-2aca-40ae-8132-74f0c0f3b3f9",
+    "name": "Chase Bank",
+    "street": "3196 JF Kennedy Blvd W",
+    "city": "Union City",
+    "region": "NJ",
+    "postcode": "07087-2436",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12018641924",
+    "website": "http://www.chase.com",
+    "confidence": 0.970908522605896
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2455825805664,
+     40.83185958862305
+    ]
+   },
+   "properties": {
+    "id": "d476af5b-32f5-464e-8b7e-fbd4c62d40bb",
+    "name": "Chase Bank",
+    "street": "566 Bloomfield Ave",
+    "city": "Verona",
+    "region": "NJ",
+    "postcode": "07044",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19732395245",
+    "website": "https://locator.chase.com/nj/verona/566-bloomfield-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzU4Ni01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.05406188964844,
+     40.15494155883789
+    ]
+   },
+   "properties": {
+    "id": "606a73fc-cfef-4369-b721-bee34989815d",
+    "name": "Chase Bank",
+    "street": "1936 State Route 35",
+    "city": "Wall Twp",
+    "region": "NJ",
+    "postcode": "07719-3513",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+17324490888",
+    "website": "https://www.chase.com/locator/banking/us/nj/wall-township/1936-state-route-35",
+    "confidence": 0.9823563694953918,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.10839080810547,
+     40.84495544433594
+    ]
+   },
+   "properties": {
+    "id": "f93b1da2-7978-4dcd-8a00-539b8db35443",
+    "name": "Chase Bank",
+    "street": "2 Mount Pleasant Ave",
+    "city": "Wallington",
+    "region": "NJ",
+    "postcode": "07057-1924",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12019392179",
+    "website": "https://www.chase.com/locator/banking/us/nj/wallington/2-mount-pleasant-ave",
+    "confidence": 0.9996394320368767
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22669982910156,
+     40.95882034301758
+    ]
+   },
+   "properties": {
+    "id": "17d7bc35-e494-4622-82ef-8c0997342254",
+    "name": "Chase Bank",
+    "street": "1401 Valley Rd",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19736285618",
+    "website": "https://www.chase.com/locator/banking/us/nj/wayne/1401-valley-rd",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02108001708984,
+     40.78275680541992
+    ]
+   },
+   "properties": {
+    "id": "0c19485b-9da5-481b-bc49-bd429603eeeb",
+    "name": "Chase",
+    "street": "4921 Bergenline Ave",
+    "city": "West New York",
+    "region": "NJ",
+    "postcode": "07093",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12016178057",
+    "website": "https://locator.chase.com/nj/west-new-york/4921-bergenline-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEyNC01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26090240478516,
+     40.810020446777344
+    ]
+   },
+   "properties": {
+    "id": "ec25cdb7-ac95-4591-be13-9b3f52b3ee5d",
+    "name": "Chase",
+    "street": "471 Pleasant Valley Way",
+    "city": "West Orange",
+    "region": "NJ",
+    "postcode": "07052-2801",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19734198540",
+    "website": "https://www.chase.com/locator/banking/us/nj/west-orange/471-pleasant-valley-way",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.34656524658203,
+     40.65302276611328
+    ]
+   },
+   "properties": {
+    "id": "d9e5a0bb-2063-4654-a9fb-81450bd58163",
+    "name": "Chase Bank",
+    "street": "302 E Broad St",
+    "city": "Westfield",
+    "region": "NJ",
+    "postcode": "07090",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19082339789",
+    "website": "https://www.chase.com/locator/banking/us/nj/westfield/302-e-broad-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.89179229736328,
+     40.053558349609375
+    ]
+   },
+   "properties": {
+    "id": "a8dd644d-73dc-4876-82cf-b82eaa7a3e64",
+    "name": "Chase Bank",
+    "street": "4366 Route 130",
+    "city": "Willingboro",
+    "region": "NJ",
+    "postcode": "08046-1037",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+16095269715",
+    "website": "https://locator.chase.com/nj/willingboro/4366-route-130?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjQyMDk2MjEtNTU5LWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9982103908061981,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.15977478027344,
+     39.82582473754883
+    ]
+   },
+   "properties": {
+    "id": "2de81195-b29e-4513-9b53-c1bded8e6d4d",
+    "name": "Chase Bank",
+    "street": "660 Mantua Pike",
+    "city": "Woodbury",
+    "region": "NJ",
+    "postcode": "08096",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+18569949461",
+    "website": "https://www.chase.com/locator/banking/us/nj/woodbury/660-mantua-pike",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2057876586914,
+     40.89287185668945
+    ]
+   },
+   "properties": {
+    "id": "b74e14ed-fab0-448f-9e55-fcebf496454d",
+    "name": "Chase ATM",
+    "street": "989 McBride Ave",
+    "city": "Woodland Park",
+    "region": "NJ",
+    "postcode": "07424",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://www.chase.com/locator/banking/us/nj/woodland-park/989-mcbride-ave",
+    "confidence": 0.9790630340576172
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2057876586914,
+     40.89287185668945
+    ]
+   },
+   "properties": {
+    "id": "fe2a47fc-e302-4a68-9827-c965d4467132",
+    "name": "Chase Bank",
+    "street": "989 McBride Ave",
+    "city": "Woodland Park",
+    "region": "NJ",
+    "postcode": "07424",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738123200",
+    "website": "https://www.chase.com/locator/banking/us/nj/woodland-park/989-mcbride-ave",
+    "confidence": 0.9998835294008255,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16978454589844,
+     40.98566818237305
+    ]
+   },
+   "properties": {
+    "id": "abc4c5de-1ad7-4e93-870f-4cbe451dd88d",
+    "name": "Chase ATM",
+    "street": "525 Cedar Hill Ave",
+    "city": "Wyckoff",
+    "region": "NJ",
+    "postcode": "07481",
+    "brand": "Chase",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "phone": "+18009359935",
+    "website": "https://locator.chase.com/nj/wyckoff/525-cedar-hill-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODE0NS01NTktbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9729516506195068
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1696548461914,
+     40.9857292175293
+    ]
+   },
+   "properties": {
+    "id": "e0acecfc-4b8e-4919-97ec-db8c8b6f905d",
+    "name": "Chase Bank",
+    "street": "525 Cedar Hill Ave",
+    "city": "Wyckoff",
+    "region": "NJ",
+    "postcode": "07481",
+    "brand": "Chase",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12018917587",
+    "website": "https://www.chase.com/locator/banking/us/nj/wyckoff/525-cedar-hill-ave",
+    "confidence": 0.9962380081415176,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64592742919922,
+     40.68010330200195
+    ]
+   },
+   "properties": {
+    "id": "0ea97175-0dcc-4237-9427-52b9cc1e2af8",
+    "name": "Chase Bank",
+    "street": "2484 Lamington Rd",
+    "city": "Bedminster",
+    "region": "NJ",
+    "postcode": "07921-2611",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19084704430",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43626403808594,
+     40.687522888183594
+    ]
+   },
+   "properties": {
+    "id": "483a4304-e091-4081-b12a-0d9471f01370",
+    "name": "Chase Bank",
+    "street": "96 Snyder Ave",
+    "city": "Berkeley Heights",
+    "region": "NJ",
+    "postcode": "07922",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9086733082",
+    "website": "https://www.chase.com/locator/banking/us/nj/berkeley-heights/96-snyder-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MjkyMy00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.56543731689453,
+     40.71904373168945
+    ]
+   },
+   "properties": {
+    "id": "7c9344db-afb4-4eb4-b4cb-60d33c1caec9",
+    "name": "Chase Bank",
+    "street": "54 Morristown Rd",
+    "city": "Bernardsville",
+    "region": "NJ",
+    "postcode": "07924",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9088485970",
+    "website": "https://www.chase.com/locator/banking/us/nj/bernardsville/54-morristown-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjIwOTAxMS00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.39815521240234,
+     40.908016204833984
+    ]
+   },
+   "properties": {
+    "id": "2a08eee3-c35b-43af-9239-b8ab1dfc2b88",
+    "name": "Chase Bank",
+    "street": "530 Myrtle Ave",
+    "city": "Boonton",
+    "region": "NJ",
+    "postcode": "07005",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9734021243",
+    "website": "https://www.chase.com/locator/banking/us/nj/boonton/530-myrtle-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYwMC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6917495727539,
+     40.604373931884766
+    ]
+   },
+   "properties": {
+    "id": "a3cf9600-4008-4321-9838-89998dbfb9e0",
+    "name": "Chase Bank",
+    "street": "3166 Route 22 W",
+    "city": "Branchburg",
+    "region": "NJ",
+    "postcode": "08876",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(908) 722-4786",
+    "website": "https://locator.chase.com/nj/branchburg/3166-route-22-w?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.12030029296875,
+     39.94399642944336
+    ]
+   },
+   "properties": {
+    "id": "2ebc41cf-cc67-467a-aa85-0bd9256d7489",
+    "name": "Chase Bank",
+    "street": "534 Federal St",
+    "city": "Camden",
+    "region": "NJ",
+    "postcode": "08103",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "8566355840",
+    "website": "https://www.chase.com/locator/banking/us/nj/camden/534-federal-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTExNzMxMzMtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47051239013672,
+     40.81339645385742
+    ]
+   },
+   "properties": {
+    "id": "89b64772-9c66-42ae-ba8c-b980b2729ffe",
+    "name": "Chase Bank",
+    "street": "190 E Hanover Ave",
+    "city": "Cedar Knolls",
+    "region": "NJ",
+    "postcode": "07927",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9736301934",
+    "website": "https://www.chase.com/locator/banking/us/nj/cedar-knolls/190-e-hanover-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTY3NTA1ODktNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03346252441406,
+     39.920005798339844
+    ]
+   },
+   "properties": {
+    "id": "2bae6b35-8b6d-4377-8196-d11e5eb4c590",
+    "name": "Chase Bank",
+    "street": "1906 Route 70 W",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(856) 356-1640",
+    "website": "https://locator.chase.com/nj/cherry-hill/1906-route-70-w?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14884948730469,
+     40.88371276855469
+    ]
+   },
+   "properties": {
+    "id": "76d152b2-d098-4030-9a41-22f8c7f15e6c",
+    "name": "Chase Bank",
+    "street": "1459 Main Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07011",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9733407096",
+    "website": "https://www.chase.com/locator/banking/us/nj/clifton/1459-main-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzU5MS00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17158508300781,
+     40.27901840209961
+    ]
+   },
+   "properties": {
+    "id": "8cd360ea-bfa9-4804-992e-475dadf67b4c",
+    "name": "Chase Bank",
+    "street": "290 State Route 34",
+    "city": "Colts Neck",
+    "region": "NJ",
+    "postcode": "07722",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7324627817",
+    "website": "https://www.chase.com/locator/banking/us/nj/colts-neck/290-state-route-34?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk1NC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.996895,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.00029754638672,
+     40.258914947509766
+    ]
+   },
+   "properties": {
+    "id": "f5c7de2a-ea58-40b4-8aec-d9e3368cc662",
+    "name": "Chase Bank",
+    "street": "266 Norwood Ave",
+    "city": "Deal",
+    "region": "NJ",
+    "postcode": "07723",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 531-1764",
+    "website": "http://chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3893051147461,
+     40.4340934753418
+    ]
+   },
+   "properties": {
+    "id": "a9ffa600-1d7c-45d2-af24-99be9bdaaae1",
+    "name": "Chase Bank",
+    "street": "629 Route 18",
+    "city": "East Brunswick",
+    "region": "NJ",
+    "postcode": "08816",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7322542181",
+    "website": "https://www.chase.com/locator/banking/us/nj/east-brunswick/629-route-18?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTkzNi00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.996895,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.34095001220703,
+     40.519351959228516
+    ]
+   },
+   "properties": {
+    "id": "cdd27614-bbf2-485d-8d0b-479e46944afa",
+    "name": "Chase Bank",
+    "street": "110 Fieldcrest Ave",
+    "city": "Edison",
+    "region": "NJ",
+    "postcode": "08837",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 225-3377",
+    "website": "https://locator.chase.com/search?q=08837&jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.39604949951172,
+     40.54151916503906
+    ]
+   },
+   "properties": {
+    "id": "1cb5bfdc-092b-4fc7-92bf-a67eec87ac77",
+    "name": "Chase Bank",
+    "street": "4 Ethel Rd Ste 403A",
+    "city": "Edison",
+    "region": "NJ",
+    "postcode": "08817",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 287-4111",
+    "website": "https://locator.chase.com/search?q=08817&jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.97433471679688,
+     40.89130783081055
+    ]
+   },
+   "properties": {
+    "id": "bde75deb-18cb-45eb-b3e1-ad65946e4d09",
+    "name": "Chase Bank",
+    "street": "50 Grand Ave",
+    "city": "Englewood",
+    "region": "NJ",
+    "postcode": "07631",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2015687143",
+    "website": "https://www.chase.com/locator/banking/us/nj/englewood/50-grand-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODExOS00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9931
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.13357543945312,
+     40.935401916503906
+    ]
+   },
+   "properties": {
+    "id": "0995b549-ca32-425d-af04-5144e458c073",
+    "name": "Chase Bank",
+    "street": "13-51 River Rd",
+    "city": "Fair Lawn",
+    "region": "NJ",
+    "postcode": "07410",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 796-3358",
+    "website": "https://locator.chase.com/nj/fair-lawn/13-51-river-rd?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12110900878906,
+     40.9393196105957
+    ]
+   },
+   "properties": {
+    "id": "b56566c1-354e-4a30-a3b7-bac3688639ac",
+    "name": "Chase Bank",
+    "street": "21-01 Fair Lawn Ave",
+    "city": "Fair Lawn",
+    "region": "NJ",
+    "postcode": "07410",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 794-1370",
+    "website": "https://locator.chase.com/nj/fair-lawn/21-01-fair-lawn-ave?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85694122314453,
+     40.540000915527344
+    ]
+   },
+   "properties": {
+    "id": "99db9f0c-ebea-4dca-81c7-41e7f0d33075",
+    "name": "Chase Bank",
+    "street": "318 State Rte 31",
+    "city": "Flemington",
+    "region": "NJ",
+    "postcode": "08822",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9088249020",
+    "website": "https://www.chase.com/locator/banking/us/nj/flemington/318-state-rte-31?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjU0MjU2Ni00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.984475,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.21473693847656,
+     40.99338912963867
+    ]
+   },
+   "properties": {
+    "id": "349e090d-d901-4768-b332-89dc477ad53a",
+    "name": "Chase Bank",
+    "street": "845 Franklin Lakes Rd",
+    "city": "Franklin Lakes",
+    "region": "NJ",
+    "postcode": "07417",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2014852961",
+    "website": "https://www.chase.com/locator/banking/us/nj/franklin-lakes/845-franklin-lakes-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODExMi00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03462219238281,
+     40.86363220214844
+    ]
+   },
+   "properties": {
+    "id": "fb4489c1-0384-48d6-bb4c-da386ab96142",
+    "name": "Chase Bank",
+    "street": "500 S River St",
+    "city": "Hackensack",
+    "region": "NJ",
+    "postcode": "07601",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2013730153",
+    "website": "https://www.chase.com/locator/banking/us/nj/hackensack/500-s-river-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEwNi00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.66875457763672,
+     40.228431701660156
+    ]
+   },
+   "properties": {
+    "id": "d811bfe4-1463-4622-919f-aca175acedda",
+    "name": "Chase Bank",
+    "street": "955 Highway 33",
+    "city": "Hamilton Square",
+    "region": "NJ",
+    "postcode": "08690",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(609) 890-7137",
+    "website": "https://locator.chase.com/nj/hamilton-square/955-route-33?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.98922729492188,
+     40.95944595336914
+    ]
+   },
+   "properties": {
+    "id": "21c89c10-b636-4e77-8443-83f5e2451ccf",
+    "name": "Chase Bank",
+    "street": "139 Terrace St",
+    "city": "Haworth",
+    "region": "NJ",
+    "postcode": "07641",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 387-6777",
+    "website": "https://locator.chase.com/nj/haworth/139-terrace-st?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.63704681396484,
+     40.50798034667969
+    ]
+   },
+   "properties": {
+    "id": "77e1214f-c044-41b0-8e36-8afd245e8aba",
+    "name": "Chase Bank",
+    "street": "381 Route 206",
+    "city": "Hillsborough",
+    "region": "NJ",
+    "postcode": "08844",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9083590157",
+    "website": "https://www.chase.com/locator/banking/us/nj/hillsborough/381-route-206?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MjkxNi00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9893837571144104
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02800750732422,
+     40.75369644165039
+    ]
+   },
+   "properties": {
+    "id": "b487642c-fde2-473d-b135-e87acc5ff4ae",
+    "name": "Chase Bank",
+    "street": "200 14th St",
+    "city": "Hoboken",
+    "region": "NJ",
+    "postcode": "07030",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2016591526",
+    "website": "https://www.chase.com/locator/banking/us/nj/hoboken/200-14th-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEyNy00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22270965576172,
+     40.13111114501953
+    ]
+   },
+   "properties": {
+    "id": "1f6a6009-ba66-49c4-bdb1-47cbbf4020a7",
+    "name": "Chase Bank",
+    "street": "4921 US Highway 9",
+    "city": "Howell",
+    "region": "NJ",
+    "postcode": "07731",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 905-2330",
+    "website": "http://chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43461608886719,
+     40.348201751708984
+    ]
+   },
+   "properties": {
+    "id": "974043bb-b056-4c8c-af59-0097ac93544c",
+    "name": "Chase Bank",
+    "street": "5 E Railroad Ave",
+    "city": "Jamesburg",
+    "region": "NJ",
+    "postcode": "08831",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 521-0536",
+    "website": "https://locator.chase.com/nj/jamesburg/5-e-railroad-ave?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1913070678711,
+     40.07809829711914
+    ]
+   },
+   "properties": {
+    "id": "d7d68d5a-7033-4d6b-abce-d3a96536628d",
+    "name": "Chase Bank",
+    "street": "1797 Avenue Of The States",
+    "city": "Lakewood",
+    "region": "NJ",
+    "postcode": "08701",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "8483732672",
+    "website": "https://www.chase.com/locator/banking/us/nj/lakewood/1797-avenue-of-the-states?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTYzNDEwNzItNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9655,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.21980285644531,
+     40.1078987121582
+    ]
+   },
+   "properties": {
+    "id": "330bc786-b3e8-4c3b-b453-7fe810f4b742",
+    "name": "Chase Bank",
+    "street": "1700 Madison Ave, Ste 600",
+    "city": "Lakewood",
+    "region": "NJ",
+    "postcode": "08701",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7323709020",
+    "website": "https://www.chase.com/locator/banking/us/nj/lakewood/1700-madison-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTUzNjU0OTEtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36170196533203,
+     39.602394104003906
+    ]
+   },
+   "properties": {
+    "id": "f4919e64-6080-4b16-a7ba-fc68ca3dd8fe",
+    "name": "Chase Bank",
+    "street": "625 Route 9 S",
+    "city": "Little Egg Harbor Twp",
+    "region": "NJ",
+    "postcode": "08087",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "6094676033",
+    "website": "https://www.chase.com/locator/banking/us/nj/little-egg-harbor-twp/625-route-9-s?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTE5NTEyNDItNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9655
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.31781768798828,
+     40.79574203491211
+    ]
+   },
+   "properties": {
+    "id": "4e154a53-18e9-496e-8b5d-afcc86416348",
+    "name": "Chase Bank",
+    "street": "56 W Mount Pleasant Ave",
+    "city": "Livingston",
+    "region": "NJ",
+    "postcode": "07039",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9735331357",
+    "website": "https://www.chase.com/locator/banking/us/nj/livingston/56-w-mount-pleasant-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYwOC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.08503723144531,
+     40.87626266479492
+    ]
+   },
+   "properties": {
+    "id": "68a5280c-0fd5-4f8e-b128-342fc5540ff0",
+    "name": "Chase Bank",
+    "street": "25 Washington St",
+    "city": "Lodi",
+    "region": "NJ",
+    "postcode": "07644",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(973) 777-1778",
+    "website": "http://chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30510711669922,
+     40.31369400024414
+    ]
+   },
+   "properties": {
+    "id": "fa3af0a2-fae7-40c0-a812-62289eaac738",
+    "name": "Chase Bank",
+    "street": "357 US Highway 9 S, Ste 1",
+    "city": "Manalapan",
+    "region": "NJ",
+    "postcode": "07726",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7329720690",
+    "website": "https://www.chase.com/locator/banking/us/nj/manalapan/357-us-highway-9-s?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk3Ny00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.996895,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.11410522460938,
+     40.398193359375
+    ]
+   },
+   "properties": {
+    "id": "f2326203-6b4c-40f1-812f-4ca8f7aa0010",
+    "name": "Chase Bank",
+    "street": "1210 Highway 35",
+    "city": "Middletown",
+    "region": "NJ",
+    "postcode": "07748",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7326711416",
+    "website": "https://www.chase.com/locator/banking/us/nj/middletown/1210-highway-35?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTMwODQ1NTMtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9931884048804641,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.388427734375,
+     40.3745002746582
+    ]
+   },
+   "properties": {
+    "id": "49d67724-77e9-4b6b-b3f0-9fe02ab0c941",
+    "name": "Chase Bank",
+    "street": "365 Spotswood Englishtown Rd",
+    "city": "Monroe",
+    "region": "NJ",
+    "postcode": "08831",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 416-0806",
+    "website": "https://locator.chase.com/nj/monroe/365-spotswood-englishtown-rd?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2168197631836,
+     40.814476013183594
+    ]
+   },
+   "properties": {
+    "id": "bc5aac2a-6f31-4678-94c2-dc407535f9cb",
+    "name": "Chase Bank",
+    "street": "19 N Fullerton Ave",
+    "city": "Montclair",
+    "region": "NJ",
+    "postcode": "07042",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9737835062",
+    "website": "https://www.chase.com/locator/banking/us/nj/montclair/19-n-fullerton-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_ODg2MDUzNS00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9731395840644836
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06090545654297,
+     41.05079650878906
+    ]
+   },
+   "properties": {
+    "id": "69943897-7eb4-4470-9d67-eb0fbaf8ef2d",
+    "name": "Chase Bank",
+    "street": "58 Farm Vw",
+    "city": "Montvale",
+    "region": "NJ",
+    "postcode": "07645",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "5512495495",
+    "website": "https://www.chase.com/locator/banking/us/nj/montvale/58-farm-vw?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTM5NTA1MjktNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.87020111083984,
+     39.97149658203125
+    ]
+   },
+   "properties": {
+    "id": "39c9000a-1815-41b2-a8c4-4928cd9f31a5",
+    "name": "Chase Bank",
+    "street": "3047 Route 38",
+    "city": "Mount Laurel",
+    "region": "NJ",
+    "postcode": "08054",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "8563593505",
+    "website": "https://www.chase.com/locator/banking/us/nj/mount-laurel/3047-route-38?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTUwMzcyMzAtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.08539581298828,
+     40.22413635253906
+    ]
+   },
+   "properties": {
+    "id": "c5878363-0168-4ab6-b28c-a7c0f3390818",
+    "name": "Chase Bank",
+    "street": "3550 State Route 66",
+    "city": "Neptune",
+    "region": "NJ",
+    "postcode": "07753",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7329220797",
+    "website": "https://www.chase.com/locator/banking/us/nj/neptune/3550-state-route-66?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk3NC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02684783935547,
+     40.92729568481445
+    ]
+   },
+   "properties": {
+    "id": "19899c82-8d89-4dd2-913e-837ef57262a2",
+    "name": "Chase Bank",
+    "street": "830 River Rd",
+    "city": "New Milford",
+    "region": "NJ",
+    "postcode": "07646",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 576-0143",
+    "website": "https://locator.chase.com/nj/new-milford/830-river-rd?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.50840759277344,
+     40.438499450683594
+    ]
+   },
+   "properties": {
+    "id": "45008ba3-d0d8-4189-80a7-b121c3ca5eca",
+    "name": "Chase Bank",
+    "street": "2561 Rte 1",
+    "city": "North Brunswick",
+    "region": "NJ",
+    "postcode": "08902",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7323482251",
+    "website": "https://www.chase.com/locator/banking/us/nj/north-brunswick/2561-rte-1?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTExNzMxMjQtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.984475,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.46622467041016,
+     40.44578552246094
+    ]
+   },
+   "properties": {
+    "id": "c43862b6-3049-4f74-aaad-69cf587c3bb6",
+    "name": "Chase Bank",
+    "street": "1550 US Highway 130",
+    "city": "North Brunswick",
+    "region": "NJ",
+    "postcode": "08902",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 316-5193",
+    "website": "https://locator.chase.com/nj/north-brunswick/1550-georges-rd?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.9565658569336,
+     40.99608612060547
+    ]
+   },
+   "properties": {
+    "id": "7c145cf8-f9fe-45d8-af96-b22b19ba2910",
+    "name": "Chase Bank",
+    "street": "588 Broadway",
+    "city": "Norwood",
+    "region": "NJ",
+    "postcode": "07648",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 768-1708",
+    "website": "https://locator.chase.com/nj/norwood/588-broadway?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24278259277344,
+     41.02433395385742
+    ]
+   },
+   "properties": {
+    "id": "c2dd8e7f-1749-480f-b256-1ab53c7a6e97",
+    "name": "Chase Bank",
+    "street": "345 Ramapo Valley Rd",
+    "city": "Oakland",
+    "region": "NJ",
+    "postcode": "07436",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2013374125",
+    "website": "https://www.chase.com/locator/banking/us/nj/oakland/345-ramapo-valley-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEwMC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9931
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.31147003173828,
+     40.401100158691406
+    ]
+   },
+   "properties": {
+    "id": "e2b3ba3c-26d9-48c3-aab0-717034b81f2e",
+    "name": "Chase Bank",
+    "street": "20 Bushnell Rd",
+    "city": "Old Bridge",
+    "region": "NJ",
+    "postcode": "08857",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7326794404",
+    "website": "https://www.chase.com/locator/banking/us/nj/old-bridge/20-bushnell-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTk2Ny00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.98351287841797,
+     41.014347076416016
+    ]
+   },
+   "properties": {
+    "id": "6a3b1c2c-1e69-4feb-b99d-7ce16d00cc3f",
+    "name": "Chase Bank",
+    "street": "62 Bi State Plz",
+    "city": "Old Tappan",
+    "region": "NJ",
+    "postcode": "07675-7003",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12014979039",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29560089111328,
+     40.96849822998047
+    ]
+   },
+   "properties": {
+    "id": "f9b53949-9a7b-4d93-a3d1-03538eab245c",
+    "name": "Chase Bank",
+    "street": "600 Newark Pompton Tpke",
+    "city": "Pompton Plains",
+    "region": "NJ",
+    "postcode": "07444",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9736171709",
+    "website": "https://www.chase.com/locator/banking/us/nj/pompton-plains/600-newark-pompton-tpke?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTQ1MDY3MTYtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14002227783203,
+     41.058204650878906
+    ]
+   },
+   "properties": {
+    "id": "1c6dc1c8-699a-4177-ab05-904987b5b630",
+    "name": "Chase Bank",
+    "street": "18 N Spruce St",
+    "city": "Ramsey",
+    "region": "NJ",
+    "postcode": "07446",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 327-0062",
+    "website": "https://locator.chase.com/nj/ramsey/18-n-spruce-st?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06580352783203,
+     40.35102462768555
+    ]
+   },
+   "properties": {
+    "id": "2bade28c-c5e5-4807-b611-6d09684a0060",
+    "name": "Chase Bank",
+    "street": "32 Broad St",
+    "city": "Red Bank",
+    "region": "NJ",
+    "postcode": "07701-1913",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17324501204",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1238021850586,
+     40.9790153503418
+    ]
+   },
+   "properties": {
+    "id": "61bfb4d3-9710-467e-ba69-5fa3322ea507",
+    "name": "Chase Bank",
+    "street": "67 Godwin Ave",
+    "city": "Ridgewood",
+    "region": "NJ",
+    "postcode": "07450",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(201) 445-0788",
+    "website": "https://locator.chase.com/nj/ridgewood/67-godwin-ave?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.10220336914062,
+     40.82839584350586
+    ]
+   },
+   "properties": {
+    "id": "4b6d6923-d7a8-4b18-ab19-42276abc343e",
+    "name": "Chase Bank",
+    "street": "24 Park Ave",
+    "city": "Rutherford",
+    "region": "NJ",
+    "postcode": "07070",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2019393783",
+    "website": "https://www.chase.com/locator/banking/us/nj/rutherford/24-park-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODE0OS00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9931
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09151458740234,
+     40.896724700927734
+    ]
+   },
+   "properties": {
+    "id": "e99705d6-2805-481b-bef4-ba859a64ddbb",
+    "name": "Chase Bank",
+    "street": "289 Market St",
+    "city": "Saddle Brook",
+    "region": "NJ",
+    "postcode": "07663-6048",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+12018458655",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.4006118774414,
+     40.652099609375
+    ]
+   },
+   "properties": {
+    "id": "7c39a64a-cc33-4440-bafc-6d088c1061e1",
+    "name": "Chase Bank",
+    "street": "310 Park Ave",
+    "city": "Scotch Plains",
+    "region": "NJ",
+    "postcode": "07076",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9083129544",
+    "website": "https://www.chase.com/locator/banking/us/nj/scotch-plains/310-park-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTQ4MDUzNzgtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.33317565917969,
+     40.721885681152344
+    ]
+   },
+   "properties": {
+    "id": "b0a8a0b7-adec-402e-bcf6-86527a801fa9",
+    "name": "Chase Bank",
+    "street": "800 Morris Tpke",
+    "city": "Short Hills",
+    "region": "NJ",
+    "postcode": "07078",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9733798805",
+    "website": "https://www.chase.com/locator/banking/us/nj/short-hills/800-morris-tpke?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzU5Ni00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.48636627197266,
+     40.51298522949219
+    ]
+   },
+   "properties": {
+    "id": "0ee87f01-030f-49aa-a1f2-fcd99794727d",
+    "name": "Chase Bank",
+    "street": "940 Easton Ave",
+    "city": "Somerset",
+    "region": "NJ",
+    "postcode": "08873",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7322476117",
+    "website": "https://www.chase.com/locator/banking/us/nj/somerset/940-easton-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MTkzMy00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9768839478492737
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.61705780029297,
+     40.568477630615234
+    ]
+   },
+   "properties": {
+    "id": "ab219663-8557-42f7-9483-c070a7e66bde",
+    "name": "Chase Bank",
+    "street": "6 S Davenport St",
+    "city": "Somerville",
+    "region": "NJ",
+    "postcode": "08876",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9082529937",
+    "website": "https://www.chase.com/locator/banking/us/nj/somerville/6-s-davenport-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MjkwOS00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02754974365234,
+     40.154258728027344
+    ]
+   },
+   "properties": {
+    "id": "6e78c9e2-c82a-418e-91ae-5c8e263256a5",
+    "name": "Chase Bank",
+    "street": "1310 3rd Ave",
+    "city": "Spring Lake",
+    "region": "NJ",
+    "postcode": "07762",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 449-0888",
+    "website": "https://locator.chase.com/nj/spring-lake/1310-3rd-ave?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49446868896484,
+     40.66825866699219
+    ]
+   },
+   "properties": {
+    "id": "ca059689-976d-49ba-bb0b-7c282d8036de",
+    "name": "Chase Bank",
+    "street": "1300 Valley Rd",
+    "city": "Stirling",
+    "region": "NJ",
+    "postcode": "07980-1325",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19086475000",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.58675384521484,
+     41.19343185424805
+    ]
+   },
+   "properties": {
+    "id": "f48aaa00-6922-4f66-8fb8-b29324f60ba9",
+    "name": "Chase Bank",
+    "street": "295 State Rt 23",
+    "city": "Sussex",
+    "region": "NJ",
+    "postcode": "07461-3101",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738757715",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02747344970703,
+     40.89130401611328
+    ]
+   },
+   "properties": {
+    "id": "53346282-95c2-4712-9c0c-da9bd5efa758",
+    "name": "Chase Bank",
+    "street": "627 Cedar Ln",
+    "city": "Teaneck",
+    "region": "NJ",
+    "postcode": "07666",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2016920134",
+    "website": "https://www.chase.com/locator/banking/us/nj/teaneck/627-cedar-ln?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODEzMC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.96243286132812,
+     40.92809295654297
+    ]
+   },
+   "properties": {
+    "id": "8c6554cd-b374-4779-bc41-6919bd3c67ea",
+    "name": "Chase Bank",
+    "street": "115 County Rd",
+    "city": "Tenafly",
+    "region": "NJ",
+    "postcode": "07670",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "2015682876",
+    "website": "https://www.chase.com/locator/banking/us/nj/tenafly/115-county-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjAzODExOC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9855164885520935
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.19867706298828,
+     39.952632904052734
+    ]
+   },
+   "properties": {
+    "id": "300feeaa-9390-4c72-af5c-d70d8338dbee",
+    "name": "Chase Bank",
+    "street": "24 Main St",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08753-7436",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+17323498690",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.20391082763672,
+     39.96034622192383
+    ]
+   },
+   "properties": {
+    "id": "17ff2ddd-d561-4ffe-804d-261baeb3b509",
+    "name": "Chase Bank",
+    "street": "54 Highland Pkwy",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08753",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 736-8477",
+    "website": "http://chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24540710449219,
+     39.976097106933594
+    ]
+   },
+   "properties": {
+    "id": "dd29845f-9680-4262-8a88-af367d848730",
+    "name": "Chase Bank",
+    "street": "1095 Route 37 W",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08755",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "7322797108",
+    "website": "https://www.chase.com/locator/banking/us/nj/toms-river/1095-route-37-w?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MTY3NTA1OTAtNDgzLWxvY2F0aW9uLndlYnNpdGU%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.71259307861328,
+     40.18986511230469
+    ]
+   },
+   "properties": {
+    "id": "af9fb07a-1307-4907-b819-f137686afab1",
+    "name": "Chase Bank",
+    "street": "2735 S Broad St, Ste 3",
+    "city": "Trenton",
+    "region": "NJ",
+    "postcode": "08610",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "6098153061",
+    "website": "https://www.chase.com/locator/banking/us/nj/trenton/2735-s-broad-st?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MDkwMi00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9931
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.48277282714844,
+     41.19820022583008
+    ]
+   },
+   "properties": {
+    "id": "05f32af8-23a8-406d-94ba-376a15d4ec42",
+    "name": "Chase Bank",
+    "street": "550 Route 515",
+    "city": "Vernon",
+    "region": "NJ",
+    "postcode": "07462",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9737644077",
+    "website": "https://www.chase.com/locator/banking/us/nj/vernon/550-route-515?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzYyOC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06375885009766,
+     40.170814514160156
+    ]
+   },
+   "properties": {
+    "id": "d3d881eb-a043-4507-9bfc-6ca2f1519e80",
+    "name": "Chase Bank",
+    "street": "2601 State Route 138",
+    "city": "Wall Township",
+    "region": "NJ",
+    "postcode": "07719",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 681-0113",
+    "website": "https://locator.chase.com/nj/wall-twp/2601-route-138?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49590301513672,
+     40.61689376831055
+    ]
+   },
+   "properties": {
+    "id": "addf2beb-1581-452c-8e56-af894d47c193",
+    "name": "Chase Bank",
+    "street": "9 Mount Bethel Rd, Ste 211",
+    "city": "Warren",
+    "region": "NJ",
+    "postcode": "07059",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9083222798",
+    "website": "https://www.chase.com/locator/banking/us/nj/warren/9-mount-bethel-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MjkxNC00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.41390228271484,
+     40.6438102722168
+    ]
+   },
+   "properties": {
+    "id": "7a627fe2-9027-43ae-af0c-b2192f2f94c4",
+    "name": "Chase Bank",
+    "street": "1605 US Highway 22",
+    "city": "Watchung",
+    "region": "NJ",
+    "postcode": "07069",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(908) 322-0129",
+    "website": "https://locator.chase.com/nj/watchung/1605-us-highway-22?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29803466796875,
+     40.851722717285156
+    ]
+   },
+   "properties": {
+    "id": "c74ad159-55d9-4c3f-929a-0dbf7b7107c6",
+    "name": "Chase Bank",
+    "street": "865 Bloomfield Ave",
+    "city": "West Caldwell",
+    "region": "NJ",
+    "postcode": "07006",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "9732449305",
+    "website": "https://www.chase.com/locator/banking/us/nj/west-caldwell/865-bloomfield-ave?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MzU4Ny00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2555160522461,
+     40.793434143066406
+    ]
+   },
+   "properties": {
+    "id": "e2f18cf9-02d4-4c56-9957-fbad13b21998",
+    "name": "Chase Bank",
+    "street": "495 Prospect Ave",
+    "city": "West Orange",
+    "region": "NJ",
+    "postcode": "07052",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(973) 325-2091",
+    "website": "http://chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.61947631835938,
+     40.313865661621094
+    ]
+   },
+   "properties": {
+    "id": "c036ac97-cc1b-4384-b0a3-61606f2bb1bd",
+    "name": "Chase Bank",
+    "street": "63 Princeton Hightstown Rd",
+    "city": "West Windsor",
+    "region": "NJ",
+    "postcode": "08550",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "6092756757",
+    "website": "https://www.chase.com/locator/banking/us/nj/west-windsor/63-princeton-hightstown-rd?jp_cmp=rb%2FLocalListings%2Faff%2Fbranch%2Fna&y_source=1_MjA0MDg5Mi00ODMtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+    "confidence": 0.9893837571144104
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.4095458984375,
+     40.82170104980469
+    ]
+   },
+   "properties": {
+    "id": "5b9c090b-bbb6-4d9f-aacf-c2373091798a",
+    "name": "Chase Bank",
+    "street": "480 State Route 10",
+    "city": "Whippany",
+    "region": "NJ",
+    "postcode": "07981-1514",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank_or_credit_union",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union"
+    ],
+    "phone": "+19738872083",
+    "website": "https://www.locator.chase.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2933349609375,
+     40.56804656982422
+    ]
+   },
+   "properties": {
+    "id": "20b1882d-ed5d-4d1f-b08b-2880f77b1a5d",
+    "name": "Chase Bank",
+    "street": "877 Saint George Ave",
+    "city": "Woodbridge",
+    "region": "NJ",
+    "postcode": "07095",
+    "basic_category": "bank_or_credit_union",
+    "category": "bank",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "bank_or_credit_union",
+     "bank"
+    ],
+    "phone": "(732) 634-1615",
+    "website": "https://locator.chase.com/nj/woodbridge/877-st-george-ave?jp_cmp=rb/LocalListings/aff/branch/na",
+    "confidence": 0.77
+   }
+  }
+ ]
+}

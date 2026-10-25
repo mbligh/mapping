@@ -215,7 +215,7 @@ def main():
     p.add_argument("--limit", type=int, default=300,
                    help="with --list-categories: max rows to print (default 60)")
     p.add_argument("--release", help="Overture release, e.g. 2026-09-23.0 (default: latest)")
-    p.add_argument("--min-confidence", type=float, default=0.0,
+    p.add_argument("--min-confidence", type=float, default=0.6,
                    help="drop places below this Overture confidence score (0-1)")
     p.add_argument("--dedupe-distance-feet", type=float, default=100,
                    help="merge same-name points within this distance (default 100 feet; 0 disables)")

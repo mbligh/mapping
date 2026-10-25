@@ -1,0 +1,327 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.670654296875,
+     40.573734283447266
+    ]
+   },
+   "properties": {
+    "id": "61eb2599-1d45-4df6-b42e-329c6ad8d60a",
+    "name": "Wegmans",
+    "street": "724 Rt. 202 South",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+19082439600",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9581580758094788,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03492736816406,
+     39.9228515625
+    ]
+   },
+   "properties": {
+    "id": "d3a2aa71-4a7b-496d-af73-4a058e2f6d42",
+    "name": "Wegmans",
+    "street": "2100 Rt 70 West",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+18564882700",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.9483871459961,
+     39.89682388305664
+    ]
+   },
+   "properties": {
+    "id": "6b8639cb-0024-4e87-bd88-a4d7ed55915d",
+    "name": "Wegmans Catering",
+    "street": "2100 Marlton Pike E",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08003",
+    "brand": "Wegmans",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+18564882700",
+    "website": "http://www.wegmans.com/",
+    "confidence": 0.9813855886459351
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30034637451172,
+     40.29139709472656
+    ]
+   },
+   "properties": {
+    "id": "41a346ef-6de8-42f2-8fd3-20745228dd10",
+    "name": "Wegmans",
+    "street": "55 US Hwy No 9",
+    "city": "Manalapan",
+    "region": "NJ",
+    "postcode": "07726",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+17326254100",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9727455973625183,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.05937194824219,
+     41.04993438720703
+    ]
+   },
+   "properties": {
+    "id": "43ddfd53-6935-454d-a390-1d6c818c03c6",
+    "name": "Wegmans",
+    "street": "100 Farm View",
+    "city": "Montvale",
+    "region": "NJ",
+    "postcode": "07645",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+15512492200",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.9417495727539,
+     39.96597671508789
+    ]
+   },
+   "properties": {
+    "id": "292e26d9-3178-4c23-86bf-7d38dcfb64cf",
+    "name": "Wegmans",
+    "street": "105 E Main St",
+    "city": "Moorestown",
+    "region": "NJ",
+    "postcode": "08057-2948",
+    "brand": "Wegmans",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+18564397345",
+    "website": "https://www.wegmans.com/",
+    "confidence": 0.7009907364845276,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.91598510742188,
+     39.96763610839844
+    ]
+   },
+   "properties": {
+    "id": "0b5af096-01b0-4c22-b855-5b70de5fe90e",
+    "name": "Wegmans",
+    "street": "2 Centerton Road",
+    "city": "Mt. Laurel",
+    "region": "NJ",
+    "postcode": "08054",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+18564397300",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9302752017974854,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03919219970703,
+     40.23922348022461
+    ]
+   },
+   "properties": {
+    "id": "fb5f2532-a2df-47cf-b575-4486a19cd101",
+    "name": "Wegmans",
+    "street": "1104 Highway 35",
+    "city": "Ocean",
+    "region": "NJ",
+    "postcode": "07712",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+17326957000",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9630847573280334,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.44317626953125,
+     40.84577941894531
+    ]
+   },
+   "properties": {
+    "id": "f94db18b-e94c-4161-a4b4-bb12bfb7f0c9",
+    "name": "Wegmans",
+    "street": "34 Sylvan Way",
+    "city": "Parsippany",
+    "region": "NJ",
+    "postcode": "07054",
+    "brand": "BMO",
+    "basic_category": "atm",
+    "category": "atm",
+    "category_hierarchy": [
+     "services_and_business",
+     "financial_service",
+     "atm"
+    ],
+    "website": "https://usbranches.bmo.com/nj/parsippany/ct007438/",
+    "confidence": 0.8883693397045136
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.45387268066406,
+     40.85151672363281
+    ]
+   },
+   "properties": {
+    "id": "6c00e259-3d59-4e98-87ed-901633566d48",
+    "name": "Wegmans",
+    "street": "6 Century Dr",
+    "city": "Parsippany",
+    "region": "NJ",
+    "postcode": "07054-4608",
+    "brand": "Wegmans",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+19734902500",
+    "website": "http://www.wegmans.com/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.67499542236328,
+     40.305999755859375
+    ]
+   },
+   "properties": {
+    "id": "4d75f9df-41e4-4198-b889-be58c9cb83bc",
+    "name": "Wegmans",
+    "street": "240 Nassau Park Blvd",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+16099199300",
+    "website": "https://www.wegmans.com",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  }
+ ]
+}

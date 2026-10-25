@@ -376,37 +376,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.0893325805664,
-     40.83115768432617
-    ]
-   },
-   "properties": {
-    "id": "77808e9f-1407-49a9-b7a8-e2a5f5b5214c",
-    "name": "Five Guys",
-    "street": "54 Route 17 North",
-    "city": "East Rutherford",
-    "region": "NJ",
-    "postcode": "07073",
-    "brand": "Five Guys",
-    "basic_category": "restaurant",
-    "category": "burger_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "meat_restaurant",
-     "burger_restaurant"
-    ],
-    "phone": "+12013555344",
-    "website": "https://restaurants.fiveguys.com/54-route-17-north",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.06877899169922,
      40.808616638183594
     ]
@@ -429,6 +398,37 @@
     ],
     "phone": "+12012583484",
     "website": "https://restaurants.fiveguys.com/1-american-dream-way",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0893325805664,
+     40.83115768432617
+    ]
+   },
+   "properties": {
+    "id": "77808e9f-1407-49a9-b7a8-e2a5f5b5214c",
+    "name": "Five Guys",
+    "street": "54 Route 17 North",
+    "city": "East Rutherford",
+    "region": "NJ",
+    "postcode": "07073",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12013555344",
+    "website": "https://restaurants.fiveguys.com/54-route-17-north",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
@@ -744,37 +744,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.09356689453125,
-     40.71107482910156
-    ]
-   },
-   "properties": {
-    "id": "88f28a15-801f-42d1-b532-edfc51889299",
-    "name": "Five Guys",
-    "street": "23 University Place Blvd.",
-    "city": "Jersey City",
-    "region": "NJ",
-    "postcode": "07305",
-    "brand": "Five Guys",
-    "basic_category": "restaurant",
-    "category": "burger_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "meat_restaurant",
-     "burger_restaurant"
-    ],
-    "phone": "+12013600201",
-    "website": "https://restaurants.fiveguys.com/23-university-place-blvd",
-    "confidence": 0.9436647891998291,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.03437042236328,
      40.71577835083008
     ]
@@ -827,6 +796,37 @@
     "phone": "",
     "website": "http://fiveguys.com/",
     "confidence": 0.9655
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09356689453125,
+     40.71107482910156
+    ]
+   },
+   "properties": {
+    "id": "88f28a15-801f-42d1-b532-edfc51889299",
+    "name": "Five Guys",
+    "street": "23 University Place Blvd.",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12013600201",
+    "website": "https://restaurants.fiveguys.com/23-university-place-blvd",
+    "confidence": 0.9436647891998291,
+    "operating_status": "open"
    }
   },
   {
@@ -979,36 +979,6 @@
     "website": "https://restaurants.fiveguys.com/2180-n-2nd-st",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.20845031738281,
-     40.84199905395508
-    ]
-   },
-   "properties": {
-    "id": "bf14bb36-415b-4e09-aa76-c845a3cbbffc",
-    "name": "Five Guys Montclair NJ",
-    "street": "622 Valley Rd",
-    "city": "Montclair",
-    "region": "NJ",
-    "postcode": "07043-1470",
-    "brand": "Five Guys",
-    "basic_category": "restaurant",
-    "category": "burger_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "meat_restaurant",
-     "burger_restaurant"
-    ],
-    "phone": "+19737838988",
-    "website": "http://www.yelp.com/biz/five-guys-montclair",
-    "confidence": 0.5518714189529419
    }
   },
   {
@@ -1816,37 +1786,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.26915740966797,
-     40.93921661376953
-    ]
-   },
-   "properties": {
-    "id": "0b66acbe-0417-47da-b050-5112079c170f",
-    "name": "Five Guys",
-    "street": "1610 Route 23",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470",
-    "brand": "Five Guys",
-    "basic_category": "restaurant",
-    "category": "burger_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "meat_restaurant",
-     "burger_restaurant"
-    ],
-    "phone": "+19736330055",
-    "website": "https://restaurants.fiveguys.com/1610-route-23",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.25096893310547,
      40.88956069946289
     ]
@@ -1869,6 +1808,37 @@
     ],
     "phone": "+19738378258",
     "website": "https://restaurants.fiveguys.com/57-route-23",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26915740966797,
+     40.93921661376953
+    ]
+   },
+   "properties": {
+    "id": "0b66acbe-0417-47da-b050-5112079c170f",
+    "name": "Five Guys",
+    "street": "1610 Route 23",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19736330055",
+    "website": "https://restaurants.fiveguys.com/1610-route-23",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
    }

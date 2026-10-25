@@ -8,36 +8,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.38484191894531,
-     40.42924880981445
-    ]
-   },
-   "properties": {
-    "id": "0edb1cba-1b3b-4846-bf58-945ebbae971e",
-    "name": "Home Depot",
-    "street": "50 Race Track Rd",
-    "city": "East Brunswick",
-    "region": "NJ",
-    "postcode": "08816-3767",
-    "basic_category": "manufacturer",
-    "category": "industrial_equipment_manufacturer",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "manufacturer",
-     "machinery_and_tool_manufacturer",
-     "industrial_equipment_manufacturer"
-    ],
-    "phone": "+17322572800",
-    "website": "http://homedepot.com",
-    "confidence": 0.5818645358085632
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.30825805664062,
      40.33914566040039
     ]
@@ -246,6 +216,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -74.67056274414062,
+     40.57598876953125
+    ]
+   },
+   "properties": {
+    "id": "017b2f69-39ea-4ef2-ac64-2e266e29e36f",
+    "name": "The Home Depot",
+    "street": "736 US Highway 202",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807-2551",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082520101",
+    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
+    "confidence": 0.9969754219055176
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -74.55399322509766,
      40.56407928466797
     ]
@@ -270,36 +270,6 @@
     "website": "https://www.homedepot.com/l/Bridgewater-Route-28/NJ/Bridgewater/08807/947?emt=MSFBPage",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.67056274414062,
-     40.57598876953125
-    ]
-   },
-   "properties": {
-    "id": "017b2f69-39ea-4ef2-ac64-2e266e29e36f",
-    "name": "The Home Depot",
-    "street": "736 US Highway 202",
-    "city": "Bridgewater",
-    "region": "NJ",
-    "postcode": "08807-2551",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+19082520101",
-    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
-    "confidence": 0.9969754219055176
    }
   },
   {
@@ -957,37 +927,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.09687042236328,
-     40.710506439208984
-    ]
-   },
-   "properties": {
-    "id": "2adbba84-f123-45cf-b917-604aee630bae",
-    "name": "The Home Depot",
-    "street": "440 State RT 440",
-    "city": "Jersey City",
-    "region": "NJ",
-    "postcode": "07305-4813",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+12015219437",
-    "website": "https://www.homedepot.com/l/Jersey-City/NJ/Jersey-City/07305/935?emt=MSFBPage",
-    "confidence": 0.9813855886459351,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.04045867919922,
      40.73064041137695
     ]
@@ -1011,6 +950,37 @@
     "phone": "+12019636513",
     "website": "https://www.homedepot.com/l/Holland-Tunnel/NJ/Jersey-City/07310/6845?emt=MSFBPage",
     "confidence": 0.9933805465698242,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09687042236328,
+     40.710506439208984
+    ]
+   },
+   "properties": {
+    "id": "2adbba84-f123-45cf-b917-604aee630bae",
+    "name": "The Home Depot",
+    "street": "440 State RT 440",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305-4813",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12015219437",
+    "website": "https://www.homedepot.com/l/Jersey-City/NJ/Jersey-City/07305/935?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
     "operating_status": "open"
    }
   },
@@ -1760,35 +1730,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.62789916992188,
-     40.20671081542969
-    ]
-   },
-   "properties": {
-    "id": "1b020dfc-951b-4f99-950b-3be9ba4d0ca9",
-    "name": "The Home Depot",
-    "street": "8 S Gold Dr",
-    "city": "Robbinsville",
-    "region": "NJ",
-    "postcode": "08691-1607",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_home_and_garden_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store"
-    ],
-    "phone": "+16096895300",
-    "website": "http://www.homedepot.com/",
-    "confidence": 0.5593243837356567
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.64535522460938,
      40.19559097290039
     ]
@@ -2181,36 +2122,6 @@
     "phone": "+18567190335",
     "website": "https://www.homedepot.com/l/Berlin-Township/NJ/West-Berlin/08091/940?emt=MSFBPage",
     "confidence": 0.9813855886459351,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.02338409423828,
-     40.297794342041016
-    ]
-   },
-   "properties": {
-    "id": "48b2a6ea-d565-4406-9ed2-801ebf16158c",
-    "name": "The Home Depot",
-    "street": "310 Highway 36",
-    "city": "West Long Branch",
-    "region": "NJ",
-    "postcode": "07764-1026",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "appliance_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "appliance_store"
-    ],
-    "phone": "+17329350100",
-    "website": "https://www.homedepot.com",
-    "confidence": 0.25,
     "operating_status": "open"
    }
   },

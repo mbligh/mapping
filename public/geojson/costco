@@ -393,35 +393,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.45440673828125,
-     40.35679626464844
-    ]
-   },
-   "properties": {
-    "id": "9c3c3c16-3268-40bc-ab20-b468d2238809",
-    "name": "Costco depot",
-    "street": "12 Costco Dr",
-    "city": "Monroe Twp",
-    "region": "NJ",
-    "postcode": "08831",
-    "brand": "Costco",
-    "basic_category": "warehouse_club_store",
-    "category": "warehouse_club_store",
-    "category_hierarchy": [
-     "shopping",
-     "warehouse_club_store"
-    ],
-    "phone": "+17326059280",
-    "website": "http://www.costco.com",
-    "confidence": 0.5003426671028137,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.30329895019531,
      40.36146926879883
     ]

@@ -2,19 +2,32 @@
     { "layer": "Stores", "data": [
         {
             "id":"costco", "file": "geojson/costco", "type": "circle", 
-            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
             "id":"tsc", "file": "geojson/tsc", "type": "circle", 
-            "paint": { "circle-color": "#8B0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#8B0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
             "id":"tjs", "file": "geojson/tjs", "type": "circle", 
-            "paint": { "circle-color": "#00FF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#00FF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
             "id":"home_depot", "file": "geojson/home_depot", "type": "circle", 
             "paint": { "circle-color": "#F96302", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
+        },
+        {
+            "id":"chase", "file": "geojson/chase", "type": "circle", 
+            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
+        },
+        {
+            "id":"wegmans", "file": "geojson/wegmans", "type": "circle", 
+            "paint": { "circle-color": "#00FFFF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
             "label": { "field": "name", "minzoom": 13, "size": 12 }
         }
     ] },
@@ -22,19 +35,23 @@
     { "layer": "Food", "data": [
         {
             "id":"chipotle", "file": "geojson/chipotle", "type": "circle", 
-            "paint": { "circle-color": "#00FF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#00FF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
             "id":"red_robin", "file": "geojson/red_robin", "type": "circle", 
-            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
             "id":"five_guys", "file": "geojson/five_guys", "type": "circle", 
-            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         },
         {
             "id":"food", "file": "geojson/food", "type": "circle", 
-            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1},
+            "label": { "field": "name", "minzoom": 13, "size": 12 }
         }
     ] }
 ]

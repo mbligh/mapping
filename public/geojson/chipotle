@@ -934,37 +934,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.37389373779297,
-     40.51596450805664
-    ]
-   },
-   "properties": {
-    "id": "63cc9f9e-32ec-4a45-95b6-90cbdf9712b2",
-    "name": "Chipotle Mexican Grill",
-    "street": "901 US Highway 1",
-    "city": "Edison",
-    "region": "NJ",
-    "postcode": "08817-4849",
-    "brand": "Chipotle Mexican Grill",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "+17322189455",
-    "website": "https://locations.chipotle.com/nj/edison/901-us-1?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3369",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.33577728271484,
      40.54765701293945
     ]
@@ -988,6 +957,37 @@
     "phone": "+17323952151",
     "website": "http://www.chipotle.com",
     "confidence": 0.9999305303931236,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.37389373779297,
+     40.51596450805664
+    ]
+   },
+   "properties": {
+    "id": "63cc9f9e-32ec-4a45-95b6-90cbdf9712b2",
+    "name": "Chipotle Mexican Grill",
+    "street": "901 US Highway 1",
+    "city": "Edison",
+    "region": "NJ",
+    "postcode": "08817-4849",
+    "brand": "Chipotle Mexican Grill",
+    "basic_category": "restaurant",
+    "category": "mexican_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "latin_american_restaurant",
+     "mexican_restaurant"
+    ],
+    "phone": "+17322189455",
+    "website": "https://locations.chipotle.com/nj/edison/901-us-1?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3369",
+    "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
   },
@@ -1519,17 +1519,17 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.06359100341797,
-     40.73062515258789
+     -74.03515625,
+     40.7166633605957
     ]
    },
    "properties": {
-    "id": "5c4a9fcd-ff62-4098-949e-e23b4a7cc3c8",
+    "id": "c31a9535-4763-4e06-bc5c-7947b1222637",
     "name": "Chipotle Mexican Grill",
-    "street": "26 Journal Square Plaza",
+    "street": "30 Montgomery St",
     "city": "Jersey City",
     "region": "NJ",
-    "postcode": "07306",
+    "postcode": "07302-3821",
     "brand": "Chipotle Mexican Grill",
     "basic_category": "restaurant",
     "category": "mexican_restaurant",
@@ -1539,9 +1539,9 @@
      "latin_american_restaurant",
      "mexican_restaurant"
     ],
-    "phone": "+12019183867",
-    "website": "https://locations.chipotle.com/nj/jersey-city/26-journal-square?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3297",
-    "confidence": 0.9631619453430176,
+    "phone": "+12019845483",
+    "website": "https://locations.chipotle.com/nj/jersey-city/30-montgomery-st?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3950",
+    "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
   },
@@ -1581,17 +1581,17 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.03515625,
-     40.7166633605957
+     -74.06359100341797,
+     40.73062515258789
     ]
    },
    "properties": {
-    "id": "c31a9535-4763-4e06-bc5c-7947b1222637",
+    "id": "5c4a9fcd-ff62-4098-949e-e23b4a7cc3c8",
     "name": "Chipotle Mexican Grill",
-    "street": "30 Montgomery St",
+    "street": "26 Journal Square Plaza",
     "city": "Jersey City",
     "region": "NJ",
-    "postcode": "07302-3821",
+    "postcode": "07306",
     "brand": "Chipotle Mexican Grill",
     "basic_category": "restaurant",
     "category": "mexican_restaurant",
@@ -1601,9 +1601,9 @@
      "latin_american_restaurant",
      "mexican_restaurant"
     ],
-    "phone": "+12019845483",
-    "website": "https://locations.chipotle.com/nj/jersey-city/30-montgomery-st?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3950",
-    "confidence": 0.9902192950248718,
+    "phone": "+12019183867",
+    "website": "https://locations.chipotle.com/nj/jersey-city/26-journal-square?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3297",
+    "confidence": 0.9631619453430176,
     "operating_status": "open"
    }
   },
@@ -1798,37 +1798,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.91934967041016,
-     39.87747573852539
-    ]
-   },
-   "properties": {
-    "id": "84c38822-ad18-4314-9243-517a5174036b",
-    "name": "Chipotle Mexican Grill",
-    "street": "500 Route 73 S",
-    "city": "Marlton",
-    "region": "NJ",
-    "postcode": "08053-8000",
-    "brand": "Chipotle Mexican Grill",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "+18567971569",
-    "website": "http://www.chipotle.com",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.92195129394531,
      39.881038665771484
     ]
@@ -1882,6 +1851,37 @@
     "phone": "+18569835392",
     "website": "https://locations.chipotle.com/nj/marlton/882-route-73-n?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3107",
     "confidence": 0.9566411375999451,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.91934967041016,
+     39.87747573852539
+    ]
+   },
+   "properties": {
+    "id": "84c38822-ad18-4314-9243-517a5174036b",
+    "name": "Chipotle Mexican Grill",
+    "street": "500 Route 73 S",
+    "city": "Marlton",
+    "region": "NJ",
+    "postcode": "08053-8000",
+    "brand": "Chipotle Mexican Grill",
+    "basic_category": "restaurant",
+    "category": "mexican_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "latin_american_restaurant",
+     "mexican_restaurant"
+    ],
+    "phone": "+18567971569",
+    "website": "http://www.chipotle.com",
+    "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
   },
@@ -2133,37 +2133,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.87555694580078,
-     39.97108840942383
-    ]
-   },
-   "properties": {
-    "id": "99fd8062-3bd7-40c6-ac04-5e5174639b48",
-    "name": "Chipotle Mexican Grill",
-    "street": "3109 RT-38",
-    "city": "Mt Laurel",
-    "region": "NJ",
-    "postcode": "08054-9725",
-    "brand": "Chipotle Mexican Grill",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "+18565912103",
-    "website": "https://locations.chipotle.com/nj/mount-laurel/3109-route-38?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D4966",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.91410064697266,
      39.969974517822266
     ]
@@ -2186,6 +2155,37 @@
     ],
     "phone": "+18562064024",
     "website": "https://locations.chipotle.com/nj/mount-laurel/10-centerton-rd?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D2115",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.87555694580078,
+     39.97108840942383
+    ]
+   },
+   "properties": {
+    "id": "99fd8062-3bd7-40c6-ac04-5e5174639b48",
+    "name": "Chipotle Mexican Grill",
+    "street": "3109 RT-38",
+    "city": "Mt Laurel",
+    "region": "NJ",
+    "postcode": "08054-9725",
+    "brand": "Chipotle Mexican Grill",
+    "basic_category": "restaurant",
+    "category": "mexican_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "latin_american_restaurant",
+     "mexican_restaurant"
+    ],
+    "phone": "+18565912103",
+    "website": "https://locations.chipotle.com/nj/mount-laurel/3109-route-38?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D4966",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
@@ -2443,37 +2443,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.06488037109375,
-     40.91923522949219
-    ]
-   },
-   "properties": {
-    "id": "d8751707-feab-4ce4-9c89-1fe78ebed77a",
-    "name": "Chipotle Mexican Grill",
-    "street": "81 Rte 4",
-    "city": "Paramus",
-    "region": "NJ",
-    "postcode": "07652",
-    "brand": "Chipotle Mexican Grill",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "+12015560180",
-    "website": "https://locations.chipotle.com/nj/paramus/81-e-state-rt-4?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D1062",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.07471466064453,
      40.95687484741211
     ]
@@ -2497,6 +2466,37 @@
     "phone": "+12013451467",
     "website": "https://locations.chipotle.com/nj/paramus/545-nj-17?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D3470",
     "confidence": 0.9999904064008593,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06488037109375,
+     40.91923522949219
+    ]
+   },
+   "properties": {
+    "id": "d8751707-feab-4ce4-9c89-1fe78ebed77a",
+    "name": "Chipotle Mexican Grill",
+    "street": "81 Rte 4",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "brand": "Chipotle Mexican Grill",
+    "basic_category": "restaurant",
+    "category": "mexican_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "latin_american_restaurant",
+     "mexican_restaurant"
+    ],
+    "phone": "+12015560180",
+    "website": "https://locations.chipotle.com/nj/paramus/81-e-state-rt-4?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D1062",
+    "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
   },
@@ -3152,37 +3152,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -75.04524230957031,
-     39.48671340942383
-    ]
-   },
-   "properties": {
-    "id": "b5593306-c702-4c9e-bba4-1c2c63c35d43",
-    "name": "Chipotle Mexican Grill",
-    "street": "1025 W Landis Ave",
-    "city": "Vineland",
-    "region": "NJ",
-    "postcode": "08360",
-    "brand": "Chipotle Mexican Grill",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "+18564165459",
-    "website": "https://locations.chipotle.com/nj/vineland/1025-w-landis-ave?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D4577",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -75.04112243652344,
      39.431575775146484
     ]
@@ -3205,6 +3174,37 @@
     ],
     "phone": "+18565638861",
     "website": "https://locations.chipotle.com/nj/vineland/3880-s-delsea-dr?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D4943",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.04524230957031,
+     39.48671340942383
+    ]
+   },
+   "properties": {
+    "id": "b5593306-c702-4c9e-bba4-1c2c63c35d43",
+    "name": "Chipotle Mexican Grill",
+    "street": "1025 W Landis Ave",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08360",
+    "brand": "Chipotle Mexican Grill",
+    "basic_category": "restaurant",
+    "category": "mexican_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "latin_american_restaurant",
+     "mexican_restaurant"
+    ],
+    "phone": "+18564165459",
+    "website": "https://locations.chipotle.com/nj/vineland/1025-w-landis-ave?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D4577",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
