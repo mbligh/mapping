@@ -11,6 +11,28 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
     container.append(node);
     return node;
   };
+  // Image registration belongs to the current map style; reload after setStyle().
+  let styleGeneration = 0;
+  async function loadIcon(group, item) {
+    if (item.iconLoading) return;
+    const generation = styleGeneration;
+    item.iconLoading = true;
+    try {
+      const image = await map.loadImage(item.icon.url);
+      if (generation !== styleGeneration || !group.check.checked) return;
+      const width = image.data.width;
+      if (!width) throw new Error('Icon has no image width');
+      if (!map.hasImage(item.iconId)) map.addImage(item.iconId, image.data);
+      item.iconScale = item.icon.size / width;
+      install(group);
+    } catch (error) {
+      if (generation === styleGeneration) {
+        group.status.textContent = `${group.name}: icon load failed: ${error.message}`;
+      }
+    } finally {
+      item.iconLoading = false;
+    }
+  }
   function install(group) {
     if (!styleReady) return;
     group.status.textContent = '';
@@ -19,9 +41,19 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
         if (group.check.checked && !map.getSource(item.id)) {
           map.addSource(item.id, {type: 'geojson', data: item.url});
         }
+        if (group.check.checked && item.icon && !map.hasImage(item.iconId)) {
+          loadIcon(group, item);
+          continue;
+        }
         if (group.check.checked && !map.getLayer(item.id)) {
           map.addLayer({...item.style, id: item.id, source: item.id,
-            layout: {...item.style.layout, visibility: 'visible'}});
+            layout: {...item.style.layout,
+              ...(item.icon ? {
+                'icon-image': item.iconId,
+                'icon-size': item.iconScale,
+                'icon-allow-overlap': true
+              } : {}),
+              visibility: 'visible'}});
         }
         if (group.check.checked && item.label && !map.getLayer(item.id + '-label')) {
           map.addLayer({
@@ -55,6 +87,7 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
     }
   }
   map.on('style.load', () => {
+    styleGeneration++;
     styleReady = true;
     groups.forEach(install);
   });
@@ -81,6 +114,17 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
           if (!['https:', 'http:'].includes(url.protocol)) throw new Error(`${name}: unsupported file URL`);
           const type = data.type ?? 'circle';
           if (!['circle', 'symbol'].includes(type)) throw new Error(`${name}: point type must be circle or symbol`);
+          const icon = data.icon;
+          if (icon !== undefined) {
+            if (!icon || typeof icon !== 'object' || Array.isArray(icon) ||
+                typeof icon.url !== 'string' || !icon.url.trim()) {
+              throw new Error(`${name}: icon.url must be a non-empty URL`);
+            }
+            if (icon.size !== undefined && (!Number.isFinite(icon.size) || icon.size <= 0)) {
+              throw new Error(`${name}: icon.size must be positive`);
+            }
+            if (type !== 'symbol') throw new Error(`${name}: icon requires type "symbol"`);
+          }
           const style = {type};
           for (const key of ['paint', 'layout', 'filter', 'minzoom', 'maxzoom']) {
             if (data[key] !== undefined) style[key] = data[key];
@@ -98,7 +142,14 @@ export async function initGeoSources(map, maplibregl, container, configUrl) {
               throw new Error(`${name}: label.size must be positive`);
             }
           }
-          return {id: `geosources-${groupIndex}-${dataIndex}`, url: url.href, style, label};
+          const id = `geosources-${groupIndex}-${dataIndex}`;
+          const iconUrl = icon ? new URL(icon.url, configUrl) : null;
+          if (iconUrl && !['https:', 'http:'].includes(iconUrl.protocol)) {
+            throw new Error(`${name}: unsupported icon URL`);
+          }
+          return {id, url: url.href, style, label,
+            icon: iconUrl ? {url: iconUrl.href, size: icon.size ?? 20} : null,
+            iconId: id + '-icon'};
         });
         const label = document.createElement('label');
         const check = document.createElement('input');
