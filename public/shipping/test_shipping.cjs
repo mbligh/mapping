@@ -129,6 +129,10 @@ async function check(){
   assert.match(text(popupContent),/Holiday pickup may be earlier/);
   assert.match(text(popupContent),/View USPS locator/);
   assert.doesNotMatch(text(popupContent),/Hours:/,'Pickup times must not be presented as opening hours');
+  const retainedFedex={...fedex,properties:{...fedex.properties,
+    source_refresh_status:'ATP FedEx refresh unavailable; retained previous dataset'}};
+  events['click:shipping-points']({features:[retainedFedex],lngLat:[-74.7,40.7]});
+  assert.match(text(popupContent),/Refresh: ATP FedEx refresh unavailable; retained previous dataset/);
   elements.shipping.checked=false;elements['usps-boxes'].checked=false;
   await elements['usps-boxes'].change();
   assert.equal(layers['usps-collection-boxes'].layout.visibility,'none');

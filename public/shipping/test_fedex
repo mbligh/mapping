@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 """Regression checks for FedEx locator classification and metadata."""
 import runpy
+import copy
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+from urllib.error import URLError
 
-build = runpy.run_path(__file__.replace('test_fedex', 'build_fedex'))['build']
+MODULE = runpy.run_path(__file__.replace('test_fedex', 'build_fedex'))
+build = MODULE['build']
 
 def point(name, ref, **props):
     return {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-74.7, 40.7]},
@@ -29,4 +37,89 @@ assert box['location_type'] == 'drop_box'
 assert office['host'] == 'Office Depot'
 assert office['service_type'] == 'FedEx ShipSite'
 print('FedEx classification, deduplication, exclusions and metadata checks passed')
+
+
+class RefreshAvailability(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.path = Path(self.temp.name) / 'shipping_fedex.geojson'
+        self.raw = [point('FedEx OnSite' if i < 100 else 'FedEx Drop Box', str(i)) for i in range(200)]
+        self.previous = {'type':'FeatureCollection', 'features':build(self.raw),
+                         'source_refresh':{'last_successful_at':'2026-10-23T00:00:00+00:00'}}
+        self.previous['features'][0]['properties']['location_quality'] = {'original_coordinates':[-74.71,40.71]}
+        self.path.write_text(json.dumps(self.previous))
+
+    def run_refresh(self, payload=None, error=None, argv=None):
+        def download():
+            if error:raise error
+            return payload
+        with patch.dict(MODULE['main'].__globals__, {'OUT':self.path, 'download':download}):
+            MODULE['main']([] if argv is None else argv)
+        return json.loads(self.path.read_text())
+
+    def test_zero_nj_upstream_retains_complete_snapshot_and_quality(self):
+        before = copy.deepcopy(self.previous)
+        result = self.run_refresh({'type':'FeatureCollection','features':[point('FedEx OnSite','foreign',**{'addr:state':'NY'})]})
+        self.assertEqual(len(result['features']),200)
+        for old,new in zip(before['features'],result['features']):
+            self.assertEqual(new['geometry'],old['geometry'])
+            self.assertEqual({k:v for k,v in new['properties'].items() if k!='source_refresh_status'},old['properties'])
+        self.assertEqual(result['source_refresh']['status'],'retained_previous')
+        self.assertEqual(result['source_refresh']['last_successful_at'],'2026-10-23T00:00:00+00:00')
+        self.assertIn('retained previous',result['features'][0]['properties']['source_refresh_status'])
+
+    def test_partial_refresh_is_not_blended_with_prior_data(self):
+        result = self.run_refresh({'type':'FeatureCollection','features':[point('FedEx OnSite','new-partial')]})
+        self.assertNotIn('new-partial',{f['properties']['ref'] for f in result['features']})
+
+    def test_network_outage_and_malformed_response_retain_history(self):
+        for payload,error in [(None,URLError('HTTP 503')), ({'error':'unavailable'},None)]:
+            result = self.run_refresh(payload,error)
+            self.assertEqual(len(result['features']),200)
+            self.assertEqual(result['source_refresh']['status'],'retained_previous')
+
+    def test_repeated_failure_does_not_advance_last_successful_refresh(self):
+        self.run_refresh({'type':'FeatureCollection','features':[]})
+        result = self.run_refresh({'type':'FeatureCollection','features':[]})
+        self.assertEqual(result['source_refresh']['last_successful_at'],'2026-10-23T00:00:00+00:00')
+
+    def test_valid_refresh_replaces_stale_snapshot(self):
+        self.run_refresh({'type':'FeatureCollection','features':[]})
+        fresh = copy.deepcopy(self.raw)
+        fresh[0]['properties']['ref']='new-complete'
+        result = self.run_refresh({'type':'FeatureCollection','features':fresh})
+        self.assertEqual(result['source_refresh']['status'],'success')
+        self.assertEqual(result['source_refresh']['last_successful_at'],result['source_refresh']['attempted_at'])
+        self.assertEqual(result['features'][0]['properties']['ref'],'new-complete')
+        self.assertTrue(all('Refreshed from ATP' in f['properties']['source_refresh_status'] for f in result['features']))
+
+    def test_missing_or_invalid_history_fails_without_overwrite(self):
+        histories=[{'type':'FeatureCollection','features':[]},copy.deepcopy(self.previous),copy.deepcopy(self.previous)]
+        histories[1]['features'][0]['properties']['source']='OpenStreetMap'
+        histories[2]['features'][0]['geometry']['coordinates']=[-100,40]
+        for history in histories:
+            self.path.write_text(json.dumps(history));before=self.path.read_bytes()
+            with self.assertRaises(SystemExit):self.run_refresh({'type':'FeatureCollection','features':[]})
+            self.assertEqual(self.path.read_bytes(),before)
+        self.path.unlink()
+        with self.assertRaises(SystemExit):self.run_refresh(error=URLError('unavailable'))
+        self.assertFalse(self.path.exists())
+
+    def test_explicit_file_import_does_not_fall_back(self):
+        source=Path(self.temp.name)/'empty.geojson'
+        source.write_text(json.dumps({'type':'FeatureCollection','features':[]}))
+        before=self.path.read_bytes()
+        with self.assertRaises(SystemExit):self.run_refresh(argv=[str(source)])
+        self.assertEqual(self.path.read_bytes(),before)
+
+    def test_failed_atomic_replace_preserves_original_bytes(self):
+        before=self.path.read_bytes()
+        with patch.object(MODULE['write_atomic'].__globals__['os'],'replace',side_effect=OSError('disk error')):
+            with self.assertRaises(OSError):self.run_refresh({'type':'FeatureCollection','features':self.raw})
+        self.assertEqual(self.path.read_bytes(),before)
+        self.assertFalse(list(self.path.parent.glob('.fedex-*')))
+
+
+if __name__=='__main__':unittest.main()
 

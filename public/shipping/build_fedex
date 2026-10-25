@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 """Build NJ FedEx shipping points from ATP's FedEx locator spider."""
 import json
+import copy
+import math
+import os
 import sys
+import tempfile
 import urllib.request
+from urllib.error import URLError
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
 OUT = (Path(__file__).resolve().parent / 'shipping_fedex.geojson')
@@ -50,19 +56,105 @@ def build(features):
         }})
     return out
 
-def main():
-    if len(sys.argv) > 1:
-        data = json.loads(Path(sys.argv[1]).read_text())
-    else:
-        req = urllib.request.Request(URL, headers={'User-Agent': 'Personal NJ shipping map (github.com/mbligh/mapping)'})
-        with urllib.request.urlopen(req, timeout=120) as response:
-            data = json.load(response)
-    features = build(data['features'])
+class IncompleteData(ValueError):
+    pass
+
+
+def check_counts(features):
     counts = Counter(f['properties']['location_type'] for f in features)
     if counts['staffed'] < 100 or counts['drop_box'] < 100:
-        raise SystemExit(f'Too few FedEx locations: {dict(counts)}; refusing incomplete data')
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({'type': 'FeatureCollection', 'features': features}, separators=(',', ':')))
+        raise IncompleteData(f'Too few FedEx locations: {dict(counts)}; refusing incomplete data')
+    return counts
+
+
+def source_features(data):
+    if not isinstance(data, dict) or data.get('type') != 'FeatureCollection' or not isinstance(data.get('features'), list):
+        raise IncompleteData('ATP FedEx response is not a FeatureCollection')
+    features = build(data['features'])
+    check_counts(features)
+    return features
+
+
+def retain_previous(previous, reason, attempted_at):
+    """Keep the entire validated prior snapshot, never blend a partial refresh."""
+    if not isinstance(previous, dict) or previous.get('type') != 'FeatureCollection':
+        raise IncompleteData('No valid previous FedEx FeatureCollection')
+    features = previous.get('features')
+    if not isinstance(features, list):
+        raise IncompleteData('No previous FedEx features')
+    refs = set()
+    for f in features:
+        p, g = f.get('properties') or {}, f.get('geometry') or {}
+        c = g.get('coordinates') or []
+        if (g.get('type') != 'Point' or len(c) != 2
+                or not all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in c)
+                or not (-75.57 <= c[0] <= -73.88 and 38.88 <= c[1] <= 41.36)
+                or p.get('carrier') != 'FedEx'
+                or p.get('source') != 'FedEx locator via All The Places'
+                or p.get('location_type') not in ('staffed', 'drop_box')
+                or not p.get('ref') or p['ref'] in refs):
+            raise IncompleteData('Invalid or duplicate record in previous FedEx snapshot')
+        refs.add(p['ref'])
+    check_counts(features)
+    result = copy.deepcopy(previous)
+    prior = previous.get('source_refresh') or {}
+    result['source_refresh'] = {
+        'status': 'retained_previous', 'attempted_at': attempted_at,
+        'last_successful_at': prior.get('last_successful_at'),
+        'source_url': URL, 'reason': reason,
+    }
+    for f in result['features']:
+        f['properties']['source_refresh_status'] = (
+            f'ATP FedEx refresh unavailable; retained previous dataset (checked {attempted_at})')
+    return result
+
+
+def download():
+    req = urllib.request.Request(URL, headers={'User-Agent': 'Personal NJ shipping map (github.com/mbligh/mapping)'})
+    with urllib.request.urlopen(req, timeout=120) as response:
+        return json.load(response)
+
+
+def write_atomic(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', dir=path.parent, prefix='.fedex-', delete=False) as output:
+            temporary = Path(output.name)
+            json.dump(data, output, separators=(',', ':'))
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
+def main(argv=None):
+    args = sys.argv[1:] if argv is None else argv
+    attempted_at = datetime.now(timezone.utc).isoformat()
+    try:
+        data = json.loads(Path(args[0]).read_text()) if args else download()
+        features = source_features(data)
+    except (URLError, TimeoutError, OSError, ValueError) as error:
+        # Explicit file imports remain strict and reproducible. Automatic
+        # refreshes can use tracked history when the remote source is unusable.
+        if args:
+            raise SystemExit(str(error)) from error
+        try:
+            previous = json.loads(OUT.read_text())
+            result = retain_previous(previous, str(error), attempted_at)
+        except (OSError, ValueError, TypeError, AttributeError) as history_error:
+            raise SystemExit(f'{error}; cannot retain FedEx history: {history_error}') from history_error
+        print(f'::warning::ATP FedEx refresh unavailable: {error}; retained {len(result["features"])} previous locations', flush=True)
+    else:
+        for f in features:
+            f['properties']['source_refresh_status'] = f'Refreshed from ATP on {attempted_at}'
+        result = {'type': 'FeatureCollection', 'features': features, 'source_refresh': {
+            'status': 'success', 'attempted_at': attempted_at,
+            'last_successful_at': attempted_at, 'source_url': URL,
+        }}
+    write_atomic(OUT, result)
+    features = result['features']
+    counts = check_counts(features)
     print(f'FedEx NJ: {dict(counts)}', flush=True)
     print(f'FedEx staffed hosts: {dict(Counter(f["properties"]["host"] or f["properties"]["service_type"] for f in features if f["properties"]["location_type"] == "staffed"))}', flush=True)
 

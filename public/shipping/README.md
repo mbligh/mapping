@@ -29,6 +29,8 @@ Each importer writes beside its own script, so it also works from another workin
 
 If live CVS verification is unavailable, the extras importer refreshes UPS Stores and retains only the CVS access points already verified in the tracked dataset, marking their verification status as unavailable for this refresh. It adds no new CVS candidates in this case and fails if no verified CVS history exists. A successful live check with zero matches still fails validation.
 
+If ATP's FedEx output is unavailable or has fewer than 100 NJ staffed locations or 100 NJ drop boxes, `build_fedex` retains the entire previously validated FedEx snapshot. It does not blend partial new results into history. History must pass source, carrier, unique-reference, NJ geometry, and count checks; absent or invalid history fails without overwriting the file. Retained points preserve address corrections and other metadata. A workflow warning, collection-level `source_refresh` report, and per-point **Refresh** popup label identify the unsuccessful attempt. `last_successful_at` is preserved across failures (or null for legacy data with no recorded timestamp); a successful source refresh resets the status. Explicit positional input-file imports remain strict and fail on incomplete data. Writes replace the file atomically.
+
 ## Browser integration
 
 ```js
