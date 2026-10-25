@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+"""Extract OpenStreetMap features by tag using Overpass, as GeoJSON.
+
+Examples:
+  scripts/osm highway=speed_camera
+  scripts/osm amenity=charging_station --state NY
+  scripts/osm railway=station --state NJ -o stations.geojson
+  scripts/osm highway=speed_camera amenity=police  # either tag (OR)
+  scripts/osm --all amenity=parking access=public  # both tags (AND)
+
+Uses OpenStreetMap contributors' data under ODbL; attribute appropriately.
+Requires only the Python standard library.
+"""
+import argparse
+from contextlib import nullcontext
+import json
+import re
+import sys
+import urllib.error
+import urllib.parse
+import urllib.request
+
+STATE_BBOX = {
+    "AL": (-88.5, 30.1, -84.9, 35.0), "AK": (-179.2, 51.2, -129.9, 71.5),
+    "AZ": (-114.9, 31.3, -109.0, 37.1), "AR": (-94.7, 33.0, -89.6, 36.5),
+    "CA": (-124.5, 32.5, -114.1, 42.1), "CO": (-109.1, 36.9, -102.0, 41.1),
+    "CT": (-73.8, 40.9, -71.7, 42.1), "DE": (-75.8, 38.4, -75.0, 39.9),
+    "DC": (-77.2, 38.7, -76.9, 39.0), "FL": (-87.7, 24.4, -80.0, 31.1),
+    "GA": (-85.7, 30.3, -80.8, 35.1), "HI": (-160.3, 18.8, -154.7, 22.3),
+    "ID": (-117.3, 41.9, -111.0, 49.1), "IL": (-91.6, 36.9, -87.0, 42.6),
+    "IN": (-88.2, 37.7, -84.7, 41.8), "IA": (-96.7, 40.3, -90.1, 43.6),
+    "KS": (-102.1, 36.9, -94.5, 40.1), "KY": (-89.6, 36.4, -81.9, 39.2),
+    "LA": (-94.1, 28.9, -88.8, 33.1), "ME": (-71.1, 43.0, -66.9, 47.5),
+    "MD": (-79.5, 37.9, -75.0, 39.8), "MA": (-73.6, 41.2, -69.9, 42.9),
+    "MI": (-90.5, 41.6, -82.1, 48.3), "MN": (-97.3, 43.4, -89.4, 49.4),
+    "MS": (-91.7, 30.1, -88.0, 35.1), "MO": (-95.8, 35.9, -89.1, 40.7),
+    "MT": (-116.1, 44.3, -104.0, 49.1), "NE": (-104.1, 39.9, -95.3, 43.1),
+    "NV": (-120.1, 35.0, -114.0, 42.1), "NH": (-72.6, 42.6, -70.6, 45.4),
+    "NJ": (-75.6, 38.9, -73.9, 41.4), "NM": (-109.1, 31.3, -103.0, 37.1),
+    "NY": (-79.8, 40.4, -71.8, 45.1), "NC": (-84.4, 33.8, -75.4, 36.7),
+    "ND": (-104.1, 45.9, -96.5, 49.1), "OH": (-84.9, 38.4, -80.5, 42.0),
+    "OK": (-103.1, 33.6, -94.4, 37.1), "OR": (-124.7, 41.9, -116.4, 46.3),
+    "PA": (-80.6, 39.7, -74.6, 42.3), "RI": (-71.9, 41.1, -71.1, 42.1),
+    "SC": (-83.4, 32.0, -78.5, 35.3), "SD": (-104.1, 42.4, -96.4, 45.95),
+    "TN": (-90.4, 34.9, -81.6, 36.7), "TX": (-106.7, 25.8, -93.5, 36.6),
+    "UT": (-114.1, 36.9, -109.0, 42.1), "VT": (-73.5, 42.7, -71.5, 45.1),
+    "VA": (-83.7, 36.5, -75.2, 39.5), "WA": (-124.9, 45.5, -116.9, 49.1),
+    "WV": (-82.7, 37.1, -77.7, 40.7), "WI": (-92.9, 42.4, -86.7, 47.1),
+    "WY": (-111.1, 40.9, -104.0, 45.1),
+}
+
+OVERPASS = "https://overpass-api.de/api/interpreter"
+
+
+def parse_filter(raw):
+    if "=" not in raw:
+        raise ValueError(f"Invalid filter {raw!r}: expected KEY=VALUE")
+    key, value = raw.split("=", 1)
+    if not key or not value:
+        raise ValueError(f"Invalid filter {raw!r}: expected nonempty KEY=VALUE")
+    return key, value
+
+
+def quoted(value):
+    return json.dumps(value, ensure_ascii=True)
+
+
+def query(state, filters, all_filters, timeout):
+    west, south, east, north = STATE_BBOX[state]
+    bbox = f"({south},{west},{north},{east})"
+    # The state area provides an exact administrative boundary, rather than
+    # accepting neighboring states inside the coarse bounding rectangle.
+    area = f'area["ISO3166-2"="US-{state}"]["admin_level"="4"]->.region;'
+    clauses = [f'[{quoted(k)}={quoted(v)}]' for k, v in filters]
+    if all_filters:
+        selectors = ["nwr" + "".join(clauses) + "(area.region)" + bbox + ";"]
+    else:
+        selectors = ["nwr" + clause + "(area.region)" + bbox + ";" for clause in clauses]
+    return (f"[out:json][timeout:{timeout}];\n{area}\n(\n"
+            + "\n".join(selectors) + "\n);\nout geom;\n")
+
+
+def geometry(element):
+    typ = element["type"]
+    if typ == "node":
+        return {"type": "Point", "coordinates": [element["lon"], element["lat"]]}
+    if typ == "way":
+        points = [[p["lon"], p["lat"]] for p in element.get("geometry", [])]
+        if not points:
+            return None
+        if len(points) == 1:
+            return {"type": "Point", "coordinates": points[0]}
+        if len(points) >= 4 and points[0] == points[-1] and (
+            element.get("tags", {}).get("area") == "yes"
+            or any(k in element.get("tags", {}) for k in ("building", "landuse", "natural", "leisure"))
+        ):
+            return {"type": "Polygon", "coordinates": [points]}
+        return {"type": "LineString", "coordinates": points}
+    # Relations may contain disjoint and nested member geometries. Avoid
+    # fabricating a polygon; represent them by Overpass's center if present.
+    center = element.get("center")
+    if center:
+        return {"type": "Point", "coordinates": [center["lon"], center["lat"]]}
+    coords = [
+        [p["lon"], p["lat"]]
+        for member in element.get("members", [])
+        for p in member.get("geometry", [])
+    ]
+    if coords:
+        return {"type": "Point", "coordinates": [
+            sum(p[0] for p in coords) / len(coords),
+            sum(p[1] for p in coords) / len(coords),
+        ]}
+    return None
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("filters", nargs="+", metavar="KEY=VALUE",
+                        help="OSM tag filters; OR by default, AND with --all")
+    parser.add_argument("--all", action="store_true", help="require all supplied tags")
+    parser.add_argument("--state", default="NJ", help="two-letter US state (default NJ)")
+    parser.add_argument("-o", "--output", default="-", help="GeoJSON output file (default stdout)")
+    parser.add_argument("--timeout", type=int, default=180, help="Overpass timeout seconds")
+    parser.add_argument("--endpoint", default=OVERPASS, help="Overpass interpreter URL")
+    args = parser.parse_args()
+    state = args.state.upper()
+    if state not in STATE_BBOX:
+        parser.error(f"Unknown state {args.state!r}")
+    if args.timeout < 1:
+        parser.error("--timeout must be positive")
+    try:
+        filters = [parse_filter(raw) for raw in args.filters]
+    except ValueError as exc:
+        parser.error(str(exc))
+    q = query(state, filters, args.all, args.timeout)
+    request = urllib.request.Request(
+        args.endpoint,
+        data=urllib.parse.urlencode({"data": q}).encode(),
+        headers={"User-Agent": "mbligh-mapping-osm/1.0 (OpenStreetMap GeoJSON extraction)"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=args.timeout + 30) as response:
+            data = json.load(response)
+    except (urllib.error.URLError, TimeoutError, ValueError) as exc:
+        sys.exit(f"Overpass request failed: {exc}")
+    if data.get("remark"):
+        sys.exit(f"Overpass error: {data['remark']}")
+    features = []
+    seen = set()
+    for element in data.get("elements", []):
+        key = (element["type"], element["id"])
+        if key in seen:
+            continue
+        seen.add(key)
+        geom = geometry(element)
+        if geom is None:
+            print(f"Skipping {key}: no geometry", file=sys.stderr)
+            continue
+        features.append({
+            "type": "Feature",
+            "id": f"{element['type']}/{element['id']}",
+            "geometry": geom,
+            "properties": {"osm_type": element["type"], "osm_id": element["id"],
+                           **element.get("tags", {})},
+        })
+    output = {"type": "FeatureCollection",
+              "attribution": "© OpenStreetMap contributors (ODbL)",
+              "features": features}
+    with nullcontext(sys.stdout) if args.output == "-" else open(args.output, "w", encoding="utf-8") as fh:
+        json.dump(output, fh, indent=1, ensure_ascii=False)
+        fh.write("\n")
+    print(f"Wrote {len(features)} features to {args.output}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
