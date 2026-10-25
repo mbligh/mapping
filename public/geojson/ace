@@ -1,0 +1,1746 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.44551086425781,
+     39.35683059692383
+    ]
+   },
+   "properties": {
+    "id": "7527f1f4-7423-449a-8a05-e9d6071db30e",
+    "name": "Smith Bros Ace Hardware",
+    "street": "2706 Arctic Ave",
+    "city": "Atlantic City",
+    "region": "NJ",
+    "postcode": "08401",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "6093440046",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=10544&cid=localstore10544",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2441635131836,
+     39.75733947753906
+    ]
+   },
+   "properties": {
+    "id": "c7c74c51-0d14-45ad-b5a4-11fa9d02089a",
+    "name": "Barnegat Ace Hardware",
+    "street": "895 W Bay Ave",
+    "city": "Barnegat",
+    "region": "NJ",
+    "postcode": "08005-2121",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8653513133525849,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1017837524414,
+     40.68308639526367
+    ]
+   },
+   "properties": {
+    "id": "6596bb39-e107-4474-ac89-d3bc457cc4a3",
+    "name": "Ace Hardware",
+    "street": "1030 Broadway",
+    "city": "Bayonne",
+    "region": "NJ",
+    "postcode": "07002",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12012431900",
+    "website": "https://www.acehardware.com/store-details/14478",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.58342742919922,
+     40.71149826049805
+    ]
+   },
+   "properties": {
+    "id": "e87136da-2bec-426f-b25f-58c2da343f41",
+    "name": "Ace Hardware Bernardsville",
+    "street": "80 Morristown Rd",
+    "city": "Bernardsville",
+    "region": "NJ",
+    "postcode": "07924",
+    "phone": "9083826525",
+    "website": "http://www.acehardware.com/store-details/18775?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=18775",
+    "confidence": 0.97
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.95774841308594,
+     40.98203659057617
+    ]
+   },
+   "properties": {
+    "id": "3327bc68-9618-4bd8-9bb7-328350123d89",
+    "name": "Ace Hardware",
+    "street": "2 Bridge St #754",
+    "city": "Blairstown",
+    "region": "NJ",
+    "postcode": "07825",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19083626177",
+    "website": "https://www.acehardware.com/store-details/16094",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.96060180664062,
+     40.96839904785156
+    ]
+   },
+   "properties": {
+    "id": "c2dd7df1-5f35-42fd-bb96-ff964a8cbbd6",
+    "name": "Blairstown Ace Hardware",
+    "street": "2 Bridge St",
+    "city": "Blairstown",
+    "region": "NJ",
+    "postcode": "07825",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9083626177",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=16094&cid=localstore16094",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.20596313476562,
+     39.463226318359375
+    ]
+   },
+   "properties": {
+    "id": "e30b4b5d-ca45-4402-8fbf-3bd3fdbaa8fe",
+    "name": "Ace Hardware",
+    "street": "8 - 16 Centerton Road",
+    "city": "Bridgeton",
+    "region": "NJ",
+    "postcode": "08302",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(856) 451-1090",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=08248",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.38624572753906,
+     39.394630432128906
+    ]
+   },
+   "properties": {
+    "id": "79029d5f-5062-4438-aa74-ab5b52017839",
+    "name": "Brigantine Ace Hardware",
+    "street": "3116 Atlantic Brigantine Blvd",
+    "city": "Brigantine",
+    "region": "NJ",
+    "postcode": "08203",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16092667782",
+    "website": "https://www.acehardware.com/store-details/18590",
+    "confidence": 0.9999639503598213,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.28216552734375,
+     40.84334182739258
+    ]
+   },
+   "properties": {
+    "id": "2f4f9e37-b57b-4e7a-9a26-ffe3c41c7741",
+    "name": "Ace Hardware",
+    "street": "490 Bloomfield Ave",
+    "city": "Caldwell",
+    "region": "NJ",
+    "postcode": "07006",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18627023260",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=16147",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92493438720703,
+     38.93461227416992
+    ]
+   },
+   "properties": {
+    "id": "d76f06a2-3ea0-42e1-9daf-d306b34ca723",
+    "name": "Ace Hardware",
+    "street": "305 Jackson St",
+    "city": "Cape May",
+    "region": "NJ",
+    "postcode": "082041453",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16098848578",
+    "website": "https://www.acehardware.com/store-details/19280",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.45838165283203,
+     40.8089599609375
+    ]
+   },
+   "properties": {
+    "id": "b7bb1de4-c2f9-49cd-aed9-be55948af079",
+    "name": "Costello's Ace Hardware Cedar Knolls",
+    "street": "235 Ridgedale Ave",
+    "city": "Cedar Knolls",
+    "region": "NJ",
+    "postcode": "07927-2105",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8502106308937073,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43144989013672,
+     40.74738693237305
+    ]
+   },
+   "properties": {
+    "id": "db68def0-6094-42d3-8689-caffe7cf3d37",
+    "name": "Costello's Ace Hardware of Chatham",
+    "street": "650 Shunpike Rd",
+    "city": "Chatham",
+    "region": "NJ",
+    "postcode": "07928",
+    "brand": "Costello's Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19734101400",
+    "website": "https://www.costellosace.com/18417/sale/acem-25480/",
+    "confidence": 0.9999023711681366,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.4314956665039,
+     40.74737548828125
+    ]
+   },
+   "properties": {
+    "id": "0d29c13c-556d-4486-bcbf-bfd86e364b0a",
+    "name": "Smith's Ace Hardware Chatham",
+    "street": "650 Shunpike Rd",
+    "city": "Chatham",
+    "region": "NJ",
+    "postcode": "07928",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(973) 410-1400",
+    "website": "http://www.acehardware.com/store-details/15786",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.70091247558594,
+     40.78192901611328
+    ]
+   },
+   "properties": {
+    "id": "d0a729c0-983d-4f29-964f-8d20cdcd7f7e",
+    "name": "Ace Hardware",
+    "street": "91 W Main St",
+    "city": "Chester",
+    "region": "NJ",
+    "postcode": "07930",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19089558600",
+    "website": "http://www.yardvillesupply.com/contact/",
+    "confidence": 0.9999656888067723,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15281677246094,
+     40.86051940917969
+    ]
+   },
+   "properties": {
+    "id": "7800cd78-40c1-41f6-bf76-74a12af537b8",
+    "name": "Ace Hardware",
+    "street": "741 Van Houten Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07013",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19738603040",
+    "website": "http://cliftonhardware.com/",
+    "confidence": 0.9801789629459381,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1526870727539,
+     40.86038589477539
+    ]
+   },
+   "properties": {
+    "id": "52f3bf99-a836-4d10-9da7-94404159846d",
+    "name": "Brothers Hardware of Clifton",
+    "street": "741 Van Houten Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07013-2024",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15271759033203,
+     40.86043930053711
+    ]
+   },
+   "properties": {
+    "id": "cdf53cc9-b555-4cdc-b5fc-e59314799c81",
+    "name": "Clifton Ace Hardware & Paint Supply",
+    "street": "741 Van Houten Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07013",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9738603040",
+    "website": "http://www.acehardware.com/store-details/17719?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=17719",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.46570587158203,
+     40.88802719116211
+    ]
+   },
+   "properties": {
+    "id": "4a9b4bcc-9fcc-402d-aac5-380c11941ac6",
+    "name": "Anchor Ace Hardware",
+    "street": "320 US Highway 46",
+    "city": "Denville",
+    "region": "NJ",
+    "postcode": "07834",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9736276000",
+    "website": "http://www.acehardware.com/store-details/16894?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=16894",
+    "confidence": 0.984475,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.48551177978516,
+     40.887996673583984
+    ]
+   },
+   "properties": {
+    "id": "a7e1c356-d4a0-4754-951d-2166cf638c03",
+    "name": "Costello's Ace Hardware of Denville",
+    "street": "320 US Highway 46",
+    "city": "Denville",
+    "region": "NJ",
+    "postcode": "07834-2837",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49331665039062,
+     39.46410369873047
+    ]
+   },
+   "properties": {
+    "id": "0cca9184-e039-42ba-ab79-b7c01034265d",
+    "name": "Galloway Ace Hardware",
+    "street": "322 S Pitney Rd",
+    "city": "Galloway Twp",
+    "region": "NJ",
+    "postcode": "08205",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16097487400",
+    "website": "https://www.acehardware.com/store-details/18598",
+    "confidence": 0.9999737744152546,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.05014038085938,
+     39.91097640991211
+    ]
+   },
+   "properties": {
+    "id": "d6cb93d7-1543-4cec-b166-fefc40526f27",
+    "name": "Westmont Ace Hardware",
+    "street": "127 Haddon Ave",
+    "city": "Haddon Twp",
+    "region": "NJ",
+    "postcode": "08108",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18568543416",
+    "website": "https://www.acehardware.com/store-details/12122",
+    "confidence": 0.9995181984961032,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03069305419922,
+     40.7385139465332
+    ]
+   },
+   "properties": {
+    "id": "4d3db73c-8e3c-460a-9243-6f1099037477",
+    "name": "City Paint & Ace Hardware",
+    "street": "130 Washington St",
+    "city": "Hoboken",
+    "region": "NJ",
+    "postcode": "07030",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12016590061",
+    "website": "https://www.acehardware.com/store-details/08564",
+    "confidence": 0.9999965410581231,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06668853759766,
+     40.71493911743164
+    ]
+   },
+   "properties": {
+    "id": "e70b9a89-ef8a-49b5-8e0e-74d94d70577d",
+    "name": "Ace Hardware",
+    "street": "464 Communipaw Ave",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "073042934",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12014350979",
+    "website": "https://www.acehardware.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17998504638672,
+     39.8566780090332
+    ]
+   },
+   "properties": {
+    "id": "ce2fee20-eafa-4fe3-b150-d9238dc0e6eb",
+    "name": "Ace Hardware",
+    "street": "514 US Highway 9",
+    "city": "Lanoka Harbor",
+    "region": "NJ",
+    "postcode": "08734",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(609) 693-3160",
+    "website": "http://www.acehardware.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30199432373047,
+     40.92268371582031
+    ]
+   },
+   "properties": {
+    "id": "7f5a60db-5b68-4eaa-b7d9-af3661195e2d",
+    "name": "Costello's Ace Hardware of Lincoln Park",
+    "street": "261 Comly Road Lincoln Park Plz",
+    "city": "Lincoln Park",
+    "region": "NJ",
+    "postcode": "07035",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9738327599",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=16354&cid=localstore16354",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25435638427734,
+     40.63178634643555
+    ]
+   },
+   "properties": {
+    "id": "834445ea-3a4b-42bf-9693-00a4468e74ef",
+    "name": "Ace Hardware-Linden",
+    "street": "224-226 N Wood Ave",
+    "city": "Linden",
+    "region": "NJ",
+    "postcode": "07036",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9082753177",
+    "website": "http://www.acehardware.com/store-details/17311?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=17311",
+    "confidence": 0.97
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.01016998291016,
+     40.304141998291016
+    ]
+   },
+   "properties": {
+    "id": "995b861c-5dac-4ea4-81be-a29a840ec14d",
+    "name": "Ace Hardware",
+    "street": "700 Joline Ave",
+    "city": "Long Branch",
+    "region": "NJ",
+    "postcode": "07740",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17322226384",
+    "website": "https://www.costellosace.com/17868/sale/acem-25480/",
+    "confidence": 0.999211116874218,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.34181213378906,
+     40.24895095825195
+    ]
+   },
+   "properties": {
+    "id": "c683da19-9f19-4d27-ae80-d488bdab4dc8",
+    "name": "Millhurst Mills and Ace Hardware",
+    "street": "17 Sweetmans Ln",
+    "city": "Manalapan Twp",
+    "region": "NJ",
+    "postcode": "07726",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17324622000",
+    "website": "http://millhurstmills.com/",
+    "confidence": 0.9999924949431419,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92687225341797,
+     39.91510009765625
+    ]
+   },
+   "properties": {
+    "id": "4df14775-de36-42e3-977e-62e71276b3b9",
+    "name": "Marlton Ace Hardware",
+    "street": "230 N Maple Ave",
+    "city": "Marlton",
+    "region": "NJ",
+    "postcode": "08053-9400",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.81150817871094,
+     39.870758056640625
+    ]
+   },
+   "properties": {
+    "id": "6bfcf2a5-d08c-4cd9-a701-513366f5ea4d",
+    "name": "Spotts Hardware",
+    "street": "646 Stokes Rd",
+    "city": "Medford",
+    "region": "NJ",
+    "postcode": "08055-2902",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6863784790039,
+     40.234737396240234
+    ]
+   },
+   "properties": {
+    "id": "94673696-6811-4451-9ffb-45479f0b2b90",
+    "name": "Smith's Ace Hardware Mercerville",
+    "street": "318 State Highway 33",
+    "city": "Mercerville",
+    "region": "NJ",
+    "postcode": "08619",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "6096891000",
+    "website": "https://www.yardvillesupply.com/about/our-smiths-ace-hardware-stores/smiths-ace-harware-of-mercerville-nj/",
+    "confidence": 0.9655
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36683654785156,
+     40.54014587402344
+    ]
+   },
+   "properties": {
+    "id": "7a5f0f0a-27ec-422f-a31c-34863a810c54",
+    "name": "Ace Hardware",
+    "street": "655 Middlesex Ave",
+    "city": "Metuchen",
+    "region": "NJ",
+    "postcode": "08840",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(732) 548-3974",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=10860",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36675262451172,
+     40.54022979736328
+    ]
+   },
+   "properties": {
+    "id": "142ace5f-ce54-4414-9817-5f5d2ddc87e4",
+    "name": "Boro Ace Hardware",
+    "street": "655 Middlesex Ave",
+    "city": "Metuchen",
+    "region": "NJ",
+    "postcode": "08840-1811",
+    "basic_category": "technical_service",
+    "category": "software_development",
+    "category_hierarchy": [
+     "services_and_business",
+     "technical_service",
+     "software_development"
+    ],
+    "confidence": 0.95,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47386169433594,
+     40.45865249633789
+    ]
+   },
+   "properties": {
+    "id": "3e4fdb75-4507-4b38-971e-7b6f14a7e107",
+    "name": "Costello's Ace Hardware of N. Brunswick",
+    "street": "1345 US Highway 1",
+    "city": "North Brunswick",
+    "region": "NJ",
+    "postcode": "08902",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9083566800",
+    "website": "http://www.costellosace.com/locations/north-brunswick/?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=17338",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24352264404297,
+     41.02498245239258
+    ]
+   },
+   "properties": {
+    "id": "9c916504-9713-4543-9fac-9981173e130f",
+    "name": "Ace Hardware",
+    "street": "347 Ramapo Valley Rd",
+    "city": "Oakland",
+    "region": "NJ",
+    "postcode": "07436",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12013378068",
+    "website": "https://www.workstream.us/j/e79d3d12/ace-hardware",
+    "confidence": 0.9999870076075196,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2435302734375,
+     41.02498245239258
+    ]
+   },
+   "properties": {
+    "id": "2b4f0b09-4768-4cdd-bd70-94059dfcb074",
+    "name": "Oakland Hardware",
+    "street": "347 Ramapo Valley Rd",
+    "city": "Oakland",
+    "region": "NJ",
+    "postcode": "07436-2719",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.70545196533203,
+     39.222938537597656
+    ]
+   },
+   "properties": {
+    "id": "eb6ccb42-c2b2-4ee2-8db5-eb2cf830273f",
+    "name": "Ace Hardware",
+    "street": "100 Rte 50",
+    "city": "Ocean View",
+    "region": "NJ",
+    "postcode": "08230",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "6093902345",
+    "website": "https://www.acehardware.com/store-details/08738",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17318725585938,
+     40.91517639160156
+    ]
+   },
+   "properties": {
+    "id": "e7d59abf-29a9-4fa0-a654-eadf7cfc4d67",
+    "name": "Ace Hardware - Paterson",
+    "street": "301 Main St",
+    "city": "Paterson",
+    "region": "NJ",
+    "postcode": "07505",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9739772020",
+    "website": "http://www.acehardware.com/store-details/16895?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=16895",
+    "confidence": 0.9897235631942749
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.07308959960938,
+     40.071842193603516
+    ]
+   },
+   "properties": {
+    "id": "af7b7dc3-6931-4e42-b8d2-e48f8127f5a5",
+    "name": "Ace Hardware",
+    "street": "1307 Beaver Dam Rd",
+    "city": "Point Pleasant Boro",
+    "region": "NJ",
+    "postcode": "08742",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(732) 899-4218",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=06159",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.65038299560547,
+     40.36335754394531
+    ]
+   },
+   "properties": {
+    "id": "1b38dcfd-c23f-4197-9cf8-875ecc03dda0",
+    "name": "Costello's Ace Hardware of Princeton",
+    "street": "301 N Harrison St #12-Princeton Shopping",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540",
+    "brand": "Costello's Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094304300",
+    "website": "https://www.costellosace.com/locations/princeton/",
+    "confidence": 0.9998913151025772,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.65184783935547,
+     40.364654541015625
+    ]
+   },
+   "properties": {
+    "id": "16472792-20b5-4a81-b637-857d05bc5476",
+    "name": "Smith's Ace Hardware",
+    "street": "301 N Harrison St # Ctr",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540-3527",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094304300",
+    "website": "https://www.sunshineace.com",
+    "confidence": 0.8965000000000001,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03028106689453,
+     40.940391540527344
+    ]
+   },
+   "properties": {
+    "id": "920ba693-7ae3-4361-b553-a161abe53bc8",
+    "name": "Palmer Ace Hardware",
+    "street": "940 Kinderkamack Rd",
+    "city": "River Edge",
+    "region": "NJ",
+    "postcode": "07661",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12012620900",
+    "website": "https://www.acehardware.com/store-details/10420",
+    "confidence": 0.9846828579902649,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.5221939086914,
+     40.89154052734375
+    ]
+   },
+   "properties": {
+    "id": "4775a299-7cd9-4bd6-9266-4dde7d58d05a",
+    "name": "Ace Hardware of Rockaway",
+    "street": "295 US Highway 46",
+    "city": "Rockaway",
+    "region": "NJ",
+    "postcode": "07866",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "9736251151",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=15841&cid=localstore15841",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.34580993652344,
+     40.459922790527344
+    ]
+   },
+   "properties": {
+    "id": "046d84c3-984c-4044-a6c2-65f521e612d5",
+    "name": "Rupp's Ace Hardware",
+    "street": "347 Washington Rd",
+    "city": "Sayreville",
+    "region": "NJ",
+    "postcode": "08872-1935",
+    "basic_category": "health_care",
+    "category": "health_care",
+    "category_hierarchy": [
+     "health_care"
+    ],
+    "confidence": 0.95,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.97444152832031,
+     40.362125396728516
+    ]
+   },
+   "properties": {
+    "id": "c91668a0-3d38-499b-bcb0-a5d6f53d7cad",
+    "name": "Bain's Ace Hardware Sea Bright",
+    "street": "1092 Ocean Ave",
+    "city": "Sea Bright",
+    "region": "NJ",
+    "postcode": "07760-2145",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "17325309425",
+    "website": "https://www.bainshardwarestores.com",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.08196258544922,
+     39.74625015258789
+    ]
+   },
+   "properties": {
+    "id": "ba78502c-da78-4e3d-be0f-da54d4395095",
+    "name": "Ace Hardware",
+    "street": "344 Greentree Rd",
+    "city": "Sewell",
+    "region": "NJ",
+    "postcode": "08012",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18565828400",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=14011",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.61518859863281,
+     40.58060836791992
+    ]
+   },
+   "properties": {
+    "id": "5f835f83-d137-478a-8f11-5594ef8dd043",
+    "name": "Post Ace Hardware",
+    "street": "890 US-22",
+    "city": "Somerville",
+    "region": "NJ",
+    "postcode": "08876",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19087223777",
+    "website": "https://www.acehardware.com/store-details/05810",
+    "confidence": 0.9949432015419006,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02872467041016,
+     40.1540641784668
+    ]
+   },
+   "properties": {
+    "id": "651caafa-6376-4225-8f35-453853d6469e",
+    "name": "Bain's Ace Hardware Spring Lake",
+    "street": "1301 3rd Ave",
+    "city": "Spring Lake",
+    "region": "NJ",
+    "postcode": "07762-1440",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "17324496404",
+    "website": "https://www.bainshardwarestores.com",
+    "confidence": 0.999655,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.759765625,
+     39.05431365966797
+    ]
+   },
+   "properties": {
+    "id": "9088aa62-31d4-4721-b509-fef4a7d36fd5",
+    "name": "Ace Hardware",
+    "street": "260 96th St",
+    "city": "Stone Harbor",
+    "region": "NJ",
+    "postcode": "082471912",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16093683191",
+    "website": "https://www.acehardware.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17613220214844,
+     39.95925521850586
+    ]
+   },
+   "properties": {
+    "id": "b38c8d2d-4a4c-414c-a1ef-f98cfd4ca983",
+    "name": "Toms River Ace Hardware",
+    "street": "301 Route 37 E",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08753-5562",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.68666076660156,
+     40.23443603515625
+    ]
+   },
+   "properties": {
+    "id": "3b6c7f26-78f7-453f-b74b-3e3edaae9fa9",
+    "name": "Costello's Ace Hardware of Mercerville",
+    "street": "318 Highway 33",
+    "city": "Trenton",
+    "region": "NJ",
+    "postcode": "08619-4402",
+    "brand": "Costello's Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16096891000",
+    "website": "https://www.costellosace.com/18470/sale/acem-25480/",
+    "confidence": 0.9993920922279358,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.04922485351562,
+     39.75967788696289
+    ]
+   },
+   "properties": {
+    "id": "4617a317-44cc-4b06-9be7-1eb4c5f66809",
+    "name": "Ace Hardware",
+    "street": "344 Greentree Rd",
+    "city": "Turnersville",
+    "region": "NJ",
+    "postcode": "08012",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "8565828400",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=14011&cid=localstore14011",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03584289550781,
+     40.76802062988281
+    ]
+   },
+   "properties": {
+    "id": "5f8ec207-6309-443e-a7ca-f7df2fed2f84",
+    "name": "Ace Hardware-Union City",
+    "street": "711 23rd St",
+    "city": "Union City",
+    "region": "NJ",
+    "postcode": "07087",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "2013488400",
+    "website": "http://www.acehardware.com/store-details/17309?utm_source=bing&utm_medium=local&utm_campaign=localmaps&utm_content=17309",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.93914794921875,
+     39.01078414916992
+    ]
+   },
+   "properties": {
+    "id": "ff40c772-1d43-4b91-b2b7-ca7609285e05",
+    "name": "Anco Ace Hardware",
+    "street": "2410 Bayshore Rd",
+    "city": "Villas",
+    "region": "NJ",
+    "postcode": "08251-1409",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16098862701",
+    "website": "https://www.acehardware.com/store-details/19256",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.98480224609375,
+     39.4578742980957
+    ]
+   },
+   "properties": {
+    "id": "f73ba449-214f-4962-9b46-517521c6e302",
+    "name": "Vineland Ace Hardware",
+    "street": "2330 Dante Ave",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08361",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "8566928800",
+    "website": "http://www.acehardware.com/mystore/index.jsp?store=15144&cid=localstore15144",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.01539611816406,
+     39.49455642700195
+    ]
+   },
+   "properties": {
+    "id": "3965d16a-f34b-4325-858b-c64458e81606",
+    "name": "Vineland Ace Hardware",
+    "street": "535 N East Ave",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08360",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18566917900",
+    "website": "https://www.acehardware.com/store-details/18592",
+    "confidence": 0.999955201780796,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.11907958984375,
+     41.009742736816406
+    ]
+   },
+   "properties": {
+    "id": "9ebb67b8-e472-4506-bb78-1f50a80bbb66",
+    "name": "Ace Hardware",
+    "street": "27 Franklin Turnpike",
+    "city": "Waldwick",
+    "region": "NJ",
+    "postcode": "07463",
+    "brand": "ACE Hardware Philippines",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12016525666",
+    "website": "http://www.acehomehardware.com/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49486541748047,
+     40.61858367919922
+    ]
+   },
+   "properties": {
+    "id": "02b63eaa-c680-4224-a45d-3e80fa88f958",
+    "name": "Costello Ace Hardware Warrenville",
+    "street": "61A Mountain Blvd",
+    "city": "Warren",
+    "region": "NJ",
+    "postcode": "07059-5678",
+    "brand": "Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "confidence": 0.8,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.9769058227539,
+     40.742042541503906
+    ]
+   },
+   "properties": {
+    "id": "094e801d-f56d-4743-826e-d2a172984c8a",
+    "name": "Rocky's Ace Hardware",
+    "street": "288 NJ-31 S",
+    "city": "Washington",
+    "region": "NJ",
+    "postcode": "07882",
+    "brand": "Rocky's Ace Hardware",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19086891353",
+    "website": "http://www.Rockys.com/",
+    "confidence": 0.9999823490262032,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36671447753906,
+     41.13105392456055
+    ]
+   },
+   "properties": {
+    "id": "e10207f7-762e-43ab-9e17-773436bc0ac1",
+    "name": "Ace Hardware",
+    "street": "10 Marshall Hill Rd",
+    "city": "West Milford",
+    "region": "NJ",
+    "postcode": "07480",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(973) 728-9191",
+    "website": "http://www.acehardware.com",
+    "confidence": 0.77
+   }
+  }
+ ]
+}

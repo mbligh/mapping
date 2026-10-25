@@ -7,3 +7,4 @@ scripts/overture --name "Trader Joe's" | scripts/uniqgeo > public/geojson/tjs
 scripts/overture --name "Five Guys" | scripts/uniqgeo > public/geojson/five_guys
 scripts/overture --exact --name 'Chase' --name 'Chase Bank' | scripts/uniqgeo > public/geojson/chase
 scripts/overture --exact --name 'Wegmans' | scripts/uniqgeo > public/geojson/wegmans
+scripts/overture --name "Ace Hardware" | scripts/uniqgeo > public/geojson/ace
