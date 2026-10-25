@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""Look up a NJ street address; print latitude, longitude, and matched address.
+
+Use njaddress.db in the repository root (or build/njaddress/njaddress.db).
+Set NJADDRESS_DB to use another database path. Matching is case-insensitive;
+street spelling must match FULLADDR in the source, including abbreviations.
+"""
+
+import os
+from pathlib import Path
+import sqlite3
+import sys
+
+
+def words(value):
+    return " ".join(str(value or "").upper().replace(",", " ").split())
+
+
+def lookup(db, address):
+    tokens = words(address).split()
+    # Probe street prefixes using addresses_fulladdr, then check any locality.
+    for end in range(len(tokens), 0, -1):
+        street, suffix = " ".join(tokens[:end]), " ".join(tokens[end:])
+        matches = []
+        for row in db.execute(
+            "SELECT FULLADDR, STATE, POST_COMM, POST_CODE, LAT, LONG_ "
+            "FROM addresses WHERE FULLADDR = ? COLLATE NOCASE", (street,)
+        ):
+            fulladdr, state, city, zipcode, lat, lon = row
+            city, state, zipcode = map(words, (city, state, zipcode))
+            localities = {
+                words(" ".join(parts))
+                for parts in ((city,), (state,), (zipcode,), (city, state),
+                              (city, zipcode), (state, zipcode), (city, state, zipcode))
+            }
+            if not suffix or suffix in localities:
+                matches.append(row)
+        if matches:
+            return sorted(set(matches), key=lambda row: tuple(str(v) for v in row))
+    return []
+
+
+def main():
+    address = " ".join(sys.argv[1:])
+    if not address.strip() or address in ("-h", "--help"):
+        print("Usage: scripts/address STREET [CITY] [STATE] [ZIP]\n"
+              "Example: scripts/address 174 Lamington Road Oldwick NJ 08858\n"
+              "Output: latitude, longitude<TAB>matched address\n"
+              "Set NJADDRESS_DB to override the local njaddress.db path.",
+              file=sys.stderr)
+        return 0 if address else 2
+    root = Path(__file__).resolve().parent.parent
+    path = Path(os.environ.get("NJADDRESS_DB", root / "njaddress.db")).expanduser()
+    if "NJADDRESS_DB" not in os.environ and not path.is_file():
+        path = root / "build/njaddress/njaddress.db"
+    if not path.is_file():
+        print("address: njaddress.db not found. Download it to the repository root:\n"
+              "  curl -fL https://mapping.mbligh.org/njaddress.db -o njaddress.db\n"
+              "or set NJADDRESS_DB to its path.", file=sys.stderr)
+        return 2
+    try:
+        with sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True) as db:
+            rows = lookup(db, address)
+    except sqlite3.Error as exc:
+        print(f"address: {exc}", file=sys.stderr)
+        return 2
+    if not rows:
+        print(f"address: no match for {address!r}; check the street spelling and abbreviations",
+              file=sys.stderr)
+        return 1
+    found = False
+    for street, state, city, zipcode, lat, lon in rows:
+        label = ", ".join(str(v) for v in (street, city, state, zipcode) if v)
+        if lat is None or lon is None:
+            print(f"address: coordinates unavailable for {label}", file=sys.stderr)
+        else:
+            print(f"{lat}, {lon}\t{label}")
+            found = True
+    return 0 if found else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

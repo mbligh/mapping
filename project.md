@@ -107,3 +107,7 @@ It runs on the first of every month at 08:41 UTC, manually, or when address buil
 The editor's Open and Save as pickers use all files without extension filters, including the fallback file input, so extensionless GeoJSON files in `public/geojson/` can be selected directly. File contents still undergo GeoJSON validation.
 
 The editor adapter accepts 17 decimal places so full-precision Overture coordinates load without rounding the source data. Failed imports remove only candidates actually inserted, preserving the previous layer and the original validation error. Browser regression checks cover the real Home Depot dataset, exact save round trips after basemap switching, and mixed accepted/rejected import batches.
+
+## Address lookup CLI
+
+`scripts/address` joins command-line arguments into one address and queries the local NJ SQLite reference with indexed, case-insensitive street lookups, optionally restricting postal community/state/ZIP. It prints latitude/longitude and the resolved address for each distinct match; missing coordinates and errors go to stderr. It uses the repository-root `njaddress.db` or local build output, with `NJADDRESS_DB` overriding the path, and opens the file read-only. Download instructions and the exact-match limitations are documented in `njaddress.md`. The downloaded root database is ignored by Git.

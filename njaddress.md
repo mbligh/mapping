@@ -109,3 +109,28 @@ address releases independently of the other datasets.
 
 Attribution: NJ Office of Information Technology, Office of GIS (NJOGIS).
 The source is not survey data; address-point accuracy and completeness vary.
+
+## Command-line lookup
+
+Download the database once into the repository root, then run:
+
+```sh
+curl -fL https://mapping.mbligh.org/njaddress.db -o njaddress.db
+scripts/address 174 Lamington Road Oldwick NJ 08858
+# Or quote the entire address:
+scripts/address "174 Lamington Road, Oldwick, NJ 08858"
+```
+
+`scripts/address` joins all arguments with spaces and prints `latitude, longitude`
+followed by a tab and the matched address, one line per distinct result. It uses
+indexed case-insensitive street lookups and accepts an optional postal community,
+state, ZIP, or their combination. Street spelling and abbreviations must match
+`FULLADDR`; it does not perform fuzzy geocoding. Multiple matching locations are
+all printed, while identical selected records are collapsed. Missing coordinates
+are reported on stderr. Exit status is 0 if any coordinates were printed, 1 for
+no match/no available coordinates, or 2 for usage/database errors.
+
+The script uses `njaddress.db` beside this document, falling back to the build
+output `build/njaddress/njaddress.db`. Set `NJADDRESS_DB=/path/to/njaddress.db`
+to override the path. It opens SQLite read-only and never downloads implicitly.
+Rerun the download command to update the local monthly snapshot.
