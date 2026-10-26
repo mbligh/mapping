@@ -21,7 +21,7 @@ node public/shipping/test_shipping.cjs
 python public/shipping/validate_data
 ```
 
-The separate **Refresh NJ shipping locations** workflow downloads the OSM extract to `/tmp/new-jersey.osm.pbf`, runs the importers, validates and commits the data, then publishes a versioned shipping Release. The separate **Publish mapping pages** workflow assembles the shipping and contour releases with `public/` and deploys the site. Data and `shipping.js` are published at https://mapping.mbligh.org/shipping/.
+The separate **Refresh NJ shipping locations** workflow downloads the checksum-verified OSM extract from the shared `nj-osm` GitHub Release to `/tmp/new-jersey.osm.pbf`, runs the importers, validates and commits the data, then publishes a versioned shipping Release. The separate **Publish mapping pages** workflow assembles the shipping and contour releases with `public/` and deploys the site. Data and `shipping.js` are published at https://mapping.mbligh.org/shipping/.
 
 Run `python public/shipping/build_usps` after `build_shipping.py` to append USPS collection boxes to the shared `shipping.geojson`. It reads ATP's dedicated `usps_collection_boxes` output, selects NJ, preserves collection times, indoor/lobby indicators, notes, and box IDs, and refuses incomplete or invalid results. An optional positional input file reuses a downloaded ATP snapshot. Refreshing replaces existing USPS boxes by their source references, preserving all other features; boxes remain distinct from post offices at the same address. Collection times are pickup schedules, not opening hours.
 

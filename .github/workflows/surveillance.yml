@@ -5,10 +5,15 @@ on:
     paths:
       - 'surveillance/**'
       - 'scripts/dataset_releases'
+      - 'scripts/osm_snapshot'
       - '.github/workflows/surveillance.yml'
   schedule:
     - cron: '23 7 * * 0'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh NJ OSM snapshot']
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write
@@ -19,6 +24,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -40,10 +46,12 @@ jobs:
       - name: Diagnose known NJ location in source data
         run: |
           python3 surveillance/scripts/nearest build/flock.geojsonseq --lat 40.72542 --lon -74.77641
-      - name: Download and filter New Jersey OpenStreetMap data
+      - name: Download retained New Jersey OSM snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/osm_snapshot download build/new-jersey.osm.pbf
+      - name: Filter New Jersey OpenStreetMap data
         run: |
-          curl --fail --location --retry 3 -o build/new-jersey.osm.pbf \
-            https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf
           osmium tags-filter build/new-jersey.osm.pbf \
             nwr/man_made=surveillance nwr/highway=speed_camera \
             -o build/osm-cameras.osm.pbf --overwrite

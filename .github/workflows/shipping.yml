@@ -6,10 +6,15 @@ on:
       - '.github/workflows/shipping.yml'
       - 'public/shipping/**'
       - 'scripts/dataset_releases'
+      - 'scripts/osm_snapshot'
       - 'mapping_quality/**'
       - 'scripts/clean_locations'
       - 'tests/test_location_quality.py'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh NJ OSM snapshot']
+    types: [completed]
+    branches: [main]
   schedule:
     - cron: '25 9 * * 0'
 permissions:
@@ -20,6 +25,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'push' }}
 jobs:
   refresh:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -41,8 +47,10 @@ jobs:
           python public/shipping/test_shipping_extra
           node public/shipping/test_shipping.cjs
           python public/shipping/validate_data
-      - name: Download New Jersey OSM extract
-        run: curl -fL --retry 3 https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf -o /tmp/new-jersey.osm.pbf
+      - name: Download retained New Jersey OSM snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/osm_snapshot download /tmp/new-jersey.osm.pbf
       - run: python -u public/shipping/build_shipping.py
       - run: python -u public/shipping/build_usps
       - run: python -u public/shipping/build_shipping_extra.py
