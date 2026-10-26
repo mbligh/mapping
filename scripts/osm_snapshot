@@ -53,10 +53,10 @@ def publish(path):
     releases = json.loads(gh("api", "--paginate", "--slurp", f"repos/{REPO}/releases?per_page=100"))
     release = next((r for page in releases for r in page if r["tag_name"] == TAG), None)
     if release is None:
-        gh("release", "create", TAG, "--repo", REPO, "--target", os.environ["GITHUB_SHA"],
-           "--draft", "--title", "New Jersey OpenStreetMap source snapshot",
-           "--notes", "Full Geofabrik NJ extract. Refreshed monthly after validation. Not deployed to Pages.")
-        release = api(f"repos/{REPO}/releases/tags/{TAG}")
+        release = api(f"repos/{REPO}/releases", "--method", "POST",
+                      "-f", f"tag_name={TAG}", "-f", f"target_commitish={os.environ['GITHUB_SHA']}",
+                      "-F", "draft=true", "-f", "name=New Jersey OpenStreetMap source snapshot",
+                      "-f", "body=Full Geofabrik NJ extract. Refreshed monthly after validation. Not deployed to Pages.")
     old = next((a for a in release["assets"] if a["name"] == NAME), None)
     if old and old.get("digest") == digest:
         print("NJ OSM snapshot unchanged")
@@ -64,13 +64,14 @@ def publish(path):
     if not path.name.startswith("candidate-") or path.name == NAME:
         raise ValueError("Upload must use a unique candidate filename")
     gh("release", "upload", TAG, str(path), "--repo", REPO)
-    release = api(f"repos/{REPO}/releases/tags/{TAG}")
+    release = api(f"repos/{REPO}/releases/{release['id']}")
     staged = next(a for a in release["assets"] if a["name"] == path.name)
     if staged.get("digest") != digest or staged["size"] != path.stat().st_size:
         raise ValueError("Uploaded asset size/checksum does not match validated input")
     promote(old, staged)
     if release["draft"]:
-        gh("release", "edit", TAG, "--repo", REPO, "--draft=false", "--latest=false")
+        api(f"repos/{REPO}/releases/{release['id']}", "--method", "PATCH",
+            "-F", "draft=false", "-f", "make_latest=false")
     # Only after successful promotion, remove obsolete recovery/candidate assets.
     keep = {staged["id"]} | ({old["id"]} if old else set())
     for asset in release["assets"]:
