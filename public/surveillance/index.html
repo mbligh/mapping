@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Surveillance camera locations</title>
+  <link href="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.css" rel="stylesheet">
+  <style>
+    html,body,#map { margin:0; width:100%; height:100%; }
+    #info { position:absolute;top:10px;left:10px;z-index:1;background:#fff;padding:9px 12px;font:13px sans-serif;box-shadow:0 1px 6px #888;max-width:280px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="info">Flock + OSM surveillance · zoom to 8+ to see cameras</div>
+  <script src="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@4.3.0/dist/pmtiles.js"></script>
+  <script>
+    const protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol('pmtiles', protocol.tile);
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
+      center: [-98.5, 39.8], zoom: 4
+    });
+    map.addControl(new maplibregl.NavigationControl());
+    map.on('load', () => {
+      map.addSource('surveillance', {type:'vector', url:'pmtiles://' + new URL('../surveillance.pmtiles', location.href).href});
+      map.addLayer({
+        id:'surveillance-devices', type:'circle', source:'surveillance', 'source-layer':'surveillance',
+        minzoom:8,
+        paint:{
+          'circle-radius':['interpolate',['linear'],['zoom'],4,2.5,12,5,16,7],
+          'circle-color':'#ed174b',
+          'circle-opacity':0.9,
+          'circle-stroke-color':'#ffffff',
+          'circle-stroke-width':1.5
+        }
+      });
+      map.on('click','surveillance-devices',e=>{
+        const p=e.features[0].properties;
+        const div=document.createElement('div');
+        const title=document.createElement('strong');
+        title.textContent=p.camera_title || (p.source==='OSM'?'OSM surveillance camera':'Flock Surveillance camera');
+        div.append(title);
+        for(const key of Object.keys(p)){
+          const line=document.createElement('div');
+          const strong=document.createElement('strong'); strong.textContent=key+': ';
+          line.append(strong,document.createTextNode(String(p[key]??''))); div.append(line);
+        }
+        new maplibregl.Popup().setLngLat(e.lngLat).setDOMContent(div).addTo(map);
+      });
+      map.on('mouseenter','surveillance-devices',()=>map.getCanvas().style.cursor='pointer');
+      map.on('mouseleave','surveillance-devices',()=>map.getCanvas().style.cursor='');
+    });
+  </script>
+</body>
+</html>

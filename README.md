@@ -47,7 +47,7 @@ The root of `public/` and every subdirectory get automatically generated directo
 
 ## Interactive map
 
-Open [the MapLibre demo](https://mapping.mbligh.org/maplibre-demo/). Its source is [public/maplibre-demo/index.html](public/maplibre-demo/index.html); changes publish through **Publish mapping pages**, independently of dataset builds. Shipping and contours load from this site's relative paths. Surveillance loads from the separate surveillance site. The former URL under `mbligh.github.io/tools/maplibre-demo/` has a redirect in the tools repository.
+Open [the MapLibre demo](https://mapping.mbligh.org/maplibre-demo/). Its source is [public/maplibre-demo/index.html](public/maplibre-demo/index.html); changes publish through **Publish mapping pages**, independently of dataset builds. Shipping and contours load from this site's relative paths. Surveillance also loads from this site; its code and source snapshot live in `surveillance/`, with a standalone map at [/surveillance/](https://mapping.mbligh.org/surveillance/). The former URL under `mbligh.github.io/tools/maplibre-demo/` has a redirect in the tools repository.
 
 ## New Jersey address database
 

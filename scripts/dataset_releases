@@ -16,12 +16,13 @@ DATASETS = {
                  'shipping/shipping_fedex.geojson', 'shipping/shipping_ups_boxes.geojson',
                  'shipping/shipping.js'},
     'contours': {'contours.pmtiles'},
+    'surveillance': {'surveillance.pmtiles'},
     'njaddress': {'njaddress.db'},
     'contour-vectors': {'contours.geojsonseq.gz', 'contours.geojsonseq.gz.sha256', 'extraction.json'},
 }
 PAGE_DATASETS = ('shipping', 'contours')
-OPTIONAL_PAGE_DATASETS = ('njaddress',)
-TAG = re.compile(r'^dataset-(shipping|contours|contour-vectors|njaddress)-[0-9]+-[0-9]+$')
+OPTIONAL_PAGE_DATASETS = ('njaddress', 'surveillance')
+TAG = re.compile(r'^dataset-(shipping|contours|contour-vectors|njaddress|surveillance)-[0-9]+-[0-9]+$')
 REPO = os.environ.get('GITHUB_REPOSITORY', 'mbligh/mapping')
 
 
@@ -101,8 +102,8 @@ def extract(archive, output, dataset, manifest):
                 shutil.copyfileobj(src, dst)
             if sha256(destination) != manifest['files'][member.name]:
                 raise ValueError(f'Invalid checksum for {member.name}')
-    if dataset == 'contours':
-        path = output / 'contours.pmtiles'
+    if dataset in ('contours', 'surveillance'):
+        path = output / f'{dataset}.pmtiles'
         with path.open('rb') as stream:
             if stream.read(7) != b'PMTiles' or path.stat().st_size <= 10000:
                 raise ValueError('Invalid PMTiles archive')
@@ -159,7 +160,7 @@ def assemble(output):
         candidates = ordered(all_releases, dataset)
         if not candidates:
             if dataset in OPTIONAL_PAGE_DATASETS:
-                continue  # Do not block existing pages before the first address build.
+                continue  # Do not block existing pages before the first optional dataset build.
             print(f'Waiting for the first complete {dataset} release; existing Pages left intact.')
             return False
         selected[dataset] = candidates[0]

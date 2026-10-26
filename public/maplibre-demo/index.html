@@ -53,7 +53,7 @@ import {Protocol, PMTiles} from 'https://esm.sh/pmtiles@4.5.0';
 import {TerraDraw, TerraDrawLineStringMode, TerraDrawSelectMode} from 'https://esm.sh/terra-draw@1.24.2';
 import {TerraDrawMapLibreGLAdapter} from 'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2';
 
-const surveillanceArchiveUrl='https://mbligh.github.io/surveillance/surveillance.pmtiles';
+const surveillanceArchiveUrl=new URL('../surveillance.pmtiles',import.meta.url).href;
 const pmProtocol=new Protocol();
 maplibregl.addProtocol('pmtiles',pmProtocol.tile);
 const surveillanceArchive=new PMTiles(surveillanceArchiveUrl);

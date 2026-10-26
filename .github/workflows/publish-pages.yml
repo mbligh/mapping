@@ -13,7 +13,7 @@ on:
       - 'scripts/build_njaddress'
       - 'scripts/test_njaddress'
   workflow_run:
-    workflows: ['NJ shipping locations', 'Build NJ contour PMTiles', 'Build NJ address database']
+    workflows: ['NJ shipping locations', 'Build NJ contour PMTiles', 'Build NJ address database', 'Build surveillance PMTiles']
     types: [completed]
     branches: [main]
   release:
@@ -75,6 +75,27 @@ jobs:
           python scripts/test_njaddress
           python scripts/test_dataset_releases
           python scripts/test_public_directory_indexes
+      - name: Configure optional surveillance R2 URL
+        env:
+          R2_PUBLIC_URL: ${{ vars.R2_PUBLIC_URL }}
+        run: |
+          python3 - <<'PYTHON'
+          import json
+          import os
+          from pathlib import Path
+          base = os.environ.get('R2_PUBLIC_URL', '').rstrip('/')
+          if base:
+              url = json.dumps(base + '/surveillance.pmtiles')
+              for name, expression in (
+                  ('public/surveillance/index.html', "new URL('../surveillance.pmtiles', location.href).href"),
+                  ('public/maplibre-demo/index.html', "new URL('../surveillance.pmtiles',import.meta.url).href"),
+              ):
+                  path = Path(name)
+                  content = path.read_text()
+                  if expression not in content:
+                      raise ValueError(f'Missing surveillance URL in {name}')
+                  path.write_text(content.replace(expression, url))
+          PYTHON
       - name: Generate recursive public directory listings
         run: python scripts/public_directory_indexes public
       - name: Assemble latest complete releases and static files

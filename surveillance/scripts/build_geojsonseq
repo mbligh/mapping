@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""Stream ArcGIS feature batches into GeoJSON sequence for Tippecanoe."""
+import argparse
+import glob
+import json
+import os
+import sys
+
+FIELDS = (
+    "OBJECTID", "id", "name", "status", "active", "deviceType",
+    "features", "rotationAngle", "direction", "CreationDate", "EditDate",
+)
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("root", nargs="?", default=".")
+    parser.add_argument("-o", "--output", required=True)
+    args = parser.parse_args()
+    paths = glob.glob(os.path.join(args.root, "**", "features_*.json"), recursive=True)
+    paths = [p for p in paths if os.path.basename(p)[9:-5].isdigit()]
+    paths.sort(key=lambda p: int(os.path.basename(p)[9:-5]))
+    if not paths:
+        sys.exit("No features_N.json source files found")
+    count = 0
+    invalid = 0
+    os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
+    with open(args.output, "w", encoding="utf-8") as out:
+        for path in paths:
+            with open(path, encoding="utf-8") as inp:
+                batch = json.load(inp)
+            for record in batch.get("features", []):
+                point = record.get("geometry") or {}
+                lon, lat = point.get("x"), point.get("y")
+                if not isinstance(lon, (int, float)) or not isinstance(lat, (int, float)) or not (-180 <= lon <= 180 and -90 <= lat <= 90):
+                    invalid += 1
+                    continue
+                attrs = record.get("attributes") or {}
+                props = {key: attrs[key] for key in FIELDS if attrs.get(key) is not None}
+                props["source"] = "Flock"
+                props["camera_title"] = "Flock Surveillance camera"
+                props["readsLicensePlates"] = "readsLicensePlates" in (attrs.get("features") or "").split(",")
+                feature = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [lon, lat]}, "properties": props}
+                out.write(json.dumps(feature, separators=(",", ":"), ensure_ascii=False) + "\n")
+                count += 1
+            print(f"{path}: {len(batch.get('features', []))} records", file=sys.stderr)
+    print(f"Output: {count} points, {invalid} invalid coordinates, {len(paths)} files", file=sys.stderr)
+    if count == 0:
+        sys.exit("No valid points")
+    if invalid:
+        sys.exit(f"Refusing incomplete dataset: {invalid} invalid coordinate records")
+
+if __name__ == "__main__":
+    main()

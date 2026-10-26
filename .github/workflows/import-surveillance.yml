@@ -1,0 +1,38 @@
+name: Import surveillance repository history
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/import-surveillance.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: import-surveillance
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Import source history and snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch https://github.com/mbligh/surveillance.git main
+          source=$(git rev-parse FETCH_HEAD)
+          test "$source" = 19cab6864f04169edcb8cfaa19621381569add7f
+          if ! git merge-base --is-ancestor "$source" HEAD; then
+            git merge -s ours --no-commit --allow-unrelated-histories "$source"
+            git read-tree --prefix=surveillance/flocksurveillance/ -u "$source:flocksurveillance"
+            git commit -m 'Merge surveillance history and original Flock snapshot into mapping'
+            git push origin HEAD:main
+          fi
+          gh workflow run surveillance.yml --ref main
+          gh workflow run publish-pages.yml --ref main
