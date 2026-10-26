@@ -1,0 +1,39 @@
+name: Refresh NJ OSM snapshot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/osm-snapshot.yml'
+      - 'scripts/osm_snapshot'
+      - 'scripts/test_osm_snapshot'
+  schedule:
+    - cron: '17 6 1 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: nj-osm-snapshot
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check safe snapshot replacement
+        run: python scripts/test_osm_snapshot
+      - name: Install OSM validator
+        run: sudo apt-get update && sudo apt-get install -y osmium-tool
+      - name: Download full NJ snapshot
+        run: |
+          mkdir -p build/osm
+          curl --fail --location --retry 3 --max-time 1200 \
+            https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf \
+            -o "build/osm/candidate-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.osm.pbf"
+      - name: Validate and replace retained release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/osm_snapshot publish "build/osm/candidate-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.osm.pbf"

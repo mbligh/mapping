@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""Publish or retrieve the validated NJ OSM snapshot in a persistent Release."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+
+REPO = os.environ.get("GITHUB_REPOSITORY", "mbligh/mapping")
+TAG = "nj-osm"
+NAME = "new-jersey.osm.pbf"
+
+
+def gh(*args):
+    return subprocess.check_output(["gh", *args], text=True)
+
+
+def api(path, *args):
+    return json.loads(gh("api", path, *args))
+
+
+def checksum(path):
+    with Path(path).open("rb") as stream:
+        return "sha256:" + hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def promote(old, staged):
+    """Keep the old bytes until the fully uploaded candidate owns the stable name."""
+    base = f"repos/{REPO}/releases/assets/"
+    if old:
+        api(base + str(old["id"]), "--method", "PATCH", "-f", f"name=previous-{old['id']}.osm.pbf")
+    try:
+        api(base + str(staged["id"]), "--method", "PATCH", "-f", f"name={NAME}")
+    except Exception:
+        if old:
+            api(base + str(old["id"]), "--method", "PATCH", "-f", f"name={NAME}")
+        raise
+    # Retain the preceding snapshot as a recovery copy; no delete-before-upload.
+
+
+def publish(path):
+    path = Path(path)
+    if path.stat().st_size < 10_000_000:
+        raise ValueError("NJ extract is suspiciously small")
+    count = int(subprocess.check_output(
+        ["osmium", "fileinfo", "-e", "-g", "data.count.nodes", str(path)], text=True))
+    if count < 1_000_000:
+        raise ValueError(f"NJ extract has only {count} nodes")
+    digest = checksum(path)
+    # List first so authentication/API failures cannot be mistaken for a missing release.
+    releases = json.loads(gh("api", "--paginate", "--slurp", f"repos/{REPO}/releases?per_page=100"))
+    release = next((r for page in releases for r in page if r["tag_name"] == TAG), None)
+    if release is None:
+        gh("release", "create", TAG, "--repo", REPO, "--target", os.environ["GITHUB_SHA"],
+           "--draft", "--title", "New Jersey OpenStreetMap source snapshot",
+           "--notes", "Full Geofabrik NJ extract. Refreshed monthly after validation. Not deployed to Pages.")
+        release = api(f"repos/{REPO}/releases/tags/{TAG}")
+    old = next((a for a in release["assets"] if a["name"] == NAME), None)
+    if old and old.get("digest") == digest:
+        print("NJ OSM snapshot unchanged")
+        return
+    if not path.name.startswith("candidate-") or path.name == NAME:
+        raise ValueError("Upload must use a unique candidate filename")
+    gh("release", "upload", TAG, str(path), "--repo", REPO)
+    release = api(f"repos/{REPO}/releases/tags/{TAG}")
+    staged = next(a for a in release["assets"] if a["name"] == path.name)
+    if staged.get("digest") != digest or staged["size"] != path.stat().st_size:
+        raise ValueError("Uploaded asset size/checksum does not match validated input")
+    promote(old, staged)
+    if release["draft"]:
+        gh("release", "edit", TAG, "--repo", REPO, "--draft=false", "--latest=false")
+    # Only after successful promotion, remove obsolete recovery/candidate assets.
+    keep = {staged["id"]} | ({old["id"]} if old else set())
+    for asset in release["assets"]:
+        if asset["id"] not in keep and asset["name"].startswith(("previous-", "candidate-")):
+            gh("api", f"repos/{REPO}/releases/assets/{asset['id']}", "--method", "DELETE")
+    print(f"Published {TAG}/{NAME}: {digest}; {count} nodes")
+
+
+def download(path):
+    release = api(f"repos/{REPO}/releases/tags/{TAG}")
+    asset = next(a for a in release["assets"] if a["name"] == NAME)
+    if release["draft"] or not asset.get("digest", "").startswith("sha256:"):
+        raise ValueError("No published, checksummed NJ OSM snapshot")
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as stream:
+        temporary = Path(stream.name)
+        try:
+            subprocess.run(["gh", "api", f"repos/{REPO}/releases/assets/{asset['id']}",
+                            "-H", "Accept: application/octet-stream"], stdout=stream, check=True)
+            stream.flush()
+            if temporary.stat().st_size != asset["size"] or checksum(temporary) != asset["digest"]:
+                raise ValueError("Downloaded NJ OSM snapshot checksum/size mismatch")
+            temporary.replace(path)
+        finally:
+            temporary.unlink(missing_ok=True)
+    print(f"NJ OSM asset {asset['id']} ({asset['updated_at']}): {asset['digest']}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=["publish", "download"])
+    parser.add_argument("path")
+    args = parser.parse_args()
+    globals()[args.command](args.path)

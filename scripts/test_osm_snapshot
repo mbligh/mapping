@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Offline safety checks for retained OSM snapshots."""
+import importlib.machinery
+import importlib.util
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+loader = importlib.machinery.SourceFileLoader('snapshot', str(Path(__file__).with_name('osm_snapshot')))
+spec = importlib.util.spec_from_loader(loader.name, loader)
+m = importlib.util.module_from_spec(spec)
+loader.exec_module(m)
+
+
+class SnapshotTests(unittest.TestCase):
+    def test_promotion_preserves_old_before_switch(self):
+        with patch.object(m, 'api') as api:
+            m.promote({'id': 1}, {'id': 2})
+        self.assertEqual([c.args[-1] for c in api.call_args_list],
+                         ['name=previous-1.osm.pbf', 'name=new-jersey.osm.pbf'])
+
+    def test_failed_promotion_restores_previous_name(self):
+        with patch.object(m, 'api', side_effect=[{}, RuntimeError('upload unavailable'), {}]) as api:
+            with self.assertRaises(RuntimeError):
+                m.promote({'id': 1}, {'id': 2})
+        self.assertTrue(api.call_args_list[-1].args[0].endswith('/1'))
+        self.assertEqual(api.call_args_list[-1].args[-1], 'name=new-jersey.osm.pbf')
+
+    def test_invalid_input_never_touches_release(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(m, 'gh') as gh:
+            path = Path(tmp)/'candidate.osm.pbf'
+            path.write_bytes(b'bad download')
+            with self.assertRaises(ValueError):
+                m.publish(path)
+            gh.assert_not_called()
+
+    def test_bad_download_preserves_destination(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp)/'input.osm.pbf'
+            path.write_bytes(b'previous good file')
+            release = {'draft': False, 'assets': [{'id': 5, 'name': m.NAME, 'size': 100,
+                                                 'digest': 'sha256:bad'}]}
+            with patch.object(m, 'api', return_value=release), patch.object(m.subprocess, 'run'):
+                with self.assertRaises(ValueError):
+                    m.download(path)
+            self.assertEqual(path.read_bytes(), b'previous good file')
+            self.assertEqual(list(Path(tmp).iterdir()), [path])
+
+    def test_valid_download_replaces_destination(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp)/'input.osm.pbf'
+            path.write_bytes(b'new')
+            digest = m.checksum(path)
+            path.write_bytes(b'old')
+            release = {'draft': False, 'assets': [{'id': 5, 'name': m.NAME, 'size': 3,
+                            'digest': digest, 'updated_at': '2026-10-26T00:00:00Z'}]}
+            def write(*args, **kwargs):
+                kwargs['stdout'].write(b'new')
+            with patch.object(m, 'api', return_value=release), patch.object(m.subprocess, 'run', side_effect=write):
+                m.download(path)
+            self.assertEqual(path.read_bytes(), b'new')
+
+
+if __name__ == '__main__':
+    unittest.main()
