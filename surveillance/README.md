@@ -10,7 +10,18 @@ The GitHub Actions workflow builds a versioned release on changes to source JSON
 
 The workflow lives at `../.github/workflows/surveillance.yml`. The shared **Publish mapping pages** workflow deploys the release and `../public/surveillance/index.html`. Optional R2 uploads use mapping repository variables `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_PUBLIC_URL` and secrets `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`; GitHub does not transfer repository settings or secrets during a Git merge.
 
-The build searches recursively for `features_0.json`, `features_10000.json`, etc. It retains all device types and statuses, including planned and decommissioned devices. Flock records are historical, not live. OSM data is refreshed weekly from Geofabrik. Each point preserves its original attributes plus `source` and `camera_title`; overlapping records are retained.
+The build searches recursively for `features_0.json`, `features_10000.json`, etc. It retains planned and active NJ devices, but excludes decommissioned devices and locations outside NJ. Flock records are historical, not live. OSM data is refreshed weekly from the retained Geofabrik NJ extract. Each point preserves relevant original attributes plus `source`, `camera_type`, and `camera_title`; overlapping records are retained.
+
+## Map markers
+
+- **Blue:** Flock cameras. Valid `rotationAngle` values are provisionally treated as clockwise bearings from north, producing a translucent curved viewing cone with a dot at the actual camera location. When no valid angle exists, display a dot only. This orientation convention has not been validated on site.
+- **Yellow:** OSM speed cameras (`highway=speed_camera` or explicitly speed-related `enforcement=*`).
+- **Red:** OSM red-light cameras (`highway=red_light_camera`, `surveillance=red_light`, or explicit `enforcement=traffic_signals`). Ordinary traffic signals alone are never treated as red-light cameras.
+- **Green:** Other OSM surveillance locations.
+
+The MapLibre demo and standalone surveillance map share `public/surveillance/markers.mjs`, one PMTiles source, and click popups for both dots and wedges. The build normalizes valid Flock rotations into `camera_bearing` without overwriting the original `rotationAngle`. Missing/non-numeric rotations remain directionless. OSM enforcement *relations* without an exported device geometry may not appear; relation-member extraction would be a separate improvement.
+
+The map marker tests run with `node surveillance/scripts/test_markers.mjs`. Camera classification tests run in the surveillance GitHub workflow.
 
 MapLibre integration:
 
