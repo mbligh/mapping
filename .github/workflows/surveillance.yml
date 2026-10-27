@@ -60,6 +60,8 @@ jobs:
         run: |
           osmium tags-filter build/new-jersey.osm.pbf \
             nwr/man_made=surveillance nwr/highway=speed_camera \
+            nwr/highway=red_light_camera nwr/surveillance=red_light \
+            nwr/enforcement=traffic_signals nwr/enforcement=maxspeed \
             -o build/osm-cameras.osm.pbf --overwrite
           osmium export build/osm-cameras.osm.pbf \
             -f geojsonseq -o build/osm-cameras.geojsonseq --overwrite
