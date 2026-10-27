@@ -60,11 +60,28 @@ import {Protocol, PMTiles} from 'https://esm.sh/pmtiles@4.5.0';
 import {TerraDraw, TerraDrawLineStringMode, TerraDrawSelectMode} from 'https://esm.sh/terra-draw@1.24.2';
 import {TerraDrawMapLibreGLAdapter} from 'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2';
 
-const surveillanceArchiveUrl=new URL('../surveillance.pmtiles',import.meta.url).href;
+const surveillanceManifestUrl=null; // Set by Pages publish when R2 is configured.
+const surveillanceFallbackUrl=new URL('../surveillance.pmtiles',import.meta.url).href;
+let surveillanceArchiveUrl;
+let surveillanceArchive;
+let surveillanceResolvePromise;
+async function resolveSurveillanceArchive(){
+  if(!surveillanceResolvePromise) surveillanceResolvePromise=(async()=>{
+    if(surveillanceManifestUrl){
+      const response=await fetch(surveillanceManifestUrl,{cache:'no-cache'});
+      if(!response.ok) throw new Error('Surveillance manifest HTTP '+response.status);
+      const manifest=await response.json();
+      if(typeof manifest.url!=='string' || !manifest.url.endsWith('.pmtiles'))
+        throw new Error('Invalid surveillance PMTiles manifest');
+      surveillanceArchiveUrl=new URL(manifest.url,surveillanceManifestUrl).href;
+    } else surveillanceArchiveUrl=surveillanceFallbackUrl;
+    surveillanceArchive=new PMTiles(surveillanceArchiveUrl);
+    pmProtocol.add(surveillanceArchive);
+  })();
+  return surveillanceResolvePromise;
+}
 const pmProtocol=new Protocol();
 maplibregl.addProtocol('pmtiles',pmProtocol.tile);
-const surveillanceArchive=new PMTiles(surveillanceArchiveUrl);
-pmProtocol.add(surveillanceArchive);
 const HOME = {center: [-74.771, 40.692], zoom: 12.5};
 const styles = {
   liberty: 'https://tiles.openfreemap.org/styles/liberty',
@@ -181,6 +198,8 @@ try {
       return;
     }
     try {
+      await resolveSurveillanceArchive();
+      if(!surveillanceCheck.checked || !map.isStyleLoaded()) return;
       if(!map.getSource('surveillance-tiles')) map.addSource('surveillance-tiles',{
         type:'vector',url:'pmtiles://'+surveillanceArchiveUrl,
         attribution:'Flock camera locations; © OpenStreetMap contributors'
