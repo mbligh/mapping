@@ -38,6 +38,7 @@
   <label><input id="parcels" type="checkbox"> Hunterdon parcels</label>
   <label><input id="contours" type="checkbox"> NJ contours (100–10 ft)</label>
   <label><input id="surveillance" type="checkbox"> Surveillance</label>
+  <div class="hint" id="surveillance-status" aria-live="polite"></div>
   <label><input id="shipping" type="checkbox"> Shipping (UPS / FedEx / post offices)</label>
   <label><input id="fedex-boxes" type="checkbox"> FedEx drop boxes</label>
   <label><input id="ups-boxes" type="checkbox"> UPS drop boxes</label>
@@ -166,25 +167,26 @@ try {
   const parcelCheck = document.getElementById('parcels');
   const contourCheck = document.getElementById('contours');
   const surveillanceCheck = document.getElementById('surveillance');
-  let surveillanceLayerName;
+  const surveillanceStatus=document.getElementById('surveillance-status');
+  const SURVEILLANCE_LAYER='surveillance';
+  let surveillanceMetadata;
   async function installSurveillance(){
     if(!surveillanceCheck.checked) {
       if(map.getLayer('surveillance-points')) map.setLayoutProperty('surveillance-points','visibility','none');
+      surveillanceStatus.textContent='';
+      return;
+    }
+    if(!map.isStyleLoaded()){
+      surveillanceStatus.textContent='Waiting for basemap style…';
       return;
     }
     try {
-      if(!surveillanceLayerName) {
-        const metadata=await surveillanceArchive.getMetadata();
-        surveillanceLayerName=metadata.vector_layers?.[0]?.id || metadata.layers?.[0]?.id;
-        if(!surveillanceLayerName) throw new Error('No vector layer found in PMTiles metadata');
-      }
-      if(!map.isStyleLoaded()) return;
       if(!map.getSource('surveillance-tiles')) map.addSource('surveillance-tiles',{
         type:'vector',url:'pmtiles://'+surveillanceArchiveUrl,
         attribution:'Flock camera locations; © OpenStreetMap contributors'
       });
       if(!map.getLayer('surveillance-points')) map.addLayer({
-        id:'surveillance-points',type:'circle',source:'surveillance-tiles','source-layer':surveillanceLayerName,
+        id:'surveillance-points',type:'circle',source:'surveillance-tiles','source-layer':SURVEILLANCE_LAYER,
         paint:{
           'circle-radius':['interpolate',['linear'],['zoom'],4,2.5,12,5,16,7],
           'circle-color':'#ed174b',
@@ -193,11 +195,34 @@ try {
         }
       });
       map.setLayoutProperty('surveillance-points','visibility','visible');
+      surveillanceStatus.textContent='Loading surveillance tiles…';
+      if(!surveillanceMetadata) surveillanceMetadata=await surveillanceArchive.getMetadata();
+      const names=(surveillanceMetadata.vector_layers||surveillanceMetadata.layers||[]).map(layer=>layer.id);
+      if(names.length && !names.includes(SURVEILLANCE_LAYER))
+        throw new Error('Expected vector layer '+SURVEILLANCE_LAYER+'; archive has '+names.join(', '));
+      updateSurveillanceStatus();
     } catch(e) {
+      surveillanceStatus.textContent='Surveillance failed: '+(e?.message||e);
       error.textContent='Surveillance overlay failed: '+(e?.message||e);
       console.error(e);
     }
   }
+  function updateSurveillanceStatus(){
+    if(!surveillanceCheck.checked || !map.getLayer('surveillance-points')) return;
+    try {
+      const visible=map.queryRenderedFeatures({layers:['surveillance-points']}).length;
+      const loaded=map.isSourceLoaded('surveillance-tiles');
+      surveillanceStatus.textContent=loaded
+        ? visible+' surveillance points visible at this zoom'
+        : 'Loading surveillance tiles… ('+visible+' points drawn)';
+    } catch(e) {
+      surveillanceStatus.textContent='Surveillance status: '+(e?.message||e);
+    }
+  }
+  map.on('idle',updateSurveillanceStatus);
+  map.on('sourcedata',event=>{
+    if(event.sourceId==='surveillance-tiles' && event.isSourceLoaded) updateSurveillanceStatus();
+  });
   surveillanceCheck.addEventListener('change',installSurveillance);
   map.on('click','surveillance-points',event=>{
     if(!surveillanceCheck.checked || !event.features?.length) return;
