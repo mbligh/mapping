@@ -77,8 +77,13 @@ def create(dataset, root, input_manifest=None):
     if input_manifest:
         manifest['input'] = json.loads(Path(input_manifest).read_text())
     write_json(out / 'manifest.json', manifest)
+    # Establish a ref before calling the Releases API. A workflow-changing SHA
+    # can stop being a branch head while a build runs; creating its tag through
+    # the Releases API then requires workflows:write, unavailable to GITHUB_TOKEN.
+    # Push only this exact tag, without moving the checkout or tagging newer code.
+    subprocess.check_call(['git', 'push', 'origin', f'{target}:refs/tags/{tag}'])
     # A draft is invisible to selection until BOTH uploads have completed.
-    gh('release', 'create', tag, '--repo', REPO, '--target', target, '--draft',
+    gh('release', 'create', tag, '--repo', REPO, '--verify-tag', '--draft',
        '--title', f'{dataset.title()} dataset {run}', '--notes', json.dumps(manifest, indent=2))
     extra_assets = [str(root / 'njaddress.db')] if dataset == 'njaddress' else []
     gh('release', 'upload', tag, str(archive), str(out / 'manifest.json'), *extra_assets, '--repo', REPO)

@@ -55,19 +55,19 @@ jobs:
       - run: python -u public/shipping/build_usps
       - run: python -u public/shipping/build_shipping_extra.py
       - run: python -u public/shipping/build_fedex
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v5
         with:
           path: /tmp/mailinglocations-cache
           key: shipping-mailinglocations-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: shipping-mailinglocations-v1-
       - run: python -u public/shipping/build_mailinglocations
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v5
         if: always()
         with:
           path: /tmp/mailinglocations-cache
           key: shipping-mailinglocations-v1-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Restore shared address-reference cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: /tmp/mapping-location-quality
           key: location-quality-v1-${{ github.run_id }}-${{ github.run_attempt }}
@@ -75,7 +75,7 @@ jobs:
       - name: Clean directory coordinates using independent address points
         run: python scripts/clean_locations public/shipping/*.geojson --source 'All The Places' --source MailingLocations --cache-dir /tmp/mapping-location-quality
       - name: Save shared address-reference cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         if: always()
         with:
           path: /tmp/mapping-location-quality

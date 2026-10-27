@@ -109,6 +109,7 @@ jobs:
         if: steps.assemble.outputs.changed == 'true'
         with:
           path: .pages
+          include-hidden-files: true
       - name: Deploy Pages
         if: steps.assemble.outputs.changed == 'true'
         id: deployment

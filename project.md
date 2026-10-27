@@ -131,3 +131,9 @@ Both the MapLibre demo and standalone surveillance page resolve `surveillance.pm
 `scripts/osm_snapshot download PATH` retrieves the asset by immutable asset ID and checks its SHA-256 and size before replacing the local file, logging the source ID/checksum. This source release is outside Pages dataset selection and retention, never deployed to Pages or committed to Git, and persists without Actions artifact expiry.
 
 Shipping and surveillance consume this shared snapshot instead of downloading Geofabrik independently. Both rebuild after a successful snapshot refresh, retain their existing weekly/manual schedules, and log the exact source asset ID and checksum. Snapshot failures do not trigger rebuilds; existing consumers can still use the last successful snapshot.
+
+## GitHub Actions runtimes and release tags
+
+All JavaScript actions use native Node 24 releases, including cache restore/save v5 and download-artifact v7 (v6 still uses Node 20). The Node version installed for project scripts is independent of the action runtime. Pages artifact uploads explicitly include hidden files, preserving `.nojekyll` and public dotfiles with upload-pages-artifact v5.
+
+Dataset publishing first pushes a lightweight tag at the exact built HEAD, then creates a draft release with `--verify-tag`. This avoids the Releases API's additional workflow permission requirement when a workflow-changing build commit is no longer a branch head. It uses the existing checkout credentials and contents:write permission; no PAT, branch movement, or newer source substitution is needed. Tag push failure stops publication before a draft is created.
