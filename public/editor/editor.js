@@ -219,7 +219,15 @@ async function boot() {
   await new Promise(resolve => map.once('load', resolve));
   makeDraw();
   for (const base of config.basemaps) { const option = document.createElement('option'); option.value = base.id; option.textContent = base.name; el('basemap').append(option); }
+  let activeBasemap;
   async function changeBasemap(id) {
+    // Never tear down Terra Draw while it owns an unfinished line. Its
+    // in-progress coordinates are not included in geometryFeatures().
+    if (snapshot().some(f => f.properties?.currentlyDrawing)) {
+      el('basemap').value = activeBasemap || id;
+      report(new Error('Finish the current trail with Enter (or cancel with Escape) before changing basemaps.'));
+      return;
+    }
     const request = ++styleRequest;
     el('error').textContent = '';
     try {
@@ -232,12 +240,12 @@ async function boot() {
       const features = geometryFeatures();
       setBusy(true); suspended = true; draw.stop(); ready = false;
       map.once('style.load', () => {
-        try { makeDraw(); const results = draw.addFeatures(features); if (results.some(r => !r.valid)) throw new Error('Could not restore editable features after switching basemap.'); ready = true; suspended = false; chooseMode(mode); refresh(); }
+        try { makeDraw(); const results = draw.addFeatures(features); if (results.some(r => !r.valid)) throw new Error('Could not restore editable features after switching basemap.'); ready = true; suspended = false; activeBasemap = id; chooseMode(mode); refresh(); }
         catch (error) { report(error); }
         finally { setBusy(false); }
       });
       map.setStyle(style);
-    } catch (error) { report(error); }
+    } catch (error) { el('basemap').value = activeBasemap || id; report(error); }
   }
   ready = true; setBusy(false); refresh();
   el('basemap').onchange = event => changeBasemap(event.target.value);
