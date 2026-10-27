@@ -27,7 +27,19 @@ with open(sys.argv[1], encoding="utf-8") as source, open(sys.argv[2], "w", encod
             location = [sum(c[i] for c in coords) / len(coords) for i in (0, 1)]
         props = feature.get("properties") or {}
         props["source"] = "OSM"
-        props["camera_title"] = "OSM surveillance camera"
+        # Specific camera tags take precedence over generic surveillance tags.
+        # An untagged highway=traffic_signals alone is NOT a red-light camera.
+        if (props.get("highway") == "red_light_camera" or
+                props.get("surveillance") == "red_light" or
+                props.get("enforcement") == "traffic_signals"):
+            camera_type, title = "red_light", "Red-light enforcement camera"
+        elif (props.get("highway") == "speed_camera" or
+                props.get("enforcement") in ("maxspeed", "average_speed")):
+            camera_type, title = "speed", "Speed enforcement camera"
+        else:
+            camera_type, title = "surveillance", "OSM surveillance camera"
+        props["camera_type"] = camera_type
+        props["camera_title"] = title
         feature["geometry"] = {"type": "Point", "coordinates": location}
         feature["properties"] = props
         target.write(json.dumps(feature, separators=(",", ":")) + "\n")
