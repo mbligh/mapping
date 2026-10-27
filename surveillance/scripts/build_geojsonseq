@@ -5,6 +5,53 @@ import glob
 import json
 import os
 import sys
+from urllib.parse import urlencode
+from urllib.request import urlopen
+
+NJ_BOUNDARY_URL = (
+    'https://maps.nj.gov/arcgis/rest/services/'
+    'Framework/Government_Boundaries/MapServer/0/query'
+)
+
+
+def load_nj_boundary(path=None):
+    if path:
+        with open(path, encoding='utf-8') as stream:
+            data = json.load(stream)
+    else:
+        params = urlencode({'where': '1=1', 'outFields': 'NAME',
+                            'returnGeometry': 'true', 'outSR': '4326', 'f': 'geojson'})
+        with urlopen(NJ_BOUNDARY_URL + '?' + params, timeout=45) as response:
+            data = json.load(response)
+    polygons = []
+    for feature in data.get('features', []):
+        geometry = feature.get('geometry') or {}
+        kind = geometry.get('type')
+        coords = geometry.get('coordinates')
+        if kind == 'Polygon':
+            polygons.append(coords)
+        elif kind == 'MultiPolygon':
+            polygons.extend(coords)
+    if not polygons:
+        raise ValueError('Missing NJ state-boundary polygon; refusing unfiltered output')
+    return polygons
+
+
+def in_ring(lon, lat, ring):
+    inside = False
+    for i, (x1, y1, *_) in enumerate(ring):
+        x2, y2 = ring[i - 1][:2]
+        if (y1 > lat) != (y2 > lat):
+            crossing = x1 + (lat - y1) * (x2 - x1) / (y2 - y1)
+            if lon < crossing:
+                inside = not inside
+    return inside
+
+
+def in_nj(lon, lat, polygons):
+    return any(in_ring(lon, lat, polygon[0]) and
+               not any(in_ring(lon, lat, hole) for hole in polygon[1:])
+               for polygon in polygons)
 
 FIELDS = (
     "OBJECTID", "id", "name", "status", "active", "deviceType",
@@ -15,7 +62,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("root", nargs="?", default=".")
     parser.add_argument("-o", "--output", required=True)
+    parser.add_argument("--nj-boundary", help="Local GeoJSON NJ boundary (otherwise NJ GIS service)")
     args = parser.parse_args()
+    polygons = load_nj_boundary(args.nj_boundary)
     paths = glob.glob(os.path.join(args.root, "**", "features_*.json"), recursive=True)
     paths = [p for p in paths if os.path.basename(p)[9:-5].isdigit()]
     paths.sort(key=lambda p: int(os.path.basename(p)[9:-5]))
@@ -23,6 +72,8 @@ def main():
         sys.exit("No features_N.json source files found")
     count = 0
     invalid = 0
+    outside_nj = 0
+    excluded_status = 0
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as out:
         for path in paths:
@@ -34,7 +85,13 @@ def main():
                 if not isinstance(lon, (int, float)) or not isinstance(lat, (int, float)) or not (-180 <= lon <= 180 and -90 <= lat <= 90):
                     invalid += 1
                     continue
+                if not in_nj(lon, lat, polygons):
+                    outside_nj += 1
+                    continue
                 attrs = record.get("attributes") or {}
+                if attrs.get("status", "").strip().lower() == "decommissioned":
+                    excluded_status += 1
+                    continue
                 props = {key: attrs[key] for key in FIELDS if attrs.get(key) is not None}
                 props["source"] = "Flock"
                 props["camera_title"] = "Flock Surveillance camera"
@@ -43,7 +100,9 @@ def main():
                 out.write(json.dumps(feature, separators=(",", ":"), ensure_ascii=False) + "\n")
                 count += 1
             print(f"{path}: {len(batch.get('features', []))} records", file=sys.stderr)
-    print(f"Output: {count} points, {invalid} invalid coordinates, {len(paths)} files", file=sys.stderr)
+    print(f"Output: {count} NJ points, {outside_nj} outside NJ, "
+          f"{excluded_status} decommissioned excluded, "
+          f"{invalid} invalid coordinates, {len(paths)} files", file=sys.stderr)
     if count == 0:
         sys.exit("No valid points")
     if invalid:
