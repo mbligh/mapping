@@ -47,7 +47,7 @@ function recordFor(id) {
 function chooseMode(next) {
   draw.setMode(next); mode = next;
   for (const button of document.querySelectorAll('[data-mode]')) button.setAttribute('aria-pressed', String(button.dataset.mode === next));
-  el('status').textContent = next === 'point' ? 'Click the map to add a point.' : next === 'linestring' ? 'Click vertices; double-click to finish. Escape cancels.' : 'Select a feature to edit it.';
+  el('status').textContent = next === 'point' ? 'Click the map to add a point.' : next === 'linestring' ? 'Click vertices; press Enter to finish. Escape cancels.' : 'Select a feature to edit it.';
   refresh();
 }
 function setBusy(value) {
@@ -202,8 +202,8 @@ async function boot() {
   map.on('error', event => report(event.error || new Error('Map resource failed to load.')));
   const makeDraw = () => {
     draw = new TerraDraw({adapter:new TerraDrawMapLibreGLAdapter({map, coordinatePrecision:17}), modes:[
-      new TerraDrawPointMode(), new TerraDrawLineStringMode(),
-      new TerraDrawSelectMode({flags:{point:{feature:{draggable:true}}, linestring:{feature:{draggable:false,coordinates:{draggable:true,midpoints:{draggable:true},deletable:true}}}}})
+      new TerraDrawPointMode(), new TerraDrawLineStringMode({pointerDistance:3, keyEvents:{finish:'Enter',cancel:'Escape'}}),
+      new TerraDrawSelectMode({pointerDistance:5, flags:{point:{feature:{draggable:true}}, linestring:{feature:{draggable:false,coordinates:{draggable:true,midpoints:{draggable:true},deletable:false}}}}})
     ]});
     draw.start(); draw.setMode('select');
     draw.on('change', () => refresh());
