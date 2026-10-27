@@ -44,13 +44,13 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: main
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - name: Check map browser modules
@@ -65,7 +65,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/editor-test/node_modules" node public/editor/test-browser.cjs
       - name: Upload editor screenshot on failure
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: editor-test-failure
           path: editor-test-failure.png
