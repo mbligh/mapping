@@ -84,7 +84,7 @@ jobs:
         run: |
           : "${AWS_ACCESS_KEY_ID:?Missing R2_ACCESS_KEY_ID secret}"
           : "${AWS_SECRET_ACCESS_KEY:?Missing R2_SECRET_ACCESS_KEY secret}"
-          python3 scripts/r2_pmtiles publish build/output/surveillance.pmtiles \
+          python3 scripts/r2_pmtiles build/output/surveillance.pmtiles \
             --dataset surveillance --bucket "$R2_BUCKET" \
             --endpoint "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
             --public-url "$R2_PUBLIC_URL"
