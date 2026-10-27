@@ -3,6 +3,7 @@
 import argparse
 import glob
 import json
+import math
 import os
 import sys
 from urllib.parse import urlencode
@@ -97,6 +98,16 @@ def main():
                     continue
                 props = {key: attrs[key] for key in FIELDS if attrs.get(key) is not None}
                 props["source"] = "Flock"
+                props["camera_type"] = "flock"
+                # Trial interpretation: ArcGIS rotationAngle is clockwise from north.
+                # Preserve the raw angle for later validation against physical cameras.
+                raw_angle = attrs.get("rotationAngle")
+                try:
+                    angle = float(raw_angle) if raw_angle is not None and not isinstance(raw_angle, bool) else float("nan")
+                except (ValueError, TypeError):
+                    angle = float("nan")
+                if math.isfinite(angle):
+                    props["camera_bearing"] = angle % 360
                 props["camera_title"] = "Flock Surveillance camera"
                 props["readsLicensePlates"] = "readsLicensePlates" in (attrs.get("features") or "").split(",")
                 feature = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [lon, lat]}, "properties": props}
