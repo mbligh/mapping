@@ -65,6 +65,7 @@ jobs:
             nwr/man_made=surveillance nwr/highway=speed_camera \
             nwr/highway=red_light_camera nwr/surveillance=red_light \
             nwr/enforcement=traffic_signals nwr/enforcement=maxspeed \
+            nwr/enforcement=average_speed \
             -o build/osm-cameras.osm.pbf --overwrite
           osmium export build/osm-cameras.osm.pbf \
             -f geojsonseq -o build/osm-cameras.geojsonseq --overwrite
