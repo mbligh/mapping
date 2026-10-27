@@ -34,6 +34,8 @@ jobs:
           python-version: "3.12"
       - name: Check dataset release assembly
         run: python3 scripts/test_dataset_releases
+      - name: Test New Jersey surveillance filtering
+        run: python3 surveillance/scripts/test_build_geojsonseq.py
       - name: Install Tippecanoe
         run: |
           sudo apt-get update
