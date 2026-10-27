@@ -12,16 +12,17 @@
 </head>
 <body>
   <div id="map"></div>
-  <div id="info">Flock + OSM surveillance · zoom to 8+ to see cameras</div>
+  <div id="info">Blue: Flock field of view · Yellow: speed · Red: red-light · Green: other OSM. Zoom to 8+ for cameras.</div>
   <script src="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/pmtiles@4.3.0/dist/pmtiles.js"></script>
-  <script>
+  <script type="module">
+    import {installSurveillanceMarkers, cameraTitle} from './markers.mjs';
     const protocol = new pmtiles.Protocol();
     maplibregl.addProtocol('pmtiles', protocol.tile);
     const map = new maplibregl.Map({
       container: 'map',
       style: 'https://tiles.openfreemap.org/styles/liberty',
-      center: [-98.5, 39.8], zoom: 4
+      center: [-74.771, 40.692], zoom: 11
     });
     map.addControl(new maplibregl.NavigationControl());
     const surveillanceManifestUrl=null; // Replaced by Pages publish if R2 is configured.
@@ -44,32 +45,24 @@
         console.error(e);
         return;
       }
-      map.addLayer({
-        id:'surveillance-devices', type:'circle', source:'surveillance', 'source-layer':'surveillance',
-        minzoom:8,
-        paint:{
-          'circle-radius':['interpolate',['linear'],['zoom'],4,2.5,12,5,16,7],
-          'circle-color':'#ed174b',
-          'circle-opacity':0.9,
-          'circle-stroke-color':'#ffffff',
-          'circle-stroke-width':1.5
-        }
-      });
-      map.on('click','surveillance-devices',e=>{
-        const p=e.features[0].properties;
-        const div=document.createElement('div');
-        const title=document.createElement('strong');
-        title.textContent=p.camera_title || (p.source==='OSM'?'OSM surveillance camera':'Flock Surveillance camera');
-        div.append(title);
-        for(const key of Object.keys(p)){
-          const line=document.createElement('div');
-          const strong=document.createElement('strong'); strong.textContent=key+': ';
-          line.append(strong,document.createTextNode(String(p[key]??''))); div.append(line);
-        }
-        new maplibregl.Popup().setLngLat(e.lngLat).setDOMContent(div).addTo(map);
-      });
-      map.on('mouseenter','surveillance-devices',()=>map.getCanvas().style.cursor='pointer');
-      map.on('mouseleave','surveillance-devices',()=>map.getCanvas().style.cursor='');
+      const cameraLayers=installSurveillanceMarkers(map,{source:'surveillance',prefix:'surveillance'});
+      for(const layer of cameraLayers){
+        map.on('click',layer,e=>{
+          const p=e.features[0].properties||{};
+          const div=document.createElement('div');
+          const title=document.createElement('strong');
+          title.textContent=cameraTitle(p);
+          div.append(title);
+          for(const key of Object.keys(p)){
+            const line=document.createElement('div');
+            const strong=document.createElement('strong'); strong.textContent=key+': ';
+            line.append(strong,document.createTextNode(String(p[key]??''))); div.append(line);
+          }
+          new maplibregl.Popup().setLngLat(e.lngLat).setDOMContent(div).addTo(map);
+        });
+        map.on('mouseenter',layer,()=>map.getCanvas().style.cursor='pointer');
+        map.on('mouseleave',layer,()=>map.getCanvas().style.cursor='');
+      }
     });
   </script>
 </body>
