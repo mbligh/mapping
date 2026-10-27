@@ -75,7 +75,7 @@ jobs:
           python scripts/test_njaddress
           python scripts/test_dataset_releases
           python scripts/test_public_directory_indexes
-      - name: Configure optional surveillance R2 URL
+      - name: Configure optional R2 manifest for surveillance
         env:
           R2_PUBLIC_URL: ${{ vars.R2_PUBLIC_URL }}
         run: |
@@ -85,16 +85,14 @@ jobs:
           from pathlib import Path
           base = os.environ.get('R2_PUBLIC_URL', '').rstrip('/')
           if base:
-              url = json.dumps(base + '/surveillance.pmtiles')
-              for name, expression in (
-                  ('public/surveillance/index.html', "new URL('../surveillance.pmtiles', location.href).href"),
-                  ('public/maplibre-demo/index.html', "new URL('../surveillance.pmtiles',import.meta.url).href"),
-              ):
+              url = json.dumps(base + '/surveillance.json')
+              for name in ('public/surveillance/index.html', 'public/maplibre-demo/index.html'):
                   path = Path(name)
                   content = path.read_text()
-                  if expression not in content:
-                      raise ValueError(f'Missing surveillance URL in {name}')
-                  path.write_text(content.replace(expression, url))
+                  marker = 'const surveillanceManifestUrl=null;'
+                  if marker not in content:
+                      raise ValueError(f'Missing surveillance manifest marker in {name}')
+                  path.write_text(content.replace(marker, 'const surveillanceManifestUrl=' + url + ';'))
           PYTHON
       - name: Generate recursive public directory listings
         run: python scripts/public_directory_indexes public
