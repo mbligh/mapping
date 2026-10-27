@@ -54,7 +54,7 @@ const {chromium} = require('playwright');
     await page.click('[data-mode="point"]'); await page.mouse.click(850,550);
     await page.waitForFunction(()=>document.querySelectorAll('#features option').length===3);
     await page.click('[data-mode="linestring"]');
-    await page.mouse.click(650,350);await page.mouse.click(700,400);await page.mouse.dblclick(760,450);
+    await page.mouse.click(650,350);await page.mouse.click(700,400);await page.mouse.click(760,450);await page.keyboard.press('Enter');
     await page.click('[data-mode="select"]');
     await page.waitForFunction(()=>document.querySelectorAll('#features option').length===4);
     await page.click('#save');await page.waitForFunction(()=>window.__writes.length===3);
