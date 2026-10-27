@@ -68,23 +68,22 @@ jobs:
             --drop-rate=1 --base-zoom=8 --force -P \
             build/flock.geojsonseq build/osm-camera-points.geojsonseq
           ls -lh build/output/surveillance.pmtiles
-      - name: Upload PMTiles to Cloudflare R2
-        if: ${{ vars.R2_ACCOUNT_ID != '' && vars.R2_BUCKET != '' }}
+      - name: Upload versioned PMTiles and publish R2 manifest
+        if: ${{ vars.R2_ACCOUNT_ID != '' && vars.R2_BUCKET != '' && vars.R2_PUBLIC_URL != '' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: auto
           R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
           R2_BUCKET: ${{ vars.R2_BUCKET }}
+          R2_PUBLIC_URL: ${{ vars.R2_PUBLIC_URL }}
         run: |
           : "${AWS_ACCESS_KEY_ID:?Missing R2_ACCESS_KEY_ID secret}"
           : "${AWS_SECRET_ACCESS_KEY:?Missing R2_SECRET_ACCESS_KEY secret}"
-          for name in surveillance; do
-            aws s3 cp "build/output/${name}.pmtiles" "s3://${R2_BUCKET}/${name}.pmtiles" \
-              --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
-              --content-type application/octet-stream \
-              --cache-control "public, max-age=300"
-          done
+          python3 scripts/r2_pmtiles publish build/output/surveillance.pmtiles \
+            --dataset surveillance --bucket "$R2_BUCKET" \
+            --endpoint "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --public-url "$R2_PUBLIC_URL"
       - name: Publish versioned surveillance release
         env:
           GH_TOKEN: ${{ github.token }}
