@@ -43,7 +43,8 @@ class NJFilteringTest(unittest.TestCase):
             ]
             (base / 'features_0.json').write_text(json.dumps({'features': [
                 {'geometry': {'x': lon, 'y': lat},
-                 'attributes': {'id': i, 'status': status}}
+                 'attributes': {'id': i, 'status': status,
+                                'rotationAngle': [0, 90, 180, 270][i]}}
                 for i, (lon, lat, status) in enumerate(records)
             ]}))
             output = base / 'out.geojsonseq'
@@ -56,6 +57,8 @@ class NJFilteringTest(unittest.TestCase):
             self.assertEqual({x['properties']['status'] for x in actual},
                              {'inService', 'inPlanning'})
             self.assertEqual(len(actual), 2)
+            self.assertEqual([x["properties"]["camera_type"] for x in actual], ["flock", "flock"])
+            self.assertEqual([x["properties"]["camera_bearing"] for x in actual], [0.0, 90.0])
             self.assertIn('1 outside NJ', proc.stderr)
             self.assertIn('1 decommissioned excluded', proc.stderr)
 
