@@ -24,8 +24,26 @@
       center: [-98.5, 39.8], zoom: 4
     });
     map.addControl(new maplibregl.NavigationControl());
-    map.on('load', () => {
-      map.addSource('surveillance', {type:'vector', url:'pmtiles://' + new URL('../surveillance.pmtiles', location.href).href});
+    const surveillanceManifestUrl=null; // Replaced by Pages publish if R2 is configured.
+    map.on('load', async () => {
+      try {
+        let url=new URL('../surveillance.pmtiles', location.href).href;
+        if(surveillanceManifestUrl){
+          const response=await fetch(surveillanceManifestUrl,{cache:'no-cache'});
+          if(!response.ok) throw new Error('Surveillance manifest HTTP '+response.status);
+          const manifest=await response.json();
+          if(typeof manifest.url!=='string' || !manifest.url.endsWith('.pmtiles'))
+            throw new Error('Invalid surveillance PMTiles manifest');
+          url=new URL(manifest.url,surveillanceManifestUrl).href;
+        }
+        if(!map.isStyleLoaded()) return;
+        protocol.add(new pmtiles.PMTiles(url));
+        map.addSource('surveillance', {type:'vector', url:'pmtiles://' + url});
+      } catch(e) {
+        document.getElementById('info').textContent='Surveillance loading failed: '+(e?.message||e);
+        console.error(e);
+        return;
+      }
       map.addLayer({
         id:'surveillance-devices', type:'circle', source:'surveillance', 'source-layer':'surveillance',
         minzoom:8,
