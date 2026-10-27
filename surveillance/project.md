@@ -3,7 +3,7 @@
 ## Requirements
 - Publish a static, MapLibre-compatible PMTiles dataset combining the Flock Safety ArcGIS JSON snapshot with weekly NJ OSM surveillance camera data.
 - Preserve device identifiers, names, coordinates, deployment status, device type, capabilities, and orientation.
-- Retain all valid geographic records; no filtering by ALPR capability or status.
+- Retain valid NJ records across capabilities, but exclude decommissioned and out-of-state Flock points. Do not drop records based on ALPR capability.
 - Avoid requiring a database or live tile server.
 - Rebuild automatically when source JSON or build scripts change; allow manual rebuilds.
 
@@ -11,7 +11,9 @@
 - `scripts/build_geojsonseq` streams `features_*.json` files and emits newline-delimited GeoJSON features.
 - GitHub Actions installs Tippecanoe, converts OSM camera geometries to points, generates one `surveillance.pmtiles` archive with source-layer `surveillance`, and publishes a checksum-verified surveillance dataset release. The shared mapping Pages publisher deploys the archive at `/surveillance.pmtiles` and the example at `/surveillance/`.
 - Both converters add `source` and `camera_title` properties. Flock popups say “Flock Surveillance camera”; OSM popups say “OSM surveillance camera”. Original attributes and overlapping records are retained.
-- The map uses a single Surveillance checkbox and the existing Flock red-dot style for both sources.
+- A shared `public/surveillance/markers.mjs` module styles both web maps: red=red-light, yellow=speed, blue=Flock, green=other OSM. Explicit red-light tags are extracted and classified; plain traffic signals are not camera evidence.
+- Flock points with a valid rotation render blue translucent curved field-of-view wedges anchored by a blue camera-position dot. Interpret `rotationAngle=0` as north and increasing degrees clockwise, provisionally; normalize `camera_bearing` during extraction. Missing or invalid angles render blue dots without wedges. MapLibre re-installs the marker images and layers on basemap changes.
+- A single Surveillance checkbox controls both point and wedge style layers sharing one PMTiles source. Individual camera types may later get separate toggles.
 - MapLibre uses the PMTiles protocol to fetch only byte ranges for visible tiles.
 - The workflow searches only `surveillance/flocksurveillance/`; the converter accepts any explicit source directory.
 - Tile archive is a build artifact, not committed to Git.
