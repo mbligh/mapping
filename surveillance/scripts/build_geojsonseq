@@ -89,7 +89,7 @@ def main():
                     outside_nj += 1
                     continue
                 attrs = record.get("attributes") or {}
-                if attrs.get("status", "").strip().lower() == "decommissioned":
+                if (attrs.get("status") or "").strip().lower() == "decommissioned":
                     excluded_status += 1
                     continue
                 props = {key: attrs[key] for key in FIELDS if attrs.get(key) is not None}
