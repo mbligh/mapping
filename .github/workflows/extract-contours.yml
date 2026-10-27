@@ -23,7 +23,7 @@ jobs:
       matrix:
         stripe: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install GDAL
         run: |
           sudo apt-get update
@@ -41,7 +41,7 @@ jobs:
           test -s build/contours.geojsonseq
           gzip -1 -n build/contours.geojsonseq
           mv build/contours.geojsonseq.gz "build/stripe-${STRIPE}.gz"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: contour-stripe-${{ matrix.stripe }}
           path: build/stripe-*.gz
@@ -52,8 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: contour-stripe-*
           path: build/stripes
@@ -79,7 +79,7 @@ jobs:
           (cd build && sha256sum contours.geojsonseq.gz > contours.geojsonseq.gz.sha256)
           ls -lh build/contours.geojsonseq.gz
       - name: Upload combined vectors for downstream build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: contour-vectors-combined
           path: |
