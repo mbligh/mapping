@@ -43,10 +43,14 @@ const {chromium} = require('playwright');
     assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[0])),fixture);
     await page.selectOption('#features',{index:0});
     await page.fill('#name','Renamed gate');
+    // Unsaved edits now deliberately prevent basemap switching.
     await page.selectOption('#basemap','b');
-    await page.waitForFunction(()=>!document.getElementById('basemap').disabled);
-    assert.equal(await page.locator('#features option').count(),2);
+    await page.waitForFunction(()=>document.getElementById('error').textContent.includes('Save or download your changes'));
+    assert.equal(await page.inputValue('#basemap'),'a');
     await page.click('#save'); await page.waitForFunction(()=>window.__writes.length===2);
+    await page.selectOption('#basemap','b');
+    await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='b' && !document.getElementById('save').disabled);
+    assert.equal(await page.locator('#features option').count(),2);
     const renamed=await page.evaluate(()=>JSON.parse(window.__writes[1]));
     assert.equal(renamed.features[0].properties.name,'Renamed gate');
     assert.equal(renamed.features[0].properties.mode,'user-mode');
