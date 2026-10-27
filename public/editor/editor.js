@@ -248,7 +248,7 @@ async function boot() {
       const features = geometryFeatures();
       setBusy(true); suspended = true; draw.stop(); ready = false;
       map.once('style.load', () => {
-        try { makeDraw(); const results = draw.addFeatures(features); if (results.some(r => !r.valid)) throw new Error('Could not restore editable features after switching basemap.'); ready = true; suspended = false; activeBasemap = id; chooseMode(mode); refresh(); }
+        try { makeDraw(); const results = draw.addFeatures(features); if (results.some(r => !r.valid)) throw new Error('Could not restore editable features after switching basemap.'); ready = true; suspended = false; activeBasemap = id; el('basemap').dataset.active = id; chooseMode(mode); refresh(); }
         catch (error) { report(error); }
         finally { setBusy(false); }
       });
