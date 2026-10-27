@@ -41,7 +41,7 @@ jobs:
       - name: Test New Jersey surveillance filtering and marker styles
         run: |
           python3 surveillance/scripts/test_build_geojsonseq.py
-          python3 surveillance/scripts/test_osm_camera_points.py
+          python3 surveillance/scripts/test_osm_camera_points
           node surveillance/scripts/test_markers.mjs
       - name: Install Tippecanoe
         run: |
