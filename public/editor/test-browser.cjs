@@ -88,7 +88,7 @@ const {chromium} = require('playwright');
     await page.waitForFunction(count=>document.querySelectorAll('#features option').length===count,homeDepot.features.length);
     assert.equal(await page.locator('#error').textContent(),'');
     await page.selectOption('#basemap','a');
-    await page.waitForFunction(()=>!document.getElementById('basemap').disabled);
+    await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='a' && !document.getElementById('save').disabled);
     await page.click('#save');await page.waitForFunction(()=>window.__writes.length===5);
     assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[4])),homeDepot);
     assert.deepEqual(pageErrors,[]);
