@@ -201,11 +201,16 @@ async function boot() {
   map.addControl(new maplibregl.ScaleControl({unit:'imperial'}));
   map.on('error', event => report(event.error || new Error('Map resource failed to load.')));
   const makeDraw = () => {
+    const lineMode = new TerraDrawLineStringMode({pointerDistance:3, keyEvents:{finish:'Enter',cancel:'Escape'}});
     draw = new TerraDraw({adapter:new TerraDrawMapLibreGLAdapter({map, coordinatePrecision:17}), modes:[
-      new TerraDrawPointMode(), new TerraDrawLineStringMode({pointerDistance:3, keyEvents:{finish:'Enter',cancel:'Escape'}}),
+      new TerraDrawPointMode(), lineMode,
       new TerraDrawSelectMode({pointerDistance:5, flags:{point:{feature:{draggable:true}}, linestring:{feature:{draggable:false,coordinates:{draggable:true,midpoints:{draggable:true},deletable:false}}}}})
     ]});
-    draw.start(); draw.setMode('select');
+    draw.start();
+    // Terra Draw treats clicks near its last vertex as a request to finish.
+    // Disable that implicit completion; Enter is the only finish action.
+    lineMode.closingPoints.isLineStringClosingPoint = () => ({isClosing:false});
+    draw.setMode('select');
     draw.on('change', () => refresh());
     draw.on('select', id => { if (!suspended) showSelection(id); });
     draw.on('deselect', () => { if (!suspended) showSelection(undefined); });
