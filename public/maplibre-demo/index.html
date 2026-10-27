@@ -29,6 +29,11 @@
     <option value="bright" selected>Bright</option>
     <option value="hybrid">NJ Satellite + roads/trails/labels</option>
   </select>
+  <label for="raster-resampling">Satellite interpolation</label>
+  <select id="raster-resampling">
+    <option value="linear" selected>Linear (smooth)</option>
+    <option value="nearest">Nearest (sharp pixels)</option>
+  </select>
   <button id="reset" type="button">Tewksbury</button>
   <label><input id="parcels" type="checkbox"> Hunterdon parcels</label>
   <label><input id="contours" type="checkbox"> NJ contours (100–10 ft)</label>
@@ -354,6 +359,12 @@ try {
   // Parcel layers are reinstalled by the existing style.load handler.
   const orthos = 'https://maps.nj.gov/arcgis/rest/services/Basemap/Orthos_Natural_2020_NJ_WM/MapServer/tile/{z}/{y}/{x}';
   let styleRequest = 0;
+  const rasterResampling = document.getElementById('raster-resampling');
+  rasterResampling.addEventListener('change', () => {
+    if(map.getLayer('nj-orthos')) {
+      map.setPaintProperty('nj-orthos', 'raster-resampling', rasterResampling.value);
+    }
+  });
   async function changeStyle(choice) {
     const request = ++styleRequest;
     error.textContent = '';
@@ -392,7 +403,7 @@ try {
           }
         }
       }
-      if(choice !== 'bright') style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos'});
+      if(choice !== 'bright') style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos',paint:{'raster-resampling':rasterResampling.value}});
       stopDraw();
       map.setStyle(style);
     } catch(e) {
