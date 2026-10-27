@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Publish content-addressed PMTiles to R2, then atomically update the small manifest."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import tempfile
+
+
+def manifest(dataset, archive, public_url):
+    digest = hashlib.file_digest(archive.open('rb'), 'sha256').hexdigest()
+    key = f'versions/{dataset}-{digest}.pmtiles'
+    return key, {
+        'version': digest,
+        'url': public_url.rstrip('/') + '/' + key,
+    }
+
+
+def publish(archive, dataset, bucket, endpoint, public_url):
+    key, data = manifest(dataset, archive, public_url)
+    common = ['--endpoint-url', endpoint]
+    # Upload immutable contents before making the new version discoverable.
+    subprocess.run(['aws', 's3', 'cp', str(archive), f's3://{bucket}/{key}',
+                    '--content-type', 'application/octet-stream',
+                    '--cache-control', 'public, max-age=31536000, immutable', *common],
+                   check=True)
+    with tempfile.TemporaryDirectory() as td:
+        filename = Path(td) / f'{dataset}.json'
+        filename.write_text(json.dumps(data, sort_keys=True) + '\n')
+        subprocess.run(['aws', 's3', 'cp', str(filename), f's3://{bucket}/{dataset}.json',
+                        '--content-type', 'application/json',
+                        '--cache-control', 'no-cache, must-revalidate', *common],
+                       check=True)
+    print(f'Published {dataset}: {key}')
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('archive', type=Path)
+    parser.add_argument('--dataset', required=True)
+    parser.add_argument('--bucket', required=True)
+    parser.add_argument('--endpoint', required=True)
+    parser.add_argument('--public-url', required=True)
+    args = parser.parse_args()
+    publish(args.archive, args.dataset, args.bucket, args.endpoint, args.public_url)
+
+
+if __name__ == '__main__':
+    main()
