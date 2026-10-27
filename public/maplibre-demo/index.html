@@ -38,6 +38,7 @@
   <label><input id="parcels" type="checkbox"> Hunterdon parcels</label>
   <label><input id="contours" type="checkbox"> NJ contours (100–10 ft)</label>
   <label><input id="surveillance" type="checkbox"> Surveillance</label>
+  <div class="hint" aria-label="Camera colour legend">Blue: Flock viewing direction · Yellow: speed · Red: red-light · Green: other OSM</div>
   <div class="hint" id="surveillance-status" aria-live="polite"></div>
   <label><input id="shipping" type="checkbox"> Shipping (UPS / FedEx / post offices)</label>
   <label><input id="fedex-boxes" type="checkbox"> FedEx drop boxes</label>
@@ -55,6 +56,7 @@
 <script type="module">
 import {initGeoSources} from './geosources.js';
 import {initShipping} from '../shipping/shipping.js';
+import {installSurveillanceMarkers, setSurveillanceVisibility, surveillanceLayerIds, cameraTitle} from '../surveillance/markers.mjs';
 import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.mjs';
 import {Protocol, PMTiles} from 'https://esm.sh/pmtiles@4.5.0';
 import {TerraDraw, TerraDrawLineStringMode, TerraDrawSelectMode} from 'https://esm.sh/terra-draw@1.24.2';
@@ -189,7 +191,7 @@ try {
   let surveillanceMetadata;
   async function installSurveillance(){
     if(!surveillanceCheck.checked) {
-      if(map.getLayer('surveillance-points')) map.setLayoutProperty('surveillance-points','visibility','none');
+      setSurveillanceVisibility(map,'surveillance',false);
       surveillanceStatus.textContent='';
       return;
     }
@@ -204,16 +206,8 @@ try {
         type:'vector',url:'pmtiles://'+surveillanceArchiveUrl,
         attribution:'Flock camera locations; © OpenStreetMap contributors'
       });
-      if(!map.getLayer('surveillance-points')) map.addLayer({
-        id:'surveillance-points',type:'circle',source:'surveillance-tiles','source-layer':SURVEILLANCE_LAYER,
-        paint:{
-          'circle-radius':['interpolate',['linear'],['zoom'],4,2.5,12,5,16,7],
-          'circle-color':'#ed174b',
-          'circle-stroke-color':'#ffffff','circle-stroke-width':1.5,
-          'circle-opacity':0.9
-        }
-      });
-      map.setLayoutProperty('surveillance-points','visibility','visible');
+      installSurveillanceMarkers(map,{source:'surveillance-tiles',prefix:'surveillance'});
+      setSurveillanceVisibility(map,'surveillance',true);
       surveillanceStatus.textContent='Loading surveillance tiles…';
       if(!surveillanceMetadata) surveillanceMetadata=await surveillanceArchive.getMetadata();
       const names=(surveillanceMetadata.vector_layers||surveillanceMetadata.layers||[]).map(layer=>layer.id);
@@ -229,7 +223,7 @@ try {
   function updateSurveillanceStatus(){
     if(!surveillanceCheck.checked || !map.getLayer('surveillance-points')) return;
     try {
-      const visible=map.queryRenderedFeatures({layers:['surveillance-points']}).length;
+      const visible=map.queryRenderedFeatures({layers:surveillanceLayerIds('surveillance')}).length;
       const loaded=map.isSourceLoaded('surveillance-tiles');
       surveillanceStatus.textContent=loaded
         ? visible+' surveillance points visible at this zoom'
@@ -243,23 +237,26 @@ try {
     if(event.sourceId==='surveillance-tiles' && event.isSourceLoaded) updateSurveillanceStatus();
   });
   surveillanceCheck.addEventListener('change',installSurveillance);
-  map.on('click','surveillance-points',event=>{
-    if(!surveillanceCheck.checked || !event.features?.length) return;
-    const props=event.features[0].properties||{};
-    const container=document.createElement('div');
-    const title=document.createElement('strong');
-    title.textContent=props.camera_title || (props.source==='OSM'?'OSM surveillance camera':'Flock Surveillance camera');
-    container.appendChild(title);
-    for(const [key,value] of Object.entries(props)){
-      if(value===null || typeof value==='object') continue;
-      const row=document.createElement('div');
-      row.textContent=key+': '+String(value);
-      container.appendChild(row);
-    }
-    new maplibregl.Popup().setLngLat(event.lngLat).setDOMContent(container).addTo(map);
-  });
-  map.on('mouseenter','surveillance-points',()=>{if(surveillanceCheck.checked) map.getCanvas().style.cursor='pointer';});
-  map.on('mouseleave','surveillance-points',()=>{map.getCanvas().style.cursor='';});
+  // Both icon and circle layers are interactive; they share the same popup.
+  for(const layer of surveillanceLayerIds('surveillance')){
+    map.on('click',layer,event=>{
+      if(!surveillanceCheck.checked || !event.features?.length) return;
+      const props=event.features[0].properties||{};
+      const container=document.createElement('div');
+      const title=document.createElement('strong');
+      title.textContent=cameraTitle(props);
+      container.appendChild(title);
+      for(const [key,value] of Object.entries(props)){
+        if(value===null || typeof value==='object') continue;
+        const row=document.createElement('div');
+        row.textContent=key+': '+String(value);
+        container.appendChild(row);
+      }
+      new maplibregl.Popup().setLngLat(event.lngLat).setDOMContent(container).addTo(map);
+    });
+    map.on('mouseenter',layer,()=>{if(surveillanceCheck.checked) map.getCanvas().style.cursor='pointer';});
+    map.on('mouseleave',layer,()=>{map.getCanvas().style.cursor='';});
+  }
   initShipping(map,maplibregl);
   initGeoSources(map,maplibregl,document.getElementById('configured-layers'),
     new URL('../geosources.json',import.meta.url).href);
