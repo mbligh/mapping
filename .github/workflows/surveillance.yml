@@ -38,8 +38,11 @@ jobs:
         run: |
           python3 scripts/test_dataset_releases
           python3 scripts/test_r2_pmtiles.py
-      - name: Test New Jersey surveillance filtering
-        run: python3 surveillance/scripts/test_build_geojsonseq.py
+      - name: Test New Jersey surveillance filtering and marker styles
+        run: |
+          python3 surveillance/scripts/test_build_geojsonseq.py
+          python3 surveillance/scripts/test_osm_camera_points.py
+          node surveillance/scripts/test_markers.mjs
       - name: Install Tippecanoe
         run: |
           sudo apt-get update
