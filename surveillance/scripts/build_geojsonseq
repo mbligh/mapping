@@ -49,6 +49,9 @@ def in_ring(lon, lat, ring):
 
 
 def in_nj(lon, lat, polygons):
+    # Cheap coarse rejection before the detailed state-border polygon test.
+    if not (-75.7 <= lon <= -73.7 and 38.7 <= lat <= 41.6):
+        return False
     return any(in_ring(lon, lat, polygon[0]) and
                not any(in_ring(lon, lat, hole) for hole in polygon[1:])
                for polygon in polygons)
