@@ -5,6 +5,8 @@ on:
     paths:
       - 'surveillance/**'
       - 'scripts/dataset_releases'
+      - 'scripts/r2_pmtiles'
+      - 'scripts/test_r2_pmtiles.py'
       - 'scripts/osm_snapshot'
       - '.github/workflows/surveillance.yml'
   schedule:
@@ -33,7 +35,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Check dataset release assembly
-        run: python3 scripts/test_dataset_releases
+        run: |
+          python3 scripts/test_dataset_releases
+          python3 scripts/test_r2_pmtiles.py
       - name: Test New Jersey surveillance filtering
         run: python3 surveillance/scripts/test_build_geojsonseq.py
       - name: Install Tippecanoe
