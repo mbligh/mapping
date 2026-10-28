@@ -97,6 +97,9 @@ try {
     container: 'map', style: {version:8,sources:{},layers:[]}, ...HOME,
     attributionControl: false
   });
+  // style.load is the lifecycle boundary for adding app-owned sources and
+  // layers. isStyleLoaded() is stricter and can remain false while tiles load.
+  const styleState = {ready:false, generation:0};
   map.addControl(new maplibregl.NavigationControl(), 'top-right');
   map.addControl(new maplibregl.ScaleControl({unit:'imperial'}), 'bottom-left');
   map.addControl(new maplibregl.AttributionControl({compact:true}), 'bottom-right');
@@ -195,13 +198,16 @@ try {
       surveillanceStatus.textContent='';
       return;
     }
-    if(!map.isStyleLoaded()){
+    if(!styleState.ready){
       surveillanceStatus.textContent='Waiting for basemap style…';
       return;
     }
+    const generation=styleState.generation;
     try {
       await resolveSurveillanceArchive();
-      if(!surveillanceCheck.checked || !map.isStyleLoaded()) return;
+      // Ignore an old async request if the checkbox or basemap changed.
+      if(!surveillanceCheck.checked || !styleState.ready ||
+         generation!==styleState.generation) return;
       if(!map.getSource('surveillance-tiles')) map.addSource('surveillance-tiles',{
         type:'vector',url:'pmtiles://'+surveillanceArchiveUrl,
         attribution:'Flock camera locations; © OpenStreetMap contributors'
@@ -210,11 +216,14 @@ try {
       setSurveillanceVisibility(map,'surveillance',true);
       surveillanceStatus.textContent='Loading surveillance tiles…';
       if(!surveillanceMetadata) surveillanceMetadata=await surveillanceArchive.getMetadata();
+      if(!surveillanceCheck.checked || !styleState.ready ||
+         generation!==styleState.generation) return;
       const names=(surveillanceMetadata.vector_layers||surveillanceMetadata.layers||[]).map(layer=>layer.id);
       if(names.length && !names.includes(SURVEILLANCE_LAYER))
         throw new Error('Expected vector layer '+SURVEILLANCE_LAYER+'; archive has '+names.join(', '));
       updateSurveillanceStatus();
     } catch(e) {
+      if(!surveillanceCheck.checked || generation!==styleState.generation) return;
       surveillanceStatus.textContent='Surveillance failed: '+(e?.message||e);
       error.textContent='Surveillance overlay failed: '+(e?.message||e);
       console.error(e);
@@ -312,7 +321,7 @@ try {
     map.setLayoutProperty('nj-contour-lines','visibility',contourCheck.checked?'visible':'none');
   }
   contourCheck.addEventListener('change',()=>{
-    if(map.isStyleLoaded()) installContours();
+    if(styleState.ready) installContours();
   });
   const parcelStatus = document.getElementById('parcel-status');
   function installParcels() {
@@ -370,9 +379,16 @@ try {
     }
   }
   function scheduleParcels(){clearTimeout(parcelTimer);parcelTimer=setTimeout(loadParcels,300);}
-  map.on('style.load',()=>{installContours();installParcels();scheduleParcels();installSurveillance();});
+  map.on('style.load',()=>{
+    styleState.ready=true;
+    styleState.generation++;
+    installContours();
+    installParcels();
+    scheduleParcels();
+    installSurveillance();
+  });
   map.on('moveend',scheduleParcels);
-  parcelCheck.addEventListener('change',()=>{if(map.isStyleLoaded()){installParcels();loadParcels();}});
+  parcelCheck.addEventListener('change',()=>{if(styleState.ready){installParcels();loadParcels();}});
   // Query the polygon layer, not the labels, so parcels remain clickable at zoom 14+.
   map.on('click','nj-parcel-fill',event=>{
     if (!parcelCheck.checked || !event.features?.length) return;
@@ -446,6 +462,9 @@ try {
       }
       if(choice !== 'bright') style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos',paint:{'raster-resampling':rasterResampling.value}});
       stopDraw();
+      // Invalidate pending overlay installs before replacing the style.
+      styleState.ready=false;
+      styleState.generation++;
       map.setStyle(style);
     } catch(e) {
       if(request!==styleRequest) return;
