@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
-"""Convert osmium-exported GeoJSON sequence to camera points for Tippecanoe."""
+"""Turn OSM camera objects and enforcement-relation devices into camera points.
+
+osmium export omits non-area relations (including type=enforcement), so we
+recover their device members from an XML rendering of the SAME filtered PBF.
+Only relation members with role=device are camera locations; from/to members
+are not cameras. Duplicate device coordinates are enriched, not emitted twice.
+"""
+from collections import Counter
 import json
 import sys
+import xml.etree.ElementTree as ET
+
+CAMERA_ENFORCEMENT = {"traffic_signals", "maxspeed", "average_speed"}
+
 
 def points(coords):
     if isinstance(coords, list):
@@ -11,37 +22,150 @@ def points(coords):
             for item in coords:
                 yield from points(item)
 
-count = 0
-with open(sys.argv[1], encoding="utf-8") as source, open(sys.argv[2], "w", encoding="utf-8") as target:
-    for line in source:
-        if not line.strip():
-            continue
-        feature = json.loads(line.strip().lstrip("\x1e"))
-        geometry = feature.get("geometry") or {}
-        coords = list(points(geometry.get("coordinates", [])))
-        if not coords:
-            continue
-        if geometry.get("type") == "Point":
-            location = coords[0]
-        else:
-            location = [sum(c[i] for c in coords) / len(coords) for i in (0, 1)]
-        props = feature.get("properties") or {}
-        props["source"] = "OSM"
-        # Specific camera tags take precedence over generic surveillance tags.
-        # An untagged highway=traffic_signals alone is NOT a red-light camera.
-        if (props.get("highway") == "red_light_camera" or
-                props.get("surveillance") == "red_light" or
-                props.get("enforcement") == "traffic_signals"):
-            camera_type, title = "red_light", "Red-light enforcement camera"
-        elif (props.get("highway") == "speed_camera" or
-                props.get("enforcement") in ("maxspeed", "average_speed")):
-            camera_type, title = "speed", "Speed enforcement camera"
-        else:
-            camera_type, title = "surveillance", "OSM surveillance camera"
-        props["camera_type"] = camera_type
-        props["camera_title"] = title
-        feature["geometry"] = {"type": "Point", "coordinates": location}
-        feature["properties"] = props
-        target.write(json.dumps(feature, separators=(",", ":")) + "\n")
-        count += 1
-print(f"Exported {count} OSM camera features")
+
+def key(coords):
+    return tuple(round(float(v), 7) for v in coords[:2])
+
+
+def classified(props, relation_types=()):
+    if (props.get("highway") == "red_light_camera" or
+            props.get("surveillance") == "red_light" or
+            props.get("enforcement") == "traffic_signals" or
+            "traffic_signals" in relation_types):
+        return "red_light", "Red-light enforcement camera"
+    if (props.get("highway") == "speed_camera" or
+            props.get("enforcement") in ("maxspeed", "average_speed") or
+            any(t in relation_types for t in ("maxspeed", "average_speed"))):
+        return "speed", "Speed enforcement camera"
+    return "surveillance", "OSM surveillance camera"
+
+
+def direct_camera(props):
+    """Reference nodes included by osmium tags-filter are not all cameras."""
+    return (props.get("man_made") == "surveillance" or
+            props.get("highway") in ("speed_camera", "red_light_camera") or
+            props.get("surveillance") == "red_light" or
+            props.get("enforcement") in CAMERA_ENFORCEMENT)
+
+
+def enforcement_devices(xml_path):
+    nodes, ways, relations = {}, {}, []
+    for _, elem in ET.iterparse(xml_path, events=("end",)):
+        if elem.tag == "node":
+            try:
+                nodes[elem.attrib["id"]] = (
+                    float(elem.attrib["lon"]), float(elem.attrib["lat"]))
+            except (KeyError, TypeError, ValueError):
+                pass
+        elif elem.tag == "way":
+            ways[elem.attrib.get("id")] = [
+                nd.get("ref") for nd in elem.findall("nd") if nd.get("ref")]
+        elif elem.tag == "relation":
+            tags = {tag.get("k"): tag.get("v") for tag in elem.findall("tag")}
+            if tags.get("type") == "enforcement" and tags.get("enforcement") in CAMERA_ENFORCEMENT:
+                members = [(m.get("type"), m.get("ref"))
+                           for m in elem.findall("member") if m.get("role") == "device"]
+                relations.append((elem.attrib.get("id"), tags["enforcement"], members))
+        if elem.tag in ("node", "way", "relation"):
+            elem.clear()
+
+    result = {}
+    missing = 0
+    for relation_id, enforcement, devices in relations:
+        for kind, ref in devices:
+            location = None
+            if kind == "node":
+                location = nodes.get(ref)
+            elif kind == "way":
+                coords = [nodes[n] for n in ways.get(ref, ()) if n in nodes]
+                if coords:
+                    location = tuple(sum(c[i] for c in coords) / len(coords)
+                                     for i in (0, 1))
+            if location is None:
+                missing += 1
+                continue
+            k = key(location)
+            item = result.setdefault(k, {
+                "coordinates": list(location), "types": set(), "ids": set()})
+            item["types"].add(enforcement)
+            if relation_id:
+                item["ids"].add(relation_id)
+    print(f"OSM enforcement relations: {len(relations)} relevant, "
+          f"{len(result)} distinct device locations, {missing} unresolved devices",
+          file=sys.stderr)
+    return result
+
+
+def main():
+    if len(sys.argv) not in (3, 4):
+        sys.exit("Usage: osm_camera_points input.geojsonseq output.geojsonseq "
+                 "[filtered-osm.xml]")
+    relations = enforcement_devices(sys.argv[3]) if len(sys.argv) == 4 else {}
+    counts = Counter()
+    seen_relations = set()
+    skipped = 0
+    enriched = 0
+    with open(sys.argv[1], encoding="utf-8") as source, open(
+            sys.argv[2], "w", encoding="utf-8") as target:
+        for line in source:
+            if not line.strip():
+                continue
+            feature = json.loads(line.strip().lstrip("\x1e"))
+            geometry = feature.get("geometry") or {}
+            coords = list(points(geometry.get("coordinates", [])))
+            if not coords:
+                continue
+            if geometry.get("type") == "Point":
+                location = coords[0]
+            else:
+                location = [sum(c[i] for c in coords) / len(coords)
+                            for i in (0, 1)]
+            props = feature.get("properties") or {}
+            relation = relations.get(key(location))
+            if not direct_camera(props) and relation is None:
+                # Referenced road nodes/ways in the filtered PBF are not devices.
+                skipped += 1
+                continue
+            if relation:
+                enriched += 1
+                seen_relations.add(key(location))
+                props["enforcement_relation"] = ";".join(sorted(relation["types"]))
+                props["enforcement_relation_ids"] = ",".join(sorted(relation["ids"]))
+            category, title = classified(props, relation["types"] if relation else ())
+            props["source"] = "OSM"
+            props["camera_type"] = category
+            props["camera_title"] = title
+            feature["geometry"] = {"type": "Point", "coordinates": location}
+            feature["properties"] = props
+            target.write(json.dumps(feature, separators=(",", ":")) + "\n")
+            counts[category] += 1
+
+        # Device nodes whose only enforcement tag is on the parent relation
+        # are absent from the direct-camera export; add those exactly once.
+        for k, relation in relations.items():
+            if k in seen_relations:
+                continue
+            props = {
+                "source": "OSM",
+                "enforcement_relation": ";".join(sorted(relation["types"])),
+                "enforcement_relation_ids": ",".join(sorted(relation["ids"])),
+            }
+            category, title = classified(props, relation["types"])
+            props["camera_type"] = category
+            props["camera_title"] = title
+            feature = {"type": "Feature",
+                       "geometry": {"type": "Point",
+                                    "coordinates": relation["coordinates"]},
+                       "properties": props}
+            target.write(json.dumps(feature, separators=(",", ":")) + "\n")
+            counts[category] += 1
+    print(f"Exported {sum(counts.values())} OSM camera features "
+          f"(speed={counts['speed']}, red_light={counts['red_light']}, "
+          f"other_surveillance={counts['surveillance']}; "
+          f"{enriched} enriched with enforcement relations, "
+          f"{sum(k not in seen_relations for k in relations)} relation-only, "
+          f"{skipped} non-camera referenced objects skipped)")
+
+
+if __name__ == "__main__":
+    main()
