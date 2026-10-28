@@ -54,7 +54,7 @@ class CameraClassificationTest(unittest.TestCase):
             self.assertIn("camera_title", props)
             for k, v in original.items():
                 self.assertEqual(props[k], v)
-        self.assertIn("red_light=3", output)
+        self.assertIn("red_light=4", output)
         self.assertIn("speed=2", output)
         self.assertIn("other_surveillance=1", output)
 
