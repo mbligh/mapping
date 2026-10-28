@@ -118,7 +118,7 @@ export function installSurveillanceMarkers(map, {source, prefix, sourceLayer = '
         12, 0.45, 15, 0.54375, 16, 1.15],
     }
   });
-  return [points, fov];
+  return [points, flockDots, fov];
 }
 
 export function setSurveillanceVisibility(map, prefix, visible) {
