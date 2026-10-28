@@ -78,6 +78,12 @@ def main():
     invalid = 0
     outside_nj = 0
     excluded_status = 0
+    angle_count = 0
+    angle_missing = 0
+    angle_negative = 0
+    angle_above_360 = 0
+    angle_min = float("inf")
+    angle_max = float("-inf")
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as out:
         for path in paths:
@@ -107,7 +113,16 @@ def main():
                 except (ValueError, TypeError):
                     angle = float("nan")
                 if math.isfinite(angle):
+                    angle_count += 1
+                    angle_min = min(angle_min, angle)
+                    angle_max = max(angle_max, angle)
+                    if angle < 0:
+                        angle_negative += 1
+                    if angle > 360:
+                        angle_above_360 += 1
                     props["camera_bearing"] = angle % 360
+                else:
+                    angle_missing += 1
                 props["camera_title"] = "Flock Surveillance camera"
                 props["readsLicensePlates"] = "readsLicensePlates" in (attrs.get("features") or "").split(",")
                 feature = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [lon, lat]}, "properties": props}
@@ -117,6 +132,10 @@ def main():
     print(f"Output: {count} NJ points, {outside_nj} outside NJ, "
           f"{excluded_status} decommissioned excluded, "
           f"{invalid} invalid coordinates, {len(paths)} files", file=sys.stderr)
+    print(f"Source Flock rotationAngle (included NJ points): "
+          f"numeric={angle_count}, missing/invalid={angle_missing}, "
+          f"min={angle_min if angle_count else 'n/a'}, max={angle_max if angle_count else 'n/a'}, "
+          f"negative={angle_negative}, above_360={angle_above_360}", file=sys.stderr)
     if count == 0:
         sys.exit("No valid points")
     if invalid:
