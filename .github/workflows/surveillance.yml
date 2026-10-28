@@ -70,8 +70,13 @@ jobs:
             -o build/osm-cameras.osm.pbf --overwrite
           osmium export build/osm-cameras.osm.pbf \
             -f geojsonseq -o build/osm-cameras.geojsonseq --overwrite
+          # osmium export drops non-area type=enforcement relations. Preserve
+          # their device members and merge them into the same camera output.
+          osmium cat build/osm-cameras.osm.pbf \
+            -o build/osm-cameras.osm --overwrite
           python3 surveillance/scripts/osm_camera_points \
-            build/osm-cameras.geojsonseq build/osm-camera-points.geojsonseq
+            build/osm-cameras.geojsonseq build/osm-camera-points.geojsonseq \
+            build/osm-cameras.osm
       - name: Build combined surveillance PMTiles
         run: |
           tippecanoe -o build/output/surveillance.pmtiles -l surveillance \
