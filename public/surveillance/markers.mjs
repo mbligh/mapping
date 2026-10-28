@@ -27,11 +27,15 @@ export const cameraColorExpression = [
   cameraColors.surveillance,
 ];
 
-// A missing or invalid angle must NOT silently become a north-facing camera.
-// camera_bearing is normalized at build time; rotationAngle supports old tiles.
+// camera_bearing is the original angle normalized to [0,360); old tiles use
+// rotationAngle directly. For this reversible display trial, interpret source
+// rotation as an Esri *arithmetic* angle (0=east, 90=north, counterclockwise).
+// MapLibre icon-rotate expects a clockwise compass bearing (0=north).
+// A missing/invalid angle must not become a north-facing wedge.
 export const cameraBearingExpression = [
   'to-number', ['coalesce', ['get', 'camera_bearing'], ['get', 'rotationAngle']], -1
 ];
+export const cameraDisplayRotationExpression = ['-', 90, cameraBearingExpression];
 export const directionalFlockFilter = [
   'all',
   ['==', ['get', 'source'], 'Flock'],
@@ -95,7 +99,7 @@ export function installSurveillanceMarkers(map, {source, prefix, sourceLayer = '
     filter: directionalFlockFilter,
     layout: {
       'icon-image': iconId,
-      'icon-rotate': cameraBearingExpression,
+      'icon-rotate': cameraDisplayRotationExpression,
       'icon-rotation-alignment': 'map',
       'icon-allow-overlap': true,
       'icon-ignore-placement': true,
