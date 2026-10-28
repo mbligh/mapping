@@ -43,6 +43,7 @@ jobs:
           python3 surveillance/scripts/test_build_geojsonseq.py
           python3 surveillance/scripts/test_osm_camera_points
           node surveillance/scripts/test_markers.mjs
+          node surveillance/scripts/test_demo_style_lifecycle.mjs
       - name: Install Tippecanoe
         run: |
           sudo apt-get update
