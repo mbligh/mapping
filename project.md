@@ -124,6 +124,8 @@ The full `mbligh/surveillance` main-branch history is merged into this repositor
 
 Both the MapLibre demo and standalone surveillance page resolve `surveillance.pmtiles` from the mapping site root. R2 upload requires the R2 variables and secrets in the mapping repository; repository settings/secrets do not move with Git history. The old repository is retained for history and existing published URLs, with its scheduled build retired after the migration is committed.
 
+The MapLibre demo restores its application-owned surveillance sources, Flock field-of-view icon, markers, parcels, and contours after each `style.load`. A shared style generation/ready state guards asynchronous surveillance archive resolution and suppresses stale installs across basemap changes. Do not gate style mutations on MapLibre `isStyleLoaded()`, which can be false while tile/source requests remain outstanding even after `style.load`. Regression test: `node surveillance/scripts/test_demo_style_lifecycle.mjs` (also run in the surveillance workflow).
+
 ## Shared NJ OpenStreetMap snapshot
 
 **Refresh NJ OSM snapshot** runs monthly (first day at 06:17 UTC), manually, and on its implementation changes. It downloads the full Geofabrik NJ PBF, requires a complete osmium parse and plausible statewide node count, then verifies the uploaded asset against its local SHA-256. Release `nj-osm` holds the stable `new-jersey.osm.pbf` asset. Uploads use a temporary name; only validated uploads replace the stable name, with rollback on promotion failure and one preceding recovery copy retained. Failed downloads/validation/uploads preserve the previous stable asset. The initial release remains a draft until ready.
