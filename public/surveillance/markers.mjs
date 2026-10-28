@@ -74,28 +74,37 @@ function fieldOfViewIcon() {
 }
 
 export function surveillanceLayerIds(prefix) {
-  return [prefix + '-points', prefix + '-fov'];
+  return [prefix + '-points', prefix + '-flock-dots', prefix + '-fov'];
 }
 
 export function installSurveillanceMarkers(map, {source, prefix, sourceLayer = 'surveillance'}) {
-  const [points, fov] = surveillanceLayerIds(prefix);
+  const [points, flockDots, fov] = surveillanceLayerIds(prefix);
   const iconId = prefix + '-field-of-view';
   if (!map.hasImage(iconId)) map.addImage(iconId, fieldOfViewIcon(), {pixelRatio: 2});
+  // Low-zoom Flock dots deliberately share the exact circle style of other
+  // camera types, including radius, opacity, colour and white outline.
+  const circlePaint = {
+    'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 3, 12, 5, 16, 7],
+    'circle-color': cameraColorExpression,
+    'circle-opacity': 0.92,
+    'circle-stroke-color': '#ffffff',
+    'circle-stroke-width': 1.5,
+  };
   if (!map.getLayer(points)) map.addLayer({
     id: points, type: 'circle', source, 'source-layer': sourceLayer,
     minzoom: 8,
     filter: ['!', directionalFlockFilter],
-    paint: {
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 3, 12, 5, 16, 7],
-      'circle-color': cameraColorExpression,
-      'circle-opacity': 0.92,
-      'circle-stroke-color': '#ffffff',
-      'circle-stroke-width': 1.5,
-    }
+    paint: circlePaint,
+  });
+  if (!map.getLayer(flockDots)) map.addLayer({
+    id: flockDots, type: 'circle', source, 'source-layer': sourceLayer,
+    minzoom: 8, maxzoom: 12,
+    filter: directionalFlockFilter,
+    paint: circlePaint,
   });
   if (!map.getLayer(fov)) map.addLayer({
     id: fov, type: 'symbol', source, 'source-layer': sourceLayer,
-    minzoom: 8,
+    minzoom: 12,
     filter: directionalFlockFilter,
     layout: {
       'icon-image': iconId,
@@ -103,7 +112,10 @@ export function installSurveillanceMarkers(map, {source, prefix, sourceLayer = '
       'icon-rotation-alignment': 'map',
       'icon-allow-overlap': true,
       'icon-ignore-placement': true,
-      'icon-size': ['interpolate', ['linear'], ['zoom'], 8, 0.65, 12, 0.9, 16, 1.15],
+      // Half the previous size at zooms 12–15, easing back to the original
+      // full-size icon by zoom 16 (to avoid an abrupt size jump).
+      'icon-size': ['interpolate', ['linear'], ['zoom'],
+        12, 0.45, 15, 0.54375, 16, 1.15],
     }
   });
   return [points, fov];
