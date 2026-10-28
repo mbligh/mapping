@@ -1,7 +1,7 @@
 // Dependency-free style regression tests; run with Node from GitHub Actions.
 import assert from 'node:assert/strict';
 import {
-  cameraColors, cameraColorExpression, cameraBearingExpression,
+  cameraColors, cameraColorExpression, cameraBearingExpression, cameraDisplayRotationExpression,
   directionalFlockFilter, cameraTitle, installSurveillanceMarkers,
   surveillanceLayerIds, setSurveillanceVisibility
 } from '../../public/surveillance/markers.mjs';
@@ -45,7 +45,8 @@ assert.deepEqual(installSurveillanceMarkers(map,{source:'test',prefix:'camera'})
 assert.equal(map.images.size,1);
 assert.equal(map.images.get('camera-field-of-view').options.pixelRatio,2);
 assert.equal(map.layers.get('camera-fov').layout['icon-rotation-alignment'],'map');
-assert.deepEqual(map.layers.get('camera-fov').layout['icon-rotate'],cameraBearingExpression);
+assert.deepEqual(cameraDisplayRotationExpression, ['-', 90, cameraBearingExpression]);
+assert.deepEqual(map.layers.get('camera-fov').layout['icon-rotate'],cameraDisplayRotationExpression);
 assert.deepEqual(map.layers.get('camera-fov').filter,directionalFlockFilter);
 assert.deepEqual(map.layers.get('camera-points').paint['circle-color'],cameraColorExpression);
 assert.deepEqual(map.layers.get('camera-points').filter,['!',directionalFlockFilter]);
