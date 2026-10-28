@@ -14,12 +14,12 @@ The build searches recursively for `features_0.json`, `features_10000.json`, etc
 
 ## Map markers
 
-- **Blue:** Flock cameras. Valid `rotationAngle` values are provisionally treated as clockwise bearings from north, producing a translucent curved viewing cone with a dot at the actual camera location. When no valid angle exists, display a dot only. This orientation convention has not been validated on site.
+- **Blue:** Flock cameras. For the reversible orientation trial, `rotationAngle` is interpreted as an ArcGIS arithmetic angle (0° east, increasing counterclockwise), and the displayed clockwise compass bearing is `(90 - angle) mod 360`. The source's exact angle convention is unverified. A translucent curved viewing cone has its dot at the actual camera location. When no valid angle exists, display a dot only. This orientation convention has not been validated on site.
 - **Yellow:** OSM speed cameras (`highway=speed_camera` or explicitly speed-related `enforcement=*`).
 - **Red:** OSM red-light cameras (`highway=red_light_camera`, `surveillance=red_light`, or explicit `enforcement=traffic_signals`). Ordinary traffic signals alone are never treated as red-light cameras.
 - **Green:** Other OSM surveillance locations.
 
-The MapLibre demo and standalone surveillance map share `public/surveillance/markers.mjs`, one PMTiles source, and click popups for both dots and wedges. The build normalizes valid Flock rotations into `camera_bearing` without overwriting the original `rotationAngle`. Missing/non-numeric rotations remain directionless. OSM enforcement *relations* without an exported device geometry may not appear; relation-member extraction would be a separate improvement.
+The MapLibre demo and standalone surveillance map share `public/surveillance/markers.mjs`, one PMTiles source, and click popups for both dots and wedges. The build normalizes valid Flock rotations into `camera_bearing` without overwriting the original `rotationAngle`. Missing/non-numeric rotations remain directionless. The Flock extraction step logs raw source angle minimum, maximum, missing/invalid count, and values outside 0–360 for diagnostic review. OSM enforcement *relations* without an exported device geometry may not appear; relation-member extraction would be a separate improvement.
 
 The map marker tests run with `node surveillance/scripts/test_markers.mjs`. Camera classification tests run in the surveillance GitHub workflow.
 
