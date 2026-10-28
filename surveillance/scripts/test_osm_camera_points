@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ensure OSM surveillance markers are classified without confusing traffic lights."""
+"""Regression tests for OSM camera tags and type=enforcement device members."""
 import json
 from pathlib import Path
 import subprocess
@@ -9,6 +9,28 @@ import unittest
 
 SCRIPT = Path(__file__).with_name("osm_camera_points")
 
+
+def run_conversion(features, xml=None):
+    with tempfile.TemporaryDirectory() as td:
+        src, dst = Path(td) / "src.geojsonseq", Path(td) / "dst.geojsonseq"
+        src.write_text("\n".join(json.dumps(f) for f in features) + "\n")
+        cmd = [sys.executable, str(SCRIPT), str(src), str(dst)]
+        if xml:
+            source = Path(td) / "filtered.osm"
+            source.write_text(xml)
+            cmd.append(str(source))
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            raise AssertionError(result.stderr)
+        return [json.loads(s) for s in dst.read_text().splitlines()], result.stdout
+
+
+def point(tags, lon=-74.5, lat=40.5):
+    return {"type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [lon, lat]},
+            "properties": tags}
+
+
 class CameraClassificationTest(unittest.TestCase):
     def test_camera_types_and_preserved_tags(self):
         cases = [
@@ -17,30 +39,95 @@ class CameraClassificationTest(unittest.TestCase):
             ({"enforcement": "traffic_signals"}, "red_light"),
             ({"highway": "speed_camera"}, "speed"),
             ({"enforcement": "maxspeed"}, "speed"),
-            ({"highway": "traffic_signals"}, "surveillance"),
+            # A traffic signal is not a red-light enforcement device by itself.
+            ({"highway": "traffic_signals"}, None),
             ({"man_made": "surveillance"}, "surveillance"),
             ({"highway": "speed_camera", "surveillance": "red_light"}, "red_light"),
         ]
-        features = [
-            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-74.5, 40.5]},
-             "properties": tags}
-            for tags, _ in cases
-        ]
-        with tempfile.TemporaryDirectory() as td:
-            src, dst = Path(td)/"src.geojsonseq", Path(td)/"dst.geojsonseq"
-            src.write_text("\n".join(json.dumps(x) for x in features)+"\n")
-            p = subprocess.run([sys.executable, str(SCRIPT), str(src), str(dst)],
-                               capture_output=True, text=True)
-            self.assertEqual(p.returncode, 0, p.stderr)
-            actual = [json.loads(x) for x in dst.read_text().splitlines()]
-        self.assertEqual(len(actual), len(cases))
-        for point, (original, expected) in zip(actual, cases):
-            props = point["properties"]
-            self.assertEqual(props["camera_type"], expected)
+        actual, output = run_conversion([point(tags) for tags, _ in cases])
+        expected = [(tags, category) for tags, category in cases if category]
+        self.assertEqual(len(actual), len(expected))
+        for feature, (original, category) in zip(actual, expected):
+            props = feature["properties"]
+            self.assertEqual(props["camera_type"], category)
             self.assertEqual(props["source"], "OSM")
+            self.assertIn("camera_title", props)
             for k, v in original.items():
                 self.assertEqual(props[k], v)
-            self.assertIn("camera_title", props)
+        self.assertIn("red_light=3", output)
+        self.assertIn("speed=2", output)
+        self.assertIn("other_surveillance=1", output)
+
+    def test_relation_device_enrichment_and_missing_camera_tags(self):
+        xml = """<?xml version="1.0"?>
+<osm version="0.6">
+  <node id="1" lat="40.5000000" lon="-74.5000000">
+    <tag k="highway" v="traffic_signals"/>
+  </node>
+  <node id="2" lat="40.6000000" lon="-74.6000000">
+    <tag k="highway" v="speed_camera"/>
+  </node>
+  <node id="3" lat="40.7000000" lon="-74.7000000"/>
+  <node id="4" lat="40.8000000" lon="-74.8000000"/>
+  <node id="5" lat="40.9000000" lon="-74.9000000"/>
+  <relation id="10">
+    <member type="node" ref="1" role="device"/>
+    <member type="node" ref="3" role="from"/>
+    <tag k="type" v="enforcement"/>
+    <tag k="enforcement" v="traffic_signals"/>
+  </relation>
+  <relation id="11">
+    <member type="node" ref="2" role="device"/>
+    <member type="node" ref="3" role="from"/>
+    <tag k="type" v="enforcement"/>
+    <tag k="enforcement" v="maxspeed"/>
+  </relation>
+  <relation id="12">
+    <member type="node" ref="4" role="device"/>
+    <member type="node" ref="3" role="from"/>
+    <tag k="type" v="enforcement"/>
+    <tag k="enforcement" v="traffic_signals"/>
+  </relation>
+  <relation id="13">
+    <member type="node" ref="5" role="device"/>
+    <tag k="type" v="enforcement"/>
+    <tag k="enforcement" v="average_speed"/>
+  </relation>
+</osm>"""
+        features = [
+            point({"highway": "traffic_signals"}, -74.5, 40.5),
+            point({"highway": "speed_camera"}, -74.6, 40.6),
+            point({"highway": "residential"}, -74.7, 40.7),
+        ]
+        actual, output = run_conversion(features, xml)
+        by_lat = {round(f["geometry"]["coordinates"][1], 1): f for f in actual}
+        self.assertEqual(len(actual), 4)
+        self.assertEqual(by_lat[40.5]["properties"]["camera_type"], "red_light")
+        self.assertEqual(by_lat[40.5]["properties"]["highway"], "traffic_signals")
+        self.assertEqual(by_lat[40.5]["properties"]["enforcement_relation_ids"], "10")
+        self.assertEqual(by_lat[40.6]["properties"]["camera_type"], "speed")
+        self.assertEqual(by_lat[40.6]["properties"]["enforcement_relation_ids"], "11")
+        self.assertEqual(by_lat[40.8]["properties"]["camera_type"], "red_light")
+        self.assertEqual(by_lat[40.9]["properties"]["camera_type"], "speed")
+        self.assertNotIn(40.7, by_lat)  # from= is not a camera
+        self.assertIn("red_light=2", output)
+        self.assertIn("speed=2", output)
+        self.assertIn("2 enriched", output)
+        self.assertIn("2 relation-only", output)
+
+    def test_conflicting_relation_types_prefer_red_light(self):
+        xml = """<osm version="0.6">
+<node id="1" lat="40.5000000" lon="-74.5000000"/>
+<relation id="42"><member type="node" ref="1" role="device"/>
+<tag k="type" v="enforcement"/><tag k="enforcement" v="maxspeed"/></relation>
+<relation id="43"><member type="node" ref="1" role="device"/>
+<tag k="type" v="enforcement"/><tag k="enforcement" v="traffic_signals"/></relation>
+</osm>"""
+        actual, _ = run_conversion([], xml)
+        self.assertEqual(len(actual), 1)
+        self.assertEqual(actual[0]["properties"]["camera_type"], "red_light")
+        self.assertEqual(actual[0]["properties"]["enforcement_relation_ids"], "42,43")
+
 
 if __name__ == "__main__":
     unittest.main()
