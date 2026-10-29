@@ -31,7 +31,8 @@ export const cameraColorExpression = [
 // rotationAngle directly. For this reversible display trial, interpret source
 // rotation as an Esri *arithmetic* angle (0=east, 90=north, counterclockwise).
 // MapLibre icon-rotate expects a clockwise compass bearing (0=north).
-// A missing/invalid angle must not become a north-facing wedge.
+// Missing, invalid, or zero angles are unknown orientations: show a blue circle,
+// never a directional wedge. This applies to every Flock device type.
 export const cameraBearingExpression = [
   'to-number', ['coalesce', ['get', 'camera_bearing'], ['get', 'rotationAngle']], -1
 ];
@@ -39,8 +40,8 @@ export const cameraDisplayRotationExpression = ['-', 90, cameraBearingExpression
 export const directionalFlockFilter = [
   'all',
   ['==', ['get', 'source'], 'Flock'],
-  ['>=', cameraBearingExpression, 0],
-  ['<=', cameraBearingExpression, 360],
+  ['>', cameraBearingExpression, 0],
+  ['<', cameraBearingExpression, 360],
 ];
 
 // Draw at 2x so the curved wedge and camera dot remain crisp. Camera coordinate
