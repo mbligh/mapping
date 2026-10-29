@@ -53,6 +53,8 @@ jobs:
         run: |
           mkdir -p build build/output
           python3 surveillance/scripts/build_geojsonseq surveillance/flocksurveillance -o build/flock.geojsonseq
+      - name: Analyze Flock zero-rotation correlations
+        run: python3 surveillance/scripts/analyze_rotation
       - name: Diagnose known NJ location in source data
         run: |
           python3 surveillance/scripts/nearest build/flock.geojsonseq --lat 40.72542 --lon -74.77641
