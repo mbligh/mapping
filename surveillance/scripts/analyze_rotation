@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+"""Investigate Flock source attributes correlated with zero rotation in New Jersey."""
+import glob
+import json
+import math
+import os
+from collections import Counter, defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+import importlib.machinery
+import importlib.util
+
+loader = importlib.machinery.SourceFileLoader(
+    "build_geojsonseq", str(Path(__file__).with_name("build_geojsonseq")))
+spec = importlib.util.spec_from_loader(loader.name, loader)
+geo = importlib.util.module_from_spec(spec)
+loader.exec_module(geo)
+
+
+def fmt_counter(title, groups, min_count=20, max_rows=30):
+    rows = []
+    for key, c in groups.items():
+        total = sum(c.values())
+        if total < min_count:
+            continue
+        z, n, missing = (c[k] for k in ("zero", "nonzero", "missing"))
+        eligible = z + n
+        rows.append((key, total, z, n, missing, 100 * z / eligible if eligible else 0))
+    print(f"\n## {title} (total, zero, nonzero, missing, zero% among numeric)")
+    for key, total, z, n, missing, pct in sorted(
+            rows, key=lambda row: (-row[1], str(row[0])))[:max_rows]:
+        print(f"{str(key)[:85]}: {total} | {z} | {n} | {missing} | {pct:.1f}%")
+    print(f"(groups qualifying: {len(rows)})")
+
+
+def date_bucket(value):
+    if value is None or value == "":
+        return "(missing)"
+    try:
+        if isinstance(value, (int, float)):
+            # ArcGIS dates are milliseconds since epoch.
+            return datetime.fromtimestamp(value / 1000, tz=timezone.utc).strftime("%Y-%m")
+        return str(value)[:7]
+    except (ValueError, OSError, OverflowError, TypeError):
+        return "(invalid)"
+
+
+def main():
+    polygons = geo.load_nj_boundary()
+    root = Path("surveillance/flocksurveillance")
+    paths = sorted(glob.glob(str(root / "features_*.json")))
+    groups = defaultdict(lambda: defaultdict(Counter))
+    attribute_values = defaultdict(lambda: defaultdict(Counter))
+    totals = Counter()
+    zero_examples = []
+    for path in paths:
+        with open(path, encoding="utf-8") as stream:
+            records = json.load(stream).get("features", [])
+        for record in records:
+            point = record.get("geometry") or {}
+            lon, lat = point.get("x"), point.get("y")
+            if not (isinstance(lon, (int, float)) and isinstance(lat, (int, float))
+                    and math.isfinite(lon) and math.isfinite(lat) and geo.in_nj(lon, lat, polygons)):
+                continue
+            a = record.get("attributes") or {}
+            if str(a.get("status") or "").strip().lower() == "decommissioned":
+                continue
+            angle = a.get("rotationAngle")
+            try:
+                v = float(angle) if angle is not None and not isinstance(angle, bool) else math.nan
+            except (ValueError, TypeError):
+                v = math.nan
+            class_ = ("missing" if not math.isfinite(v) else
+                      "zero" if v % 360 == 0 else "nonzero")
+            totals[class_] += 1
+            if class_ == "zero" and len(zero_examples) < 5:
+                zero_examples.append({k: a.get(k) for k in
+                    ("OBJECTID", "id", "name", "status", "deviceType", "rotationAngle", "CreationDate", "EditDate")})
+            dims = {
+                "status": a.get("status"),
+                "deviceType": a.get("deviceType"),
+                "active": a.get("active"),
+                "direction": a.get("direction"),
+                "CreationDate month": date_bucket(a.get("CreationDate")),
+                "EditDate month": date_bucket(a.get("EditDate")),
+                "longitude x latitude grid ~5km": f"{math.floor(lon * 20) / 20:.2f}, {math.floor(lat * 20) / 20:.2f}",
+                "longitude x latitude grid ~20km": f"{math.floor(lon * 5) / 5:.1f}, {math.floor(lat * 5) / 5:.1f}",
+            }
+            features = a.get("features")
+            if isinstance(features, str):
+                for name in features.split(","):
+                    name = name.strip()
+                    if name:
+                        dims[f"feature: {name}"] = "yes"
+            for k, value in dims.items():
+                groups[k][str(value) if value is not None else "(missing)"][class_] += 1
+            for k, value in a.items():
+                if k in ("OBJECTID", "id", "name", "rotationAngle", "geometry", "features"):
+                    continue
+                if isinstance(value, (str, int, float, bool)) or value is None:
+                    vkey = str(value)[:120] if value is not None else "(missing)"
+                    if len(attribute_values[k]) <= 100 or vkey in attribute_values[k]:
+                        attribute_values[k][vkey][class_] += 1
+    print("NJ Flock source rotation classes", dict(totals))
+    print("Example zero-angle records:", json.dumps(zero_examples))
+    print("Source attribute cardinalities/coverage:")
+    for k, v in sorted(attribute_values.items()):
+        count = sum(sum(c.values()) for c in v.values())
+        print(f"  {k}: {len(v)} values, {count} observations")
+    for k in ("status", "deviceType", "active", "direction",
+              "CreationDate month", "EditDate month",
+              "longitude x latitude grid ~20km",
+              "longitude x latitude grid ~5km"):
+        fmt_counter(k, groups[k], min_count=20, max_rows=40)
+    for k in sorted(groups):
+        if k.startswith("feature:"):
+            fmt_counter(k, groups[k], min_count=1, max_rows=4)
+    for k, vals in sorted(attribute_values.items()):
+        if k in ("status", "deviceType", "active", "direction", "CreationDate", "EditDate"):
+            continue
+        if 1 < len(vals) <= 25:
+            fmt_counter("Additional field: " + k, vals, min_count=20)
+
+
+if __name__ == "__main__":
+    main()
