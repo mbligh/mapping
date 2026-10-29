@@ -60,6 +60,8 @@ class NJFilteringTest(unittest.TestCase):
             self.assertEqual([x["properties"]["camera_type"] for x in actual], ["flock", "flock"])
             self.assertEqual([x["properties"]["camera_bearing"] for x in actual], [0.0, 90.0])
             self.assertIn('min=0.0, max=90.0, negative=0, above_360=0', proc.stderr)
+            self.assertIn('Rotation by status inPlanning: total=1, zero=0, nonzero=1, missing=0', proc.stderr)
+            self.assertIn('Rotation by status inService: total=1, zero=1, nonzero=0, missing=0', proc.stderr)
             self.assertIn('1 outside NJ', proc.stderr)
             self.assertIn('1 decommissioned excluded', proc.stderr)
 
