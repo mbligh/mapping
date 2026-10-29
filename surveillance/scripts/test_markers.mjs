@@ -50,6 +50,51 @@ assert.deepEqual(map.layers.get('camera-fov').layout['icon-rotate'],cameraDispla
 assert.deepEqual(map.layers.get('camera-fov').filter,directionalFlockFilter);
 assert.deepEqual(map.layers.get('camera-points').paint['circle-color'],cameraColorExpression);
 assert.deepEqual(map.layers.get('camera-points').filter,['!',directionalFlockFilter]);
+
+// Zero is an unknown orientation for every Flock device type, regardless of
+// planning status. It must use the ordinary blue circle at every zoom.
+function evaluate(expr, props) {
+  if (!Array.isArray(expr)) return expr;
+  const [op, ...args] = expr;
+  switch (op) {
+    case 'get': return props[args[0]];
+    case 'coalesce': return args.map(e=>evaluate(e,props)).find(v=>v!==null && v!==undefined);
+    case 'to-number': {
+      const value=evaluate(args[0],props);
+      const n=Number(value);
+      return value!==null && value!==undefined && value!=='' && Number.isFinite(n)
+        ? n : evaluate(args[1],props);
+    }
+    case '==': return evaluate(args[0],props)===evaluate(args[1],props);
+    case '>': return evaluate(args[0],props)>evaluate(args[1],props);
+    case '<': return evaluate(args[0],props)<evaluate(args[1],props);
+    case 'all': return args.every(e=>evaluate(e,props));
+    case 'case': return evaluate(args[0],props) ? evaluate(args[1],props) : evaluate(args[2],props);
+    case '!': return !evaluate(args[0],props);
+    default: throw new Error('Unexpected expression '+op);
+  }
+}
+for (const deviceType of ['falcon','picard','raven','condor','wing','picardPtz']) {
+  for (const status of ['inPlanning','inService']) {
+    const base={source:'Flock',deviceType,status};
+    for (const props of [
+      {...base,camera_bearing:0,rotationAngle:0},
+      {...base,rotationAngle:0},
+      {...base,camera_bearing:0,rotationAngle:360},
+      {...base},
+    ]) {
+      assert.equal(evaluate(directionalFlockFilter,props),false);
+      assert.equal(evaluate(map.layers.get('camera-points').filter,props),true);
+      assert.equal(evaluate(cameraColorExpression,props),cameraColors.flock);
+    }
+    for (const bearing of [0.01,45,180,359.99]) {
+      const props={...base,camera_bearing:bearing};
+      assert.equal(evaluate(directionalFlockFilter,props),true);
+      assert.equal(evaluate(map.layers.get('camera-points').filter,props),false);
+    }
+  }
+}
+
 const dots=map.layers.get('camera-flock-dots');
 const fov=map.layers.get('camera-fov');
 assert.equal(dots.type,'circle');
