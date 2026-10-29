@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Stream ArcGIS feature batches into GeoJSON sequence for Tippecanoe."""
 import argparse
+from collections import Counter, defaultdict
 import glob
 import json
 import math
@@ -78,6 +79,7 @@ def main():
     invalid = 0
     outside_nj = 0
     excluded_status = 0
+    status_angles = defaultdict(Counter)
     angle_count = 0
     angle_missing = 0
     angle_negative = 0
@@ -103,6 +105,7 @@ def main():
                     excluded_status += 1
                     continue
                 props = {key: attrs[key] for key in FIELDS if attrs.get(key) is not None}
+                status = (attrs.get("status") or "").strip() or "(missing)"
                 props["source"] = "Flock"
                 props["camera_type"] = "flock"
                 # Trial interpretation: ArcGIS rotationAngle is clockwise from north.
@@ -121,8 +124,10 @@ def main():
                     if angle > 360:
                         angle_above_360 += 1
                     props["camera_bearing"] = angle % 360
+                    status_angles[status]["zero" if angle % 360 == 0 else "nonzero"] += 1
                 else:
                     angle_missing += 1
+                    status_angles[status]["missing"] += 1
                 props["camera_title"] = "Flock Surveillance camera"
                 props["readsLicensePlates"] = "readsLicensePlates" in (attrs.get("features") or "").split(",")
                 feature = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [lon, lat]}, "properties": props}
@@ -136,6 +141,10 @@ def main():
           f"numeric={angle_count}, missing/invalid={angle_missing}, "
           f"min={angle_min if angle_count else 'n/a'}, max={angle_max if angle_count else 'n/a'}, "
           f"negative={angle_negative}, above_360={angle_above_360}", file=sys.stderr)
+    for status, counts in sorted(status_angles.items()):
+        print(f"Rotation by status {status}: total={sum(counts.values())}, "
+              f"zero={counts['zero']}, nonzero={counts['nonzero']}, "
+              f"missing={counts['missing']}", file=sys.stderr)
     if count == 0:
         sys.exit("No valid points")
     if invalid:
