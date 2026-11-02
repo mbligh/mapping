@@ -13,7 +13,9 @@
   .panel{position:absolute;top:14px;left:14px;z-index:1;background:rgba(255,255,255,.95);padding:14px;border-radius:10px;box-shadow:0 2px 12px #0003;max-width:260px;max-height:calc(100% - 56px);overflow-y:auto}
   .panel h1{font-size:16px;margin:0 0 10px}
   label{display:block;margin:8px 0 4px}
-  select,button{padding:7px;border:1px solid #aaa;border-radius:5px;background:white}
+  select,button,input[type="url"]{padding:7px;border:1px solid #aaa;border-radius:5px;background:white}
+  #custom-tiles{width:100%;box-sizing:border-box}
+  #apply-custom-tiles{margin-top:6px}
   .coords{margin-top:10px;color:#444;font-variant-numeric:tabular-nums;font-size:12px}
   .hint{font-size:12px;color:#555;margin-top:8px}
   #error{color:#a00;font-size:12px;margin-top:8px}
@@ -28,8 +30,13 @@
   <select id="style">
     <option value="bright" selected>Bright</option>
     <option value="hybrid">NJ Satellite + roads/trails/labels</option>
+    <option value="custom">Custom XYZ tiles</option>
   </select>
-  <label for="raster-resampling">Satellite interpolation</label>
+  <label for="custom-tiles">Custom XYZ tile URL</label>
+  <input id="custom-tiles" type="url" spellcheck="false" placeholder="https://example.com/{z}/{x}/{y}.png" aria-describedby="custom-tiles-hint">
+  <button id="apply-custom-tiles" type="button">Use tile URL</button>
+  <div class="hint" id="custom-tiles-hint">Use {z}, {x}, and {y} once each, in any order. The server must allow CORS.</div>
+  <label for="raster-resampling">Raster interpolation</label>
   <select id="raster-resampling">
     <option value="linear" selected>Linear (smooth)</option>
     <option value="nearest">Nearest (sharp pixels)</option>
@@ -415,18 +422,48 @@ try {
   // opaque background and polygon fills so the orthophoto remains visible.
   // Parcel layers are reinstalled by the existing style.load handler.
   const orthos = 'https://maps.nj.gov/arcgis/rest/services/Basemap/Orthos_Natural_2020_NJ_WM/MapServer/tile/{z}/{y}/{x}';
+  const customTilesInput = document.getElementById('custom-tiles');
+  const styleSelect = document.getElementById('style');
+  let customTilesUrl = '';
+  function validateTileUrl(raw) {
+    const value = raw.trim();
+    for(const key of ['z','x','y']) {
+      if(value.split('{'+key+'}').length !== 2)
+        throw new Error('Tile URL must contain exactly one {'+key+'} placeholder.');
+    }
+    let parsed;
+    try { parsed = new URL(value.replace(/\{[zxy]\}/g, '0')); }
+    catch { throw new Error('Enter a valid absolute tile URL.'); }
+    if(!['http:','https:'].includes(parsed.protocol))
+      throw new Error('Tile URL must use HTTP or HTTPS.');
+    return value;
+  }
+  function applyCustomTiles() {
+    try {
+      customTilesUrl = validateTileUrl(customTilesInput.value);
+      styleSelect.value = 'custom';
+      changeStyle('custom');
+    } catch(e) { error.textContent = 'Invalid tile URL: '+e.message; }
+  }
+  document.getElementById('apply-custom-tiles').addEventListener('click', applyCustomTiles);
+  customTilesInput.addEventListener('keydown', event => {
+    if(event.key==='Enter') {event.preventDefault();applyCustomTiles();}
+  });
   let styleRequest = 0;
   const rasterResampling = document.getElementById('raster-resampling');
   rasterResampling.addEventListener('change', () => {
-    if(map.getLayer('nj-orthos')) {
-      map.setPaintProperty('nj-orthos', 'raster-resampling', rasterResampling.value);
+    for(const layerId of ['nj-orthos','custom-tiles-layer']) {
+      if(map.getLayer(layerId))
+        map.setPaintProperty(layerId, 'raster-resampling', rasterResampling.value);
     }
   });
   async function changeStyle(choice) {
     const request = ++styleRequest;
     error.textContent = '';
     try {
-      const style = choice === 'satellite'
+      if(choice==='custom' && !customTilesUrl)
+        throw new Error('Enter a custom XYZ tile URL and select Use tile URL.');
+      const style = choice === 'custom'
         ? {version:8,sources:{},layers:[]}
         : await (async () => {
             const response=await fetch(styles[choice] || styles.bright);
@@ -440,10 +477,13 @@ try {
           layer['source-layer'] !== 'poi' &&
           !/(^|[-_])poi(s)?($|[-_])/.test(layer.id.toLowerCase()));
       }
-      if(choice !== 'bright') style.sources['nj-orthos'] = {
-        type:'raster', tiles:[orthos], tileSize:256,
-        attribution:'2020 aerial imagery © NJ Office of GIS'
-      };
+      if(choice !== 'bright') {
+        const isCustom = choice === 'custom';
+        style.sources[isCustom ? 'custom-tiles-source' : 'nj-orthos'] = {
+          type:'raster', tiles:[isCustom ? customTilesUrl : orthos], tileSize:256,
+          ...(isCustom ? {} : {attribution:'2020 aerial imagery © NJ Office of GIS'})
+        };
+      }
       if(choice==='hybrid') {
         // Keep transport, trails and geographic labels, but suppress the
         // OpenMapTiles POI source-layer (shops, restaurants, petrol stations,
@@ -460,7 +500,14 @@ try {
           }
         }
       }
-      if(choice !== 'bright') style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos',paint:{'raster-resampling':rasterResampling.value}});
+      if(choice !== 'bright') {
+        const isCustom = choice === 'custom';
+        style.layers.unshift({
+          id:isCustom ? 'custom-tiles-layer' : 'nj-orthos',
+          type:'raster',source:isCustom ? 'custom-tiles-source' : 'nj-orthos',
+          paint:{'raster-resampling':rasterResampling.value}
+        });
+      }
       stopDraw();
       // Invalidate pending overlay installs before replacing the style.
       styleState.ready=false;
@@ -472,7 +519,7 @@ try {
       console.error(e);
     }
   }
-  document.getElementById('style').addEventListener('change', event => {
+  styleSelect.addEventListener('change', event => {
     changeStyle(event.target.value);
   });
   changeStyle('bright');
