@@ -8,19 +8,62 @@ const el = id => document.getElementById(id);
 const supportsFiles = !!(window.showOpenFilePicker && window.showSaveFilePicker && window.isSecureContext);
 let map, draw, selected, fileHandle, fileName = 'Untitled.geojson';
 let metadata = {type:'FeatureCollection'}, records = new Map();
+const layers = [];
+let activeLayer, nextLayerId = 0;
+const overlaySources = new Set();
 let savedText = JSON.stringify({type:'FeatureCollection',features:[]});
 let ready = false, suspended = false, busy = false, dirty = false;
 let mode = 'select', styleRequest = 0;
 function report(error) { if (error?.name !== 'AbortError') el('error').textContent = error?.message || String(error); }
 function snapshot() { return draw ? draw.getSnapshot() : []; }
 function layer() { return writeLayer(metadata, records, snapshot()); }
+function layerData(item) { return writeLayer(item.metadata, item.records, item === activeLayer ? snapshot() : item.features); }
+function layerDirty(item) { return JSON.stringify(layerData(item)) !== item.savedText; }
+function syncActive() {
+  if (!activeLayer) return;
+  Object.assign(activeLayer, {metadata, records, features:geometryFeatures(), fileHandle, fileName, savedText});
+}
+function renderLayers() {
+  const list = el('layers');
+  list.replaceChildren(...layers.map(item => {
+    const option = document.createElement('option');
+    option.value = item.id;
+    option.textContent = (item.visible ? '● ' : '○ ') + item.fileName + (layerDirty(item) ? ' *' : '');
+    option.selected = item === activeLayer;
+    return option;
+  }));
+  el('layer-visible').checked = activeLayer?.visible ?? false;
+  // An active layer must stay visible so Terra Draw can edit its features.
+  el('layer-visible').disabled = !activeLayer || busy;
+  el('remove-layer').disabled = !activeLayer || busy;
+  el('source').textContent = activeLayer?.sourceUrl ? 'Source: ' + activeLayer.sourceUrl + ' (save locally)' : activeLayer ? 'Source: local GeoJSON file' : 'Open a file or create a layer.';
+}
+function renderOtherLayers() {
+  if (!map?.isStyleLoaded()) return;
+  for (const id of overlaySources) {
+    if (map.getLayer(id + '-points')) map.removeLayer(id + '-points');
+    if (map.getLayer(id + '-trails')) map.removeLayer(id + '-trails');
+    if (map.getSource(id)) map.removeSource(id);
+  }
+  overlaySources.clear();
+  const before = map.getStyle().layers.find(item => /terra.?draw/i.test(item.id))?.id;
+  for (const item of layers) {
+    if (item === activeLayer || !item.visible) continue;
+    const id = 'editor-source-' + item.id;
+    map.addSource(id, {type:'geojson', data:layerData(item)});
+    map.addLayer({id:id+'-trails',type:'line',source:id,filter:['==',['geometry-type'],'LineString'],paint:{'line-color':'#2678ad','line-width':3,'line-opacity':0.75}},before);
+    map.addLayer({id:id+'-points',type:'circle',source:id,filter:['==',['geometry-type'],'Point'],paint:{'circle-color':'#2678ad','circle-radius':5,'circle-stroke-color':'#ffffff','circle-stroke-width':1}},before);
+    overlaySources.add(id);
+  }
+}
 function geometryFeatures() { return snapshot().filter(f => ['point','linestring'].includes(f.properties?.mode) && !f.properties?.currentlyDrawing); }
 function refresh() {
   if (suspended || !ready) return;
-  dirty = JSON.stringify(layer()) !== savedText;
-  // An unfinished drawing is also work that must be confirmed before replacing.
+  syncActive();
+  dirty = layers.some(layerDirty);
   dirty ||= snapshot().some(f => f.properties?.currentlyDrawing);
-  el('filename').textContent = fileName + (dirty ? ' • Unsaved changes' : '');
+  el('filename').textContent = activeLayer ? fileName + (layerDirty(activeLayer) ? ' • Unsaved changes' : '') : 'No layer selected';
+  renderLayers();
   const features = geometryFeatures();
   el('features').replaceChildren(...features.map(f => {
     const option = document.createElement('option'); option.value = f.id;
@@ -52,36 +95,83 @@ function chooseMode(next) {
 }
 function setBusy(value) {
   busy = value;
-  for (const id of ['new','open','open-url','save','save-as','basemap']) el(id).disabled = value || !ready;
-  el('tools').disabled = value || !ready;
+  for (const id of ['new','open','open-url','basemap']) el(id).disabled = value || !ready;
+  for (const id of ['save','save-as']) el(id).disabled = value || !ready || !activeLayer;
+  el('tools').disabled = value || !ready || !activeLayer;
+  el('layers').disabled = value || !ready || !layers.length;
+  el('layer-visible').disabled = value || !ready || !activeLayer;
+  el('remove-layer').disabled = value || !ready || !activeLayer;
 }
-function confirmReplace() { return !dirty || window.confirm('Discard unsaved changes and replace the current layer?'); }
 function checkFinished() {
   if (snapshot().some(f => f.properties?.currentlyDrawing)) throw new Error('Finish the current trail or press Escape before saving.');
 }
+function activateLayer(item) {
+  if (!item || item === activeLayer) return;
+  checkFinished();
+  const previous = geometryFeatures();
+  syncActive();
+  suspended = true;
+  try {
+    // Validate before removing existing features, so a failed activation is safe.
+    const result = draw.addFeatures(item.features);
+    if (result.some(entry => !entry.valid)) throw new Error('Could not load the selected layer.');
+    draw.setMode('select'); mode = 'select';
+    if (previous.length) draw.removeFeatures(previous.map(f => f.id));
+    activeLayer = item;
+    ({metadata, records, fileHandle, fileName, savedText} = item);
+    item.visible = true;
+    selected = undefined;
+  } catch (error) {
+    const ids = new Set(item.features.map(f => f.id));
+    const inserted = snapshot().filter(f => ids.has(f.id)).map(f => f.id);
+    if (inserted.length) draw.removeFeatures(inserted);
+    throw error;
+  } finally { suspended = false; }
+  renderOtherLayers();
+  chooseMode('select'); showSelection(undefined); refresh();
+  setBusy(false);
+}
+function discardActive() {
+  if (activeLayer) {
+    const ids = geometryFeatures().map(f => f.id);
+    if (ids.length) draw.removeFeatures(ids);
+  }
+  activeLayer = undefined;
+  metadata = {type:'FeatureCollection'}; records = new Map();
+  fileHandle = undefined; fileName = 'Untitled.geojson';
+  savedText = JSON.stringify({type:'FeatureCollection',features:[]});
+  selected = undefined;
+}
 async function installLayer(data) {
-  // Add and check candidates first; a failed import leaves the existing layer intact.
+  // Imports add independently backed layers, never overwrite an existing one.
+  checkFinished();
   const next = readLayer(data);
-  const previous = geometryFeatures().map(f => f.id);
+  const previous = geometryFeatures();
+  syncActive();
   suspended = true;
   try {
     const result = draw.addFeatures(next.features);
-    const invalid = result.filter(item => !item.valid);
+    const invalid = result.filter(entry => !entry.valid);
     if (invalid.length) throw new Error('The drawing library could not load this file: ' + invalid.map(v => v.reason || 'invalid geometry').join('; '));
     draw.setMode('select'); mode = 'select';
-    draw.removeFeatures(previous);
-    metadata = next.metadata; records = next.records;
-    savedText = JSON.stringify(layer());
+    if (previous.length) draw.removeFeatures(previous.map(f => f.id));
+    const item = {
+      id: String(++nextLayerId), metadata:next.metadata, records:next.records,
+      features:next.features, fileHandle:undefined, fileName:'Untitled.geojson',
+      sourceUrl:undefined, visible:true,
+      savedText:JSON.stringify(writeLayer(next.metadata, next.records, geometryFeatures()))
+    };
+    layers.push(item); activeLayer = item;
+    ({metadata, records, fileHandle, fileName, savedText} = item);
     selected = undefined;
   } catch (error) {
-    // A rejected candidate was never inserted. Only roll back IDs actually present,
-    // otherwise removeFeatures masks the validation error with a missing-ID error.
     const candidates = new Set(next.features.map(f => f.id));
     const inserted = snapshot().filter(f => candidates.has(f.id)).map(f => f.id);
     if (inserted.length) draw.removeFeatures(inserted);
     throw error;
   } finally { suspended = false; }
-  chooseMode('select'); showSelection(undefined); refresh();
+  renderOtherLayers();
+  chooseMode('select'); showSelection(undefined); refresh(); setBusy(false);
   const points = geometryFeatures().flatMap(f => f.geometry.type === 'Point' ? [f.geometry.coordinates] : f.geometry.coordinates);
   if (points.length) {
     const bounds = new maplibregl.LngLatBounds();
@@ -93,7 +183,9 @@ async function openFile(file, handle) {
   const data = await importGeoData(new Uint8Array(await file.arrayBuffer()), file.name);
   await installLayer(data);
   fileHandle = /\.geojson$|\.json$/i.test(file.name) ? handle : undefined; fileName = /\.(kml|kmz)$/i.test(file.name) ? file.name.replace(/\.(kml|kmz)$/i, '.geojson') : file.name;
-  refresh(); el('status').textContent = 'Opened ' + fileName;
+  activeLayer.fileHandle = fileHandle;
+  activeLayer.fileName = fileName;
+  refresh(); el('status').textContent = 'Opened layer ' + fileName;
 }
 async function save(asNew = false) {
   if (busy) return;
@@ -117,12 +209,11 @@ async function save(asNew = false) {
       setTimeout(() => URL.revokeObjectURL(url), 30000);
       el('status').textContent = 'Downloaded ' + fileName + '. Replace your original file with this copy.';
     }
-    savedText = JSON.stringify(data); refresh();
+    savedText = JSON.stringify(data); syncActive(); refresh();
   } catch (error) { report(error); }
   finally { setBusy(false); showSelection(selected); }
 }
 el('open-url').onclick = async () => {
-  if (!confirmReplace()) return;
   el('error').textContent = '';
   const raw = el('open-url-input').value.trim();
   if (!raw) { report(new Error('Enter a GeoJSON URL.')); return; }
@@ -136,6 +227,8 @@ el('open-url').onclick = async () => {
     fileHandle = undefined;
     fileName = decodeURIComponent(url.pathname.split('/').pop() || 'remote.geojson').replace(/\.(kml|kmz)$/i, '.geojson');
     if (url.pathname.endsWith('/kml')) fileName = 'mymaps.geojson';
+    activeLayer.sourceUrl = url.href;
+    activeLayer.fileName = fileName;
     refresh();
     el('status').textContent = 'Opened ' + url.href + ' (read-only source; Save downloads or saves a local copy).';
   } catch (error) { report(error); }
@@ -147,15 +240,18 @@ el('open-url-input').onkeydown = event => {
 el('save').onclick = () => save();
 el('save-as').onclick = () => save(true);
 el('new').onclick = async () => {
-  if (!confirmReplace()) return;
-  try { await installLayer({type:'FeatureCollection',features:[]}); fileHandle = undefined; fileName = 'Untitled.geojson'; refresh(); }
-  catch (error) { report(error); }
+  try {
+    await installLayer({type:'FeatureCollection',features:[]});
+    fileHandle = undefined;
+    fileName = layers.length === 1 ? 'Untitled.geojson' : 'Untitled-' + layers.length + '.geojson';
+    activeLayer.fileName = fileName;
+    refresh();
+  } catch (error) { report(error); }
 };
 el('open').onclick = async () => {
-  if (!confirmReplace()) return;
   el('error').textContent = '';
   if (!supportsFiles) { el('file').value = ''; el('file').click(); return; }
-  try { const [handle] = await window.showOpenFilePicker({multiple:false,types:[{description:'GeoJSON, KML, KMZ',accept:{'application/octet-stream':['.geojson','.json','.kml','.kmz']}}]}); setBusy(true); await openFile(await handle.getFile(), handle); }
+  try { const [handle] = await window.showOpenFilePicker({multiple:false}); setBusy(true); await openFile(await handle.getFile(), handle); }
   catch (error) { report(error); }
   finally { setBusy(false); }
 };
@@ -165,6 +261,34 @@ el('file').onchange = async event => {
   try { await openFile(event.target.files[0], undefined); }
   catch (error) { report(error); }
   finally { setBusy(false); }
+};
+el('layers').onchange = event => {
+  try { activateLayer(layers.find(item => item.id === event.target.value)); }
+  catch (error) { report(error); renderLayers(); }
+};
+el('layer-visible').onchange = event => {
+  // A selected layer remains visible; switch away before hiding it.
+  if (!activeLayer) return;
+  activeLayer.visible = event.target.checked;
+  if (!activeLayer.visible) {
+    activeLayer.visible = true;
+    report(new Error('Select another layer before hiding this one.'));
+  }
+  renderOtherLayers(); refresh();
+};
+el('remove-layer').onclick = () => {
+  if (!activeLayer) return;
+  const removed = activeLayer;
+  if (layerDirty(removed) && !window.confirm('Discard unsaved changes to ' + removed.fileName + ' and remove the layer?')) return;
+  try {
+    checkFinished();
+    const next = layers.find(item => item !== removed);
+    if (next) activateLayer(next);
+    else { suspended = true; discardActive(); suspended = false; }
+    layers.splice(layers.indexOf(removed), 1);
+    renderOtherLayers(); refresh(); setBusy(false);
+    el('status').textContent = 'Removed ' + removed.fileName;
+  } catch (error) { suspended = false; report(error); }
 };
 for (const button of document.querySelectorAll('[data-mode]')) button.onclick = () => chooseMode(button.dataset.mode);
 el('features').onchange = event => {
@@ -187,8 +311,8 @@ el('delete').onclick = () => {
 };
 window.addEventListener('beforeunload', event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
 el('file-help').textContent = 'URL imports require the remote server to allow CORS. URL sources cannot be written back directly. ' + (supportsFiles
-  ? 'Open a local GeoJSON file. Save writes back to that file; new layers use Save as. Files stay on your device.'
-  : 'This browser opens files but saves a downloaded copy. Use desktop Chrome or Edge over HTTPS to save directly to the opened file.');
+  ? 'Open multiple files. Each layer saves to its own file; URL layers save as local copies. Files stay on your device.'
+  : 'Each layer downloads its own replacement copy. Use desktop Chrome or Edge over HTTPS to save back to local files.');
 if (!supportsFiles) { el('save').textContent = 'Download'; el('save-as').hidden = true; }
 
 async function boot() {
@@ -248,7 +372,7 @@ async function boot() {
       const features = geometryFeatures();
       setBusy(true); suspended = true; draw.stop(); ready = false;
       map.once('style.load', () => {
-        try { makeDraw(); const results = draw.addFeatures(features); if (results.some(r => !r.valid)) throw new Error('Could not restore editable features after switching basemap.'); ready = true; suspended = false; activeBasemap = id; el('basemap').dataset.active = id; chooseMode(mode); refresh(); }
+        try { makeDraw(); const results = draw.addFeatures(features); if (results.some(r => !r.valid)) throw new Error('Could not restore editable features after switching basemap.'); ready = true; suspended = false; activeBasemap = id; el('basemap').dataset.active = id; renderOtherLayers(); chooseMode(mode); refresh(); }
         catch (error) { report(error); }
         finally { setBusy(false); }
       });
