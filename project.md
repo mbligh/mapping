@@ -114,6 +114,8 @@ Switching layers snapshots the prior layer's edits and restores the target's fea
 
 The editor's Open and Save as pickers use all files without extension filters, including the fallback file input, so extensionless GeoJSON files in `public/geojson/` can be selected directly. File contents still undergo GeoJSON validation.
 
+For point-heavy layers such as `public/geojson/home_depot`, the editor shows city and street before repeated feature names, uses an 18-pixel Terra Draw selection tolerance, and scrolls property controls into view when a marker is selected. Browser regression coverage projects and clicks a real Overture Home Depot point to confirm selection works directly on the map.
+
 The editor adapter accepts 17 decimal places so full-precision Overture coordinates load without rounding the source data. Failed imports remove only candidates actually inserted, preserving the previous layer and the original validation error. Browser regression checks cover the real Home Depot dataset, exact save round trips after basemap switching, and mixed accepted/rejected import batches.
 
 ## Address lookup CLI
