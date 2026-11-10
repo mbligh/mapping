@@ -102,6 +102,12 @@ It runs on the first of every month at 08:41 UTC, manually, or when address buil
 
 
 
+## Multi-layer GeoJSON editor (November 2026)
+
+The editor now keeps an in-memory list of layers, each backed by exactly one independent source FeatureCollection and associated filename, optional File System Access handle, or originating read-only URL. Opening local files/URLs and creating new layers add to that list, rather than replacing the current file. Terra Draw contains only the active layer's editable features; inactive visible layers render using separate MapLibre GeoJSON sources with point and line layers. All data sources use the existing `readLayer`/`writeLayer` validation and preserve source feature properties and IDs without writing editor bookkeeping into GeoJSON.
+
+Switching layers snapshots the prior layer's edits and restores the target's features. A per-layer dirty baseline protects edits made to inactive layers; only the selected layer is written by Save/Save as. Hidden layers persist in memory and become visible on selection. Removing a dirty layer asks for confirmation, while invalid imports leave every existing layer untouched. Style changes restore active Terra Draw data and inactive overlays; an unfinished trail or unsaved edits still block a basemap switch. This is a session-only client-side layer collection, not a new multi-source document format or database. See `public/editor/README.md` and the Chromium regression checks.
+
 ## Simple GeoJSON editor
 
 `public/editor/` provides a separate MapLibre/Terra Draw editor at `/editor/`, with basemaps configured in `basemaps.json`, one editable local GeoJSON FeatureCollection, Point and LineString drawing/vertex editing, names/descriptions and arbitrary JSON properties. Manual Save writes back using browser File System Access handles; unsupported browsers download a replacement copy. No backend, database, autosave, revision/undo history, permissions, collaborative editing or routing is introduced. Files stay local and publishing data to Git remains a separate operation. Existing IDs/properties/foreign members survive saves; unsupported data is rejected before replacing the current layer. Renderer bookkeeping stays outside the user data. A pure data-model module and actual-library Playwright browser checks run in the Pages workflow before publication. Basemap changes restore editor geometry without changing the saved file. See `public/editor/README.md` for usage and limitations.
