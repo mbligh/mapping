@@ -14,7 +14,13 @@ const {chromium} = require('playwright');
     'https://esm.sh/@tmcw/togeojson@7.1.2': '@tmcw/togeojson',
     'https://esm.sh/fflate@0.8.2': 'fflate'
   };
-  const bundle = await build({entryPoints:[path.join(root,'editor.js')],bundle:true,write:false,format:'esm',plugins:[{name:'local-cdn-dependencies',setup(builder){builder.onResolve({filter:/^https:/}, args => builder.resolve(aliases[args.path], {kind:'import-statement',resolveDir:process.env.NODE_PATH}));}}]});
+  const bundle = await build({entryPoints:[path.join(root,'editor.js')],bundle:true,write:false,format:'esm',plugins:[
+    {name:'expose-test-map',setup(builder){builder.onLoad({filter:/\/editor\.js$/},args=>({
+      contents:fs.readFileSync(args.path,'utf8').replace('map = new maplibregl.Map(', 'map = window.__testMap = new maplibregl.Map('),
+      loader:'js'
+    }));}},
+    {name:'local-cdn-dependencies',setup(builder){builder.onResolve({filter:/^https:/}, args => builder.resolve(aliases[args.path], {kind:'import-statement',resolveDir:process.env.NODE_PATH}));}}
+  ]});
   const server=http.createServer((req,res)=>{
     const pathname=new URL(req.url,'http://localhost').pathname;
     if(pathname==='/editor.js'){res.setHeader('Content-Type','text/javascript');res.end(bundle.outputFiles[0].text);return;}
@@ -102,6 +108,24 @@ const {chromium} = require('playwright');
     await page.click('#open');
     await page.waitForFunction(count=>document.querySelectorAll('#features option').length===count,homeDepot.features.length);
     assert.equal(await page.locator('#error').textContent(),'');
+    // Open a real statewide Overture dataset and click one of its point markers.
+    // Previous tests only selected entries via the list, missing map selection regressions.
+    const target=homeDepot.features.find(f=>f.properties.name==='The Home Depot' && f.properties.city==='Brick');
+    assert(target,'Expected Brick Home Depot in the committed fixture');
+    await page.waitForFunction(()=>window.__testMap && !window.__testMap.isMoving());
+    const cursor=await page.evaluate(coords=>{
+      const map=window.__testMap;
+      const rect=map.getCanvas().getBoundingClientRect();
+      const p=map.project(coords);
+      return {x:rect.left+p.x,y:rect.top+p.y};
+    },target.geometry.coordinates);
+    await page.mouse.click(cursor.x,cursor.y);
+    await page.waitForFunction(()=>document.getElementById('name').value==='The Home Depot');
+    assert.equal(await page.inputValue('#name'),'The Home Depot');
+    assert.match(await page.locator('#properties').inputValue(),/"city": "Brick"/);
+    const labels=await page.locator('#features option').allTextContents();
+    assert(labels.some(label=>label.startsWith('Brick · 1722 RT-88 — The Home Depot')));
+    assert(labels.some(label=>label.startsWith('Absecon · 421 Absecon Blvd — The Home Depot')));
     await page.selectOption('#basemap','a');
     await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='a' && !document.getElementById('save').disabled);
     await page.click('#save');await page.waitForFunction(()=>window.__writes.length===5);
