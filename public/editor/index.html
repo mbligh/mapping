@@ -11,14 +11,19 @@
 <body>
 <aside>
   <h1>GeoJSON editor</h1>
-  <p class="subtle">One file · points and trails</p>
+  <p class="subtle">Multiple layers · one GeoJSON source per layer</p>
   <label for="basemap">Basemap</label><select id="basemap" disabled></select>
-  <div class="buttons"><button id="new" disabled>New</button><button id="open" disabled>Open…</button><button id="save" disabled>Save</button><button id="save-as" disabled>Save as…</button></div>
+  <div class="buttons"><button id="new" disabled>New layer</button><button id="open" disabled>Open layer…</button><button id="save" disabled>Save layer</button><button id="save-as" disabled>Save layer as…</button></div>
   <div class="buttons"><input id="open-url-input" type="url" placeholder="GeoJSON, KML, KMZ or My Maps URL" aria-label="GeoJSON, KML, KMZ or My Maps URL"><button id="open-url" disabled>Open URL</button></div>
   <input id="file" type="file" hidden>
-  <p id="filename">Untitled.geojson</p>
+  <label for="layers">Layers</label>
+  <select id="layers" size="4" aria-label="Choose layer to edit" disabled></select>
+  <div class="buttons"><button id="remove-layer" disabled>Remove layer</button></div>
+  <label class="layer-toggle"><input id="layer-visible" type="checkbox" disabled> Show selected layer</label>
+  <p id="source" class="subtle">Open a file or create a layer.</p>
+  <p id="filename">No layer selected</p>
   <p id="file-help" class="subtle"></p>
-  <fieldset id="tools" disabled><legend>Edit layer</legend>
+  <fieldset id="tools" disabled><legend>Edit selected layer</legend>
     <div class="buttons"><button data-mode="select" aria-pressed="true">Select / move</button><button data-mode="point" aria-pressed="false">Add point</button><button data-mode="linestring" aria-pressed="false">Draw trail</button></div>
     <p class="subtle">Click to place points. For trails, click each vertex and press Enter to finish. Select a trail to drag its vertices or insert a vertex by dragging a midpoint. Escape cancels an unfinished trail. Midpoints insert vertices; existing vertices can be dragged. Right-click a vertex to delete it (a trail must retain at least two vertices).</p>
     <label for="features">Features</label><select id="features" size="5" aria-label="Features in this layer"></select>
