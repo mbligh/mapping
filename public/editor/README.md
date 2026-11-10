@@ -25,7 +25,7 @@ The editor accepts Point and LineString features with 2D longitude/latitude posi
 
 Edit `basemaps.json` to set `center`, `zoom`, `defaultBasemap`, and `basemaps`. Each entry has an `id`, `name`, and either a `style` URL to MapLibre style JSON (with CORS permitted) or raster XYZ `tiles` with optional `tileSize` and `attribution`.
 
-Basemap changes preserve all layer contents, including inactive-layer overlays. As a precaution, finish any unfinished trail and save edits in all layers before switching basemaps.
+Basemap changes preserve all layer contents, including unsaved edits in both active and inactive layers. Finish or cancel any unfinished trail before switching basemaps; saving first is not required.
 
 ## Checks
 
