@@ -30,9 +30,16 @@ const {chromium} = require('playwright');
   const pageErrors=[]; page.on('pageerror',e=>pageErrors.push(e.message));
   const fixture={type:'FeatureCollection',source:'keep this',features:[{type:'Feature',id:42,properties:{name:'Gate',nested:{test:true},mode:'user-mode'},geometry:{type:'Point',coordinates:[-74.771,40.692]}},{type:'Feature',properties:null,geometry:{type:'LineString',coordinates:[[-74.773,40.691],[-74.769,40.693]]}}]};
   await page.addInitScript(({fixture})=>{
-    window.__fixture=fixture;window.__writes=[];window.__saveFails=false;
-    const handle={name:'layer.geojson',getFile:async()=>new File([JSON.stringify(window.__fixture)],'layer.geojson'),createWritable:async()=>({write:async text=>{if(window.__saveFails)throw new Error('Simulated disk error');window.__pending=text;},close:async()=>window.__writes.push(window.__pending),abort:async()=>{}})};
-    window.showOpenFilePicker=async()=>[handle];window.showSaveFilePicker=async()=>handle;
+    window.__fixture=fixture;window.__writes=[];window.__writesByHandle={first:[],second:[]};window.__saveFails=false;window.__openSecond=false;
+    const makeHandle=(name,key)=>({name,getFile:async()=>new File([JSON.stringify(window.__fixture)],name),createWritable:async()=>{
+      let pending;
+      return {write:async text=>{if(window.__saveFails)throw new Error('Simulated disk error');pending=text;},close:async()=>{
+        window.__writes.push(pending);window.__writesByHandle[key].push(pending);
+      },abort:async()=>{}};
+    }});
+    const firstHandle=makeHandle('layer.geojson','first'),secondHandle=makeHandle('home_depot.geojson','second');
+    window.showOpenFilePicker=async()=>[window.__openSecond?secondHandle:firstHandle];
+    window.showSaveFilePicker=async()=>window.__openSecond?secondHandle:firstHandle;
   },{fixture});
   await page.route('https://unpkg.com/**',route=>route.fulfill({contentType:'text/css',body:fs.readFileSync(path.join(process.env.NODE_PATH,'maplibre-gl/dist/maplibre-gl.css'),'utf8')}));
   try {
@@ -87,7 +94,7 @@ const {chromium} = require('playwright');
     assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[3]).features),drawn.features.filter((_,i)=>i!==2));
     // Real Overture coordinates exceed the adapter's default nine decimal places.
     const homeDepot=JSON.parse(fs.readFileSync(path.join(root,'../geojson/home_depot'),'utf8'));
-    await page.evaluate(data=>window.__fixture=data,homeDepot);
+    await page.evaluate(data=>{window.__fixture=data;window.__openSecond=true;},homeDepot);
     await page.click('#open');
     await page.waitForFunction(count=>document.querySelectorAll('#features option').length===count,homeDepot.features.length);
     assert.equal(await page.locator('#error').textContent(),'');
@@ -113,6 +120,7 @@ const {chromium} = require('playwright');
     await page.click('#save');
     await page.waitForFunction(()=>window.__writes.length===7);
     assert.equal(await page.evaluate(()=>JSON.parse(window.__writes[6]).features[0].properties.name),'Changed in first layer');
+    assert.deepEqual(await page.evaluate(()=>[window.__writesByHandle.first.length,window.__writesByHandle.second.length]),[5,2]);
     await page.selectOption('#layers',{index:1});
     await page.click('#layer-visible');
     await page.waitForFunction(()=>document.querySelector('#layers option:nth-child(2)').textContent.startsWith('○ '));
