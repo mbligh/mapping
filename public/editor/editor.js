@@ -34,12 +34,13 @@ function renderLayers() {
   }));
   el('layer-visible').checked = activeLayer?.visible ?? false;
   // An active layer must stay visible so Terra Draw can edit its features.
-  el('layer-visible').disabled = !activeLayer || busy;
+  el('layer-visible').disabled = !activeLayer || layers.length < 2 || busy;
   el('remove-layer').disabled = !activeLayer || busy;
   el('source').textContent = activeLayer?.sourceUrl ? 'Source: ' + activeLayer.sourceUrl + ' (save locally)' : activeLayer ? 'Source: local GeoJSON file' : 'Open a file or create a layer.';
 }
 function renderOtherLayers() {
-  if (!map?.isStyleLoaded()) return;
+  // style.load fires before all raster tiles finish. The style is usable here.
+  if (!map?.getStyle()?.layers) return;
   for (const id of overlaySources) {
     if (map.getLayer(id + '-points')) map.removeLayer(id + '-points');
     if (map.getLayer(id + '-trails')) map.removeLayer(id + '-trails');
@@ -99,7 +100,7 @@ function setBusy(value) {
   for (const id of ['save','save-as']) el(id).disabled = value || !ready || !activeLayer;
   el('tools').disabled = value || !ready || !activeLayer;
   el('layers').disabled = value || !ready || !layers.length;
-  el('layer-visible').disabled = value || !ready || !activeLayer;
+  el('layer-visible').disabled = value || !ready || layers.length < 2 || !activeLayer;
   el('remove-layer').disabled = value || !ready || !activeLayer;
 }
 function checkFinished() {
@@ -267,14 +268,20 @@ el('layers').onchange = event => {
   catch (error) { report(error); renderLayers(); }
 };
 el('layer-visible').onchange = event => {
-  // A selected layer remains visible; switch away before hiding it.
   if (!activeLayer) return;
-  activeLayer.visible = event.target.checked;
-  if (!activeLayer.visible) {
-    activeLayer.visible = true;
-    report(new Error('Select another layer before hiding this one.'));
+  if (event.target.checked) { activeLayer.visible = true; refresh(); return; }
+  const previous = activeLayer;
+  const next = layers.find(item => item !== previous && item.visible) || layers.find(item => item !== previous);
+  if (!next) {
+    report(new Error('Create or open another layer before hiding the only layer.'));
+    refresh(); return;
   }
-  renderOtherLayers(); refresh();
+  try {
+    activateLayer(next);
+    previous.visible = false;
+    renderOtherLayers(); refresh();
+    el('status').textContent = 'Hid ' + previous.fileName + '. Select it to show and edit it again.';
+  } catch (error) { report(error); refresh(); }
 };
 el('remove-layer').onclick = () => {
   if (!activeLayer) return;
