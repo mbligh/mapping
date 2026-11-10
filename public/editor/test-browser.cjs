@@ -50,11 +50,15 @@ const {chromium} = require('playwright');
     assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[0])),fixture);
     await page.selectOption('#features',{index:0});
     await page.fill('#name','Renamed gate');
-    // Unsaved edits now deliberately prevent basemap switching.
+    // Basemap changes must preserve unsaved edits, not require a save.
     await page.selectOption('#basemap','b');
-    await page.waitForFunction(()=>document.getElementById('error').textContent.includes('Save or download your changes'));
-    assert.equal(await page.inputValue('#basemap'),'a');
+    await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='b' && !document.getElementById('save').disabled);
+    assert.match(await page.locator('#filename').textContent(),/Unsaved changes/);
+    await page.selectOption('#features',{index:0});
+    assert.equal(await page.inputValue('#name'),'Renamed gate');
     await page.click('#save'); await page.waitForFunction(()=>window.__writes.length===2);
+    await page.selectOption('#basemap','a');
+    await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='a' && !document.getElementById('save').disabled);
     await page.selectOption('#basemap','b');
     await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='b' && !document.getElementById('save').disabled);
     assert.equal(await page.locator('#features option').count(),2);
@@ -110,6 +114,14 @@ const {chromium} = require('playwright');
     await page.fill('#name','Changed in first layer');
     await page.selectOption('#layers',{index:1});
     assert.equal(await page.locator('#features option').count(),homeDepot.features.length);
+    // A dirty inactive layer must not prevent switching basemap.
+    await page.selectOption('#basemap','b');
+    await page.waitForFunction(()=>document.getElementById('basemap').dataset.active==='b' && !document.getElementById('save').disabled);
+    await page.selectOption('#layers',{index:0});
+    await page.selectOption('#features',{index:0});
+    assert.equal(await page.inputValue('#name'),'Changed in first layer');
+    assert.match(await page.locator('#filename').textContent(),/Unsaved changes/);
+    await page.selectOption('#layers',{index:1});
     await page.click('#save');
     await page.waitForFunction(()=>window.__writes.length===6);
     assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[5])),homeDepot);
