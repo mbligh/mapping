@@ -66,10 +66,16 @@ function refresh() {
   el('filename').textContent = activeLayer ? fileName + (layerDirty(activeLayer) ? ' • Unsaved changes' : '') : 'No layer selected';
   renderLayers();
   const features = geometryFeatures();
-  el('features').replaceChildren(...features.map(f => {
+  el('features').replaceChildren(...features.map((f, index) => {
     const option = document.createElement('option'); option.value = f.id;
-    const name = records.get(f.id)?.properties?.name;
-    option.textContent = (typeof name === 'string' && name) || (f.geometry.type === 'Point' ? 'Unnamed point' : 'Unnamed trail');
+    const props = records.get(f.id)?.properties || {};
+    const name = typeof props.name === 'string' && props.name.trim()
+      ? props.name.trim() : (f.geometry.type === 'Point' ? 'Unnamed point' : 'Unnamed trail');
+    // Put the location first so similarly named stores are distinguishable
+    // even in the narrow sidebar. Do not modify the source properties.
+    const location = [props.city, props.street].filter(v => typeof v === 'string' && v.trim()).join(' · ');
+    option.textContent = location ? location + ' — ' + name : name + ' #' + (index + 1);
+    option.title = option.textContent;
     option.selected = f.id === selected; return option;
   }));
   if (!features.some(f => f.id === selected)) showSelection(undefined);
@@ -83,6 +89,10 @@ function showSelection(id) {
   el('description').value = typeof props.description === 'string' ? props.description : '';
   el('properties').value = feature ? JSON.stringify(records.get(id)?.properties ?? {}, null, 2) : '';
   el('features').value = id ?? '';
+  if (feature) {
+    el('status').textContent = 'Selected ' + (typeof props.name === 'string' ? props.name : 'feature')
+      + (typeof props.city === 'string' ? ' in ' + props.city : '') + '. Edit its fields below.';
+  }
 }
 function recordFor(id) {
   if (!records.has(id)) records.set(id, {type:'Feature', id, properties:{}});
@@ -335,7 +345,7 @@ async function boot() {
     const lineMode = new TerraDrawLineStringMode({pointerDistance:3, keyEvents:{finish:'Enter',cancel:'Escape'}});
     draw = new TerraDraw({adapter:new TerraDrawMapLibreGLAdapter({map, coordinatePrecision:17}), modes:[
       new TerraDrawPointMode(), lineMode,
-      new TerraDrawSelectMode({pointerDistance:5, flags:{point:{feature:{draggable:true}}, linestring:{feature:{draggable:false,coordinates:{draggable:true,midpoints:{draggable:true},deletable:true}}}}})
+      new TerraDrawSelectMode({pointerDistance:18, flags:{point:{feature:{draggable:true}}, linestring:{feature:{draggable:false,coordinates:{draggable:true,midpoints:{draggable:true},deletable:true}}}}})
     ]});
     draw.start();
     // Terra Draw treats clicks near its last vertex as a request to finish.
@@ -343,7 +353,13 @@ async function boot() {
     lineMode.closingPoints.isLineStringClosingPoint = () => ({isClosing:false});
     draw.setMode('select');
     draw.on('change', () => refresh());
-    draw.on('select', id => { if (!suspended) showSelection(id); });
+    draw.on('select', id => {
+      if (suspended) return;
+      showSelection(id);
+      // The property editor is below the layer and feature lists; otherwise
+      // clicking a map marker can appear to do nothing on a small screen.
+      if (selected !== undefined) el('name').scrollIntoView({block:'nearest'});
+    });
     draw.on('deselect', () => { if (!suspended) showSelection(undefined); });
     draw.on('finish', () => { refresh(); });
   };
