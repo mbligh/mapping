@@ -375,14 +375,10 @@ async function boot() {
       report(new Error('Finish the current trail with Enter (or cancel with Escape) before changing basemaps.'));
       return;
     }
-    // Basemap replacement recreates Terra Draw. Do not risk unsaved edits,
-    // even if all currently drawn features are complete.
+    // Basemap replacement recreates Terra Draw, but it is a presentation
+    // change only. Snapshot the active edits and restore them after style.load.
+    // The unfinished-trail guard above protects draft vertices separately.
     refresh();
-    if (dirty) {
-      el('basemap').value = activeBasemap || id;
-      report(new Error('Save or download your changes before changing basemaps. The current layer has not been replaced.'));
-      return;
-    }
     const request = ++styleRequest;
     el('error').textContent = '';
     try {
