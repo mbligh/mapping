@@ -247,11 +247,11 @@ try {
       });
       if(!map.getLayer(fillId)) map.addLayer({
         id:fillId,type:'fill',source:sourceId,'source-layer':'buildings',
-        minzoom:11,paint:{'fill-color':cfg.color,'fill-opacity':0.22}
+        minzoom:cfg.id==='trex'?13:11,paint:{'fill-color':cfg.color,'fill-opacity':0.22}
       });
       if(!map.getLayer(outlineId)) map.addLayer({
         id:outlineId,type:'line',source:sourceId,'source-layer':'buildings',
-        minzoom:11,paint:{'line-color':cfg.color,'line-width':1.2,'line-opacity':0.95}
+        minzoom:cfg.id==='trex'?13:11,paint:{'line-color':cfg.color,'line-width':1.2,'line-opacity':0.95}
       });
       for(const id of [fillId,outlineId])
         map.setLayoutProperty(id,'visibility',check.checked?'visible':'none');
