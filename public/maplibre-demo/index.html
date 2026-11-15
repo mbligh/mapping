@@ -44,6 +44,9 @@
   <button id="reset" type="button">Tewksbury</button>
   <label><input id="parcels" type="checkbox"> Hunterdon parcels</label>
   <label><input id="contours" type="checkbox"> NJ contours (100–10 ft)</label>
+  <label><input id="trex-buildings" type="checkbox"> T.REX buildings (orange)</label>
+  <label><input id="overture-buildings" type="checkbox"> Overture buildings (blue)</label>
+  <div class="hint" id="buildings-status">Building overlays load from R2 when enabled.</div>
   <label><input id="surveillance" type="checkbox"> Surveillance</label>
   <div class="hint" aria-label="Camera colour legend">Blue: Flock viewing direction · Yellow: speed · Red: red-light · Green: other OSM</div>
   <div class="hint" id="surveillance-status" aria-live="polite"></div>
@@ -193,6 +196,75 @@ try {
     }
     return {type:'FeatureCollection',features};
   }
+  // Independent experimental footprints; use R2 HTTP-range sources, not GitHub
+  // release download URLs. Color contrast makes overlapping geometry obvious.
+  const buildingConfigs=[
+    {id:'trex',label:'T.REX',checkbox:'trex-buildings',color:'#e66b00'},
+    {id:'overture',label:'Overture',checkbox:'overture-buildings',color:'#1672dc'}
+  ];
+  const buildingStatus=document.getElementById('buildings-status');
+  const buildingArchives=new Map();
+  const buildingPending=new Map();
+  const buildingsBaseUrl=null; // Filled from R2_PUBLIC_URL by Pages publisher.
+  function refreshBuildingStatus(message=''){
+    buildingStatus.textContent=message || 'Orange: T.REX · blue: Overture. Enable either or both.';
+  }
+  async function installBuilding(cfg){
+    const check=document.getElementById(cfg.checkbox);
+    const prefix=cfg.id+'-buildings';
+    const sourceId=prefix+'-tiles';
+    const fillId=prefix+'-fill', outlineId=prefix+'-outline';
+    if(!check.checked){
+      for(const id of [fillId,outlineId]) if(map.getLayer(id))
+        map.setLayoutProperty(id,'visibility','none');
+      return;
+    }
+    if(!styleState.ready) return;
+    const generation=styleState.generation;
+    try {
+      if(!buildingsBaseUrl) throw new Error('R2_PUBLIC_URL not configured in Pages');
+      if(!buildingPending.has(cfg.id)){
+        buildingPending.set(cfg.id,(async()=>{
+          const manifestUrl=buildingsBaseUrl+'/'+prefix+'.json';
+          const response=await fetch(manifestUrl,{cache:'no-cache'});
+          if(!response.ok) throw new Error('Manifest HTTP '+response.status);
+          const manifest=await response.json();
+          if(typeof manifest.url!=='string') throw new Error('Missing PMTiles URL');
+          const url=new URL(manifest.url,manifestUrl).href;
+          const archive=new PMTiles(url);
+          pmProtocol.add(archive);
+          buildingArchives.set(cfg.id,{url,archive});
+          return url;
+        })().catch(e=>{buildingPending.delete(cfg.id);throw e}));
+      }
+      const url=await buildingPending.get(cfg.id);
+      if(!check.checked || !styleState.ready || generation!==styleState.generation) return;
+      if(!map.getSource(sourceId)) map.addSource(sourceId,{
+        type:'vector',url:'pmtiles://'+url,
+        attribution:cfg.id==='overture'
+          ? '© Overture Maps Foundation and contributing data providers'
+          : 'T.REX Maps experimental building extract; source attribution unverified'
+      });
+      if(!map.getLayer(fillId)) map.addLayer({
+        id:fillId,type:'fill',source:sourceId,'source-layer':'buildings',
+        minzoom:11,paint:{'fill-color':cfg.color,'fill-opacity':0.22}
+      });
+      if(!map.getLayer(outlineId)) map.addLayer({
+        id:outlineId,type:'line',source:sourceId,'source-layer':'buildings',
+        minzoom:11,paint:{'line-color':cfg.color,'line-width':1.2,'line-opacity':0.95}
+      });
+      for(const id of [fillId,outlineId])
+        map.setLayoutProperty(id,'visibility',check.checked?'visible':'none');
+      refreshBuildingStatus();
+    } catch(e){
+      if(check.checked && generation===styleState.generation){
+        refreshBuildingStatus(cfg.label+' buildings failed: '+(e.message||e));
+        console.error(e);
+      }
+    }
+  }
+  for(const cfg of buildingConfigs)
+    document.getElementById(cfg.checkbox).addEventListener('change',()=>installBuilding(cfg));
   const parcelCheck = document.getElementById('parcels');
   const contourCheck = document.getElementById('contours');
   const surveillanceCheck = document.getElementById('surveillance');
@@ -393,6 +465,7 @@ try {
     installParcels();
     scheduleParcels();
     installSurveillance();
+    for(const cfg of buildingConfigs) installBuilding(cfg);
   });
   map.on('moveend',scheduleParcels);
   parcelCheck.addEventListener('change',()=>{if(styleState.ready){installParcels();loadParcels();}});
