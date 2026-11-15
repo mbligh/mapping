@@ -155,3 +155,7 @@ The `public/maplibre-demo/index.html` basemap selector supports a user-supplied 
 ## Experimental T.REX building extraction
 
 The source `nj_features.pmtiles` is retained in the independent `trex-extracts` GitHub Release. The `scripts/extract_trex_buildings` and `scripts/flatten_trex_buildings` utilities decode only zoom-13 `buildings` MVT features into one compressed GeoJSON FeatureCollection, without attempting to merge clipped building geometries or deduplicate features. The `Extract T.REX NJ buildings` workflow publishes its output and geometry-count summary in the `trex-buildings-nj` release; no large raw data files enter Git or the deployed Pages site. This experimental output is intended for validation and comparison with separately sourced footprints before reuse or distribution policies are established.
+
+## Independent Overture building layer
+
+The Overture NJ building experiment uses the official overturemaps CLI against the STAC latest release to download native building footprints and maintain them separately from the T.REX tile-decoded polygons. A standalone GitHub Actions workflow builds z0–13 PMTiles and publishes both the compressed raw GeoJSON sequence and PMTiles, with counts, release metadata, checksums and attribution documentation, to immutable experimental releases. Comparing the native polygons with T.REX's z13 MVT output should account for tile clipping/duplication and the broader NJ bounding rectangle.
