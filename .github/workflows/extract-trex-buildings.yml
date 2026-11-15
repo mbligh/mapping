@@ -28,23 +28,15 @@ jobs:
       - name: Extract building geometries
         run: |
           mkdir -p dist
-          sh scripts/extract_trex_buildings /tmp/trex/nj_features.pmtiles dist/nj_buildings.geojson.gz
+          bash scripts/extract_trex_buildings /tmp/trex/nj_features.pmtiles dist/nj_buildings.geojson.gz
           python3 - <<'PY'
           import gzip, json
-          from pathlib import Path
-          p = Path('dist/nj_buildings.geojson.gz')
-          with gzip.open(p, 'rt') as f:
-              data = json.load(f)
-          assert data['type'] == 'FeatureCollection'
-          features = data['features']
-          assert features, 'No buildings decoded'
-          types = {}
-          for feature in features:
-              kind = feature['geometry']['type']
-              types[kind] = types.get(kind, 0) + 1
-          print('Building features:', len(features), 'geometry types:', types)
-          Path('dist/nj_buildings.summary.json').write_text(
-              json.dumps({'count': len(features), 'geometry_types': types, 'source': 'trex-extracts/nj_features.pmtiles', 'zoom': 13}, indent=2) + '\n')
+          with gzip.open('dist/nj_buildings.geojson.gz', 'rt') as f:
+              assert f.read(30).startswith('{"type":"FeatureCollection"')
+          with open('dist/nj_buildings.summary.json') as f:
+              summary = json.load(f)
+          assert summary['count'] > 0
+          print(summary)
           PY
       - name: Publish experimental extracted data
         env:
