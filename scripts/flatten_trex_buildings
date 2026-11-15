@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+"""Flatten tippecanoe-decode's per-tile GeoJSON stream into one collection.
+
+Input consists of successive JSON objects, typically one FeatureCollection
+per line. Output is a single GeoJSON FeatureCollection without loading all
+building polygons into memory. Geometry remains unmodified.
+"""
+import json
+import sys
+from collections import Counter
+
+def features(value):
+    if not isinstance(value, dict):
+        raise ValueError("Expected a GeoJSON object")
+    kind = value.get("type")
+    if kind == "Feature":
+        yield value
+    elif kind == "FeatureCollection":
+        for feature in value.get("features", []):
+            yield from features(feature)
+    else:
+        raise ValueError(f"Unexpected decoded object: {kind!r}")
+
+def main():
+    counts = Counter()
+    total = 0
+    first = True
+    sys.stdout.write('{"type":"FeatureCollection","features":[\n')
+    for lineno, line in enumerate(sys.stdin, 1):
+        if not line.strip():
+            continue
+        item = json.loads(line)
+        for feature in features(item):
+            geometry = feature.get("geometry") or {}
+            kind = geometry.get("type", "null")
+            if not first:
+                sys.stdout.write(',\n')
+            json.dump(feature, sys.stdout, separators=(",", ":"))
+            first = False
+            counts[kind] += 1
+            total += 1
+    sys.stdout.write('\n]}\n')
+    if not total:
+        raise ValueError("No building features decoded")
+    summary = {"count": total, "geometry_types": dict(counts),
+               "source": "trex-extracts/nj_features.pmtiles",
+               "zoom": 13}
+    if len(sys.argv) > 1:
+        with open(sys.argv[1], "w") as out:
+            json.dump(summary, out, indent=2)
+            out.write("\n")
+    print(f"Decoded {total} building features: {dict(counts)}", file=sys.stderr)
+
+if __name__ == "__main__":
+    main()
