@@ -1,0 +1,58 @@
+name: Build Overture NJ buildings
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_overture_nj_buildings'
+      - '.github/workflows/overture-nj-buildings.yml'
+permissions:
+  contents: write
+concurrency:
+  group: overture-nj-buildings
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install data tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tippecanoe jq
+          python -m pip install --user --break-system-packages 'overturemaps>=0.18,<1'
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Download Overture footprints and build separate PMTiles
+        run: bash scripts/build_overture_nj_buildings dist
+      - name: Verify PMTiles and GeoJSON archive
+        run: |
+          gzip -t dist/nj_overture_buildings.geojsonseq.gz
+          test -s dist/nj_overture_buildings.pmtiles
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("dist/nj_overture_buildings.manifest.json").read_text())
+          assert m["count"] > 1000
+          assert len(m["files"]) == 2
+          print(m)
+          PY
+      - name: Publish experimental Overture source and tiles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=overture-buildings-nj
+          git tag -f "$tag" "$GITHUB_SHA"
+          git push origin "refs/tags/$tag" --force
+          gh release view "$tag" --repo "${{ github.repository }}" >/dev/null 2>&1 || \
+            gh release create "$tag" --repo "${{ github.repository }}" \
+              --title "Overture NJ buildings (experimental)" \
+              --notes "Independent Overture building footprints and PMTiles at z0-13, derived from the latest Overture STAC release. See manifest for release and input bounding box. Not yet clipped to exact NJ border."
+          gh release upload "$tag" \
+            dist/nj_overture_buildings.geojsonseq.gz \
+            dist/nj_overture_buildings.pmtiles \
+            dist/nj_overture_buildings.manifest.json \
+            --repo "${{ github.repository }}" --clobber
