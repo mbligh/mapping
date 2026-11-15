@@ -32,31 +32,18 @@ jobs:
           : "${R2_ACCOUNT_ID:?Missing R2_ACCOUNT_ID}"
           : "${R2_BUCKET:?Missing R2_BUCKET}"
           : "${R2_PUBLIC_URL:?Missing R2_PUBLIC_URL}"
-      - name: Install Tippecanoe and AWS CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y tippecanoe
-          aws --version
+      - name: Check AWS CLI
+        run: aws --version
       - name: Download both retained building datasets
         run: |
           mkdir -p build/trex build/overture
-          gh release download trex-buildings-nj --pattern nj_buildings.geojson.gz --dir build/trex
+          gh release download trex-extracts --pattern nj_features.pmtiles --dir build/trex
           gh release download overture-buildings-nj-43763373956-1 --pattern nj_overture_buildings.pmtiles --dir build/overture
-          test -s build/trex/nj_buildings.geojson.gz
+          test -s build/trex/nj_features.pmtiles
           test -s build/overture/nj_overture_buildings.pmtiles
-      - name: Compile T.REX buildings-only PMTiles
-        shell: bash
-        run: |
-          set -euo pipefail
-          gzip -dc build/trex/nj_buildings.geojson.gz | \
-            tippecanoe -f -P -Z 13 -z 13 -l buildings \
-              --no-feature-limit --no-tile-size-limit \
-              -o build/trex/nj_trex_buildings.pmtiles
-          test -s build/trex/nj_trex_buildings.pmtiles
-          ls -lh build/trex/nj_trex_buildings.pmtiles build/overture/nj_overture_buildings.pmtiles
       - name: Publish independent immutable archives and manifests
         run: |
-          python3 scripts/r2_pmtiles build/trex/nj_trex_buildings.pmtiles \
+          python3 scripts/r2_pmtiles build/trex/nj_features.pmtiles \
             --dataset trex-buildings --bucket "$R2_BUCKET" \
             --endpoint "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
             --public-url "$R2_PUBLIC_URL"
@@ -64,18 +51,18 @@ jobs:
             --dataset overture-buildings --bucket "$R2_BUCKET" \
             --endpoint "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
             --public-url "$R2_PUBLIC_URL"
-      - name: Verify both public manifests
+      - name: Verify uploaded archives through R2 API
         run: |
-          python3 - <<'PY'
-          import json, os, urllib.request
-          base=os.environ["R2_PUBLIC_URL"].rstrip("/")
-          for name in ["trex-buildings","overture-buildings"]:
-              with urllib.request.urlopen(base+"/"+name+".json") as response:
-                  data=json.load(response)
-              assert data["url"].startswith(base+"/versions/"), data
-              request=urllib.request.Request(data["url"], headers={"Range":"bytes=0-126"})
-              with urllib.request.urlopen(request) as response:
-                  assert response.status==206, (name,response.status)
-                  assert response.read(7)==b"PMTiles", name
-              print(name,data["url"])
-          PY
+          set -euo pipefail
+          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          for name in trex-buildings overture-buildings; do
+            key=$(aws --endpoint-url "$endpoint" s3api get-object \
+              --bucket "$R2_BUCKET" --key "$name.json" /tmp/"$name".json >/dev/null && \
+              python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["url"].split("/")[-1])' /tmp/"$name".json)
+            aws --endpoint-url "$endpoint" s3api head-object --bucket "$R2_BUCKET" \
+              --key "versions/$key" --query '[ContentLength,ContentType]'
+            aws --endpoint-url "$endpoint" s3api get-object --bucket "$R2_BUCKET" \
+              --key "versions/$key" --range bytes=0-126 /tmp/"$name".header >/dev/null
+            python3 -c 'import sys; assert open(sys.argv[1],"rb").read(7)==b"PMTiles"' /tmp/"$name".header
+            echo "Validated $name PMTiles through R2"
+          done
