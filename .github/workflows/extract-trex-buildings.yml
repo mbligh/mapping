@@ -1,6 +1,11 @@
 name: Extract T.REX NJ buildings
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/extract_trex_buildings'
+      - '.github/workflows/extract-trex-buildings.yml'
 permissions:
   contents: write
 jobs:
