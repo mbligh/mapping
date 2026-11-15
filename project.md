@@ -151,3 +151,7 @@ Dataset publishing first pushes a lightweight tag at the exact built HEAD, then 
 ## MapLibre demo: custom raster basemap
 
 The `public/maplibre-demo/index.html` basemap selector supports a user-supplied HTTP(S) XYZ raster tile URL alongside OpenFreeMap bright and NJ satellite hybrid modes. The URL must contain exactly one each of `{z}`, `{x}`, and `{y}` in any order, including within query parameters. The user can enter the URL and apply it with **Use tile URL**, or select the previously applied custom source again using the basemap selector. Custom tiles use 256-pixel raster sources and the existing raster interpolation control. Basemap style changes use the shared `style.load` lifecycle to restore parcels, contours, shipping, surveillance, and drawing layers. Remote tile servers must permit browser CORS access.
+
+## Experimental T.REX building extraction
+
+The source `nj_features.pmtiles` is retained in the independent `trex-extracts` GitHub Release. The `scripts/extract_trex_buildings` and `scripts/flatten_trex_buildings` utilities decode only zoom-13 `buildings` MVT features into one compressed GeoJSON FeatureCollection, without attempting to merge clipped building geometries or deduplicate features. The `Extract T.REX NJ buildings` workflow publishes its output and geometry-count summary in the `trex-buildings-nj` release; no large raw data files enter Git or the deployed Pages site. This experimental output is intended for validation and comparison with separately sourced footprints before reuse or distribution policies are established.
