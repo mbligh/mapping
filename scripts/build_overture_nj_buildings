@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Download native Overture NJ building footprints and build independent PMTiles.
+# Usage: scripts/build_overture_nj_buildings [output-directory]
+set -euo pipefail
+out=${1:-dist}
+mkdir -p "$out"
+command -v overturemaps >/dev/null || { echo "Install overturemaps Python CLI" >&2; exit 1; }
+command -v tippecanoe >/dev/null || { echo "Install tippecanoe" >&2; exit 1; }
+command -v jq >/dev/null || { echo "Install jq" >&2; exit 1; }
+
+# Bounding box covers NJ, with a small buffer; geometry is NOT cut at the
+# political boundary. Keep full footprints to allow sound matching later.
+bbox="-75.57,38.90,-73.88,41.37"
+release=$(curl -fLsS --retry 3 https://stac.overturemaps.org/catalog.json | jq -er '.latest')
+echo "Overture release: $release"
+echo "New Jersey building footprint bbox: $bbox"
+
+# Official CLI targets the STAC release and downloads the geographic subset.
+# Stream GeoJSONSeq for tile generation without materializing one huge JSON array.
+overturemaps download --bbox="$bbox" --type=building -f geojsonseq -o "$out/nj_overture_buildings.geojsonseq"
+test -s "$out/nj_overture_buildings.geojsonseq"
+count=$(wc -l < "$out/nj_overture_buildings.geojsonseq")
+test "$count" -gt 1000 || { echo "Unexpectedly low building count: $count" >&2; exit 1; }
+echo "Extracted $count building features"
+
+# No feature dropping at z13; use the same maxzoom as the T.REX NJ extract.
+# Preserve native building IDs and properties in the intermediate dataset.
+tippecanoe -f -P -Z 0 -z 13 -l buildings \
+  --no-feature-limit --no-tile-size-limit \
+  -o "$out/nj_overture_buildings.pmtiles" \
+  "$out/nj_overture_buildings.geojsonseq"
+test -s "$out/nj_overture_buildings.pmtiles"
+gzip -n -f "$out/nj_overture_buildings.geojsonseq"
+python3 - "$out" "$release" "$bbox" "$count" <<'PY'
+import hashlib, json, pathlib, sys
+out, release, bbox, count = sys.argv[1:]
+path = pathlib.Path(out)
+files = {}
+for name in ("nj_overture_buildings.geojsonseq.gz", "nj_overture_buildings.pmtiles"):
+    item = path / name
+    digest = hashlib.sha256()
+    with item.open("rb") as src:
+        for chunk in iter(lambda: src.read(1024*1024), b""):
+            digest.update(chunk)
+    files[name] = {"bytes": item.stat().st_size, "sha256": digest.hexdigest()}
+(path / "nj_overture_buildings.manifest.json").write_text(json.dumps({
+    "source": "Overture Maps buildings (official overturemaps CLI)",
+    "release_at_start": release, "bbox": list(map(float, bbox.split(","))),
+    "count": int(count), "maxzoom": 13, "files": files,
+}, indent=2) + "\n")
+PY
