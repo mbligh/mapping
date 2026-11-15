@@ -159,3 +159,7 @@ The source `nj_features.pmtiles` is retained in the independent `trex-extracts` 
 ## Independent Overture building layer
 
 The Overture NJ building experiment uses the official overturemaps CLI against the STAC latest release to download native building footprints and maintain them separately from the T.REX tile-decoded polygons. A standalone GitHub Actions workflow builds z0–13 PMTiles and publishes both the compressed raw GeoJSON sequence and PMTiles, with counts, release metadata, checksums and attribution documentation, to immutable experimental releases. Comparing the native polygons with T.REX's z13 MVT output should account for tile clipping/duplication and the broader NJ bounding rectangle.
+
+## Building overlays in the test map
+
+The MapLibre demo exposes independent checkboxes for T.REX (orange) and Overture (blue) building polygons. Sources are lazy-loaded through two R2 PMTiles manifests (`trex-buildings.json` and `overture-buildings.json`) and reinstalled on `style.load` after basemap changes. `Publish mapping pages` substitutes the configured `R2_PUBLIC_URL` into the demo. `building-overlays.yml` uploads the **original** retained NJ T.REX feature PMTiles (not a lossy GeoJSON re-tiling) and the independently built Overture buildings PMTiles to content-addressed R2 objects. The T.REX archive contains multiple source layers, but the demo renders only `buildings`. Its highest zoom is 13; the demo overzooms at larger map zooms. These are experimental comparison overlays, not merged or canonical building data.
