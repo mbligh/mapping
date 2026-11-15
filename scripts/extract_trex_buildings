@@ -17,7 +17,7 @@ tmp="${output}.tmp.$$"
 trap 'rm -f "$tmp"' EXIT HUP INT TERM
 # Limit to the highest available zoom level. The NJ extract was made at z13.
 # Lower zooms would duplicate and simplify the same features.
-tippecanoe-decode -z 13 -l buildings "$input" | gzip -n -c > "$tmp"
+tippecanoe-decode -Z 13 -z 13 -c -l buildings "$input" | gzip -n -c > "$tmp"
 gzip -t "$tmp"
 [ -s "$tmp" ] || { echo "Empty buildings output" >&2; exit 1; }
 mv "$tmp" "$output"
