@@ -1,0 +1,54 @@
+name: Extract T.REX NJ buildings
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install vector tile decoder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tippecanoe
+          tippecanoe-decode --help 2>&1 | head -35 || true
+      - name: Download immutable source release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download trex-extracts --repo "${{ github.repository }}" --pattern nj_features.pmtiles --dir /tmp/trex
+          test -s /tmp/trex/nj_features.pmtiles
+      - name: Extract building geometries
+        run: |
+          mkdir -p dist
+          sh scripts/extract_trex_buildings /tmp/trex/nj_features.pmtiles dist/nj_buildings.geojson.gz
+          python3 - <<'PY'
+          import gzip, json
+          from pathlib import Path
+          p = Path('dist/nj_buildings.geojson.gz')
+          with gzip.open(p, 'rt') as f:
+              data = json.load(f)
+          assert data['type'] == 'FeatureCollection'
+          features = data['features']
+          assert features, 'No buildings decoded'
+          types = {}
+          for feature in features:
+              kind = feature['geometry']['type']
+              types[kind] = types.get(kind, 0) + 1
+          print('Building features:', len(features), 'geometry types:', types)
+          Path('dist/nj_buildings.summary.json').write_text(
+              json.dumps({'count': len(features), 'geometry_types': types, 'source': 'trex-extracts/nj_features.pmtiles', 'zoom': 13}, indent=2) + '\n')
+          PY
+      - name: Publish experimental extracted data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=trex-buildings-nj
+          gh release view "$tag" --repo "${{ github.repository }}" >/dev/null 2>&1 || \
+            gh release create "$tag" --repo "${{ github.repository }}" \
+              --title "T.REX NJ buildings (experimental)" \
+              --notes "Unmodified z13 buildings layer decoded from trex-extracts/nj_features.pmtiles. Source tile geometries may be clipped and duplicated across tile edges; not yet cleaned or validated for redistribution."
+          gh release upload "$tag" dist/nj_buildings.geojson.gz dist/nj_buildings.summary.json \
+            --repo "${{ github.repository }}" --clobber
