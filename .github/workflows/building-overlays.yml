@@ -51,7 +51,7 @@ jobs:
           gzip -dc build/trex/nj_buildings.geojson.gz | \
             tippecanoe -f -P -Z 13 -z 13 -l buildings \
               --no-feature-limit --no-tile-size-limit \
-              -o build/trex/nj_trex_buildings.pmtiles -
+              -o build/trex/nj_trex_buildings.pmtiles
           test -s build/trex/nj_trex_buildings.pmtiles
           ls -lh build/trex/nj_trex_buildings.pmtiles build/overture/nj_overture_buildings.pmtiles
       - name: Publish independent immutable archives and manifests
