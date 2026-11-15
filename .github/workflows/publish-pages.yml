@@ -85,6 +85,12 @@ jobs:
           from pathlib import Path
           base = os.environ.get('R2_PUBLIC_URL', '').rstrip('/')
           if base:
+              map_path = Path('public/maplibre-demo/index.html')
+              map_text = map_path.read_text()
+              map_marker = 'const buildingsBaseUrl=null;'
+              if map_marker not in map_text:
+                  raise ValueError('Missing buildings R2 URL marker')
+              map_path.write_text(map_text.replace(map_marker, 'const buildingsBaseUrl=' + json.dumps(base) + ';'))
               url = json.dumps(base + '/surveillance.json')
               for name in ('public/surveillance/index.html', 'public/maplibre-demo/index.html'):
                   path = Path(name)
