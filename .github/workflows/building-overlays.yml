@@ -35,7 +35,8 @@ jobs:
       - name: Install Tippecanoe and AWS CLI
         run: |
           sudo apt-get update
-          sudo apt-get install -y tippecanoe awscli
+          sudo apt-get install -y tippecanoe
+          aws --version
       - name: Download both retained building datasets
         run: |
           mkdir -p build/trex build/overture
