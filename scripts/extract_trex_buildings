@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Decode the highest-detail T.REX NJ building footprint layer to GeoJSON.
 # Usage: scripts/extract_trex_buildings nj_features.pmtiles [output.geojson.gz]
-set -eu
+set -euo pipefail
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
   echo "Usage: $0 input.pmtiles [output.geojson.gz]" >&2
   exit 2
@@ -17,7 +17,7 @@ tmp="${output}.tmp.$$"
 trap 'rm -f "$tmp"' EXIT HUP INT TERM
 # Limit to the highest available zoom level. The NJ extract was made at z13.
 # Lower zooms would duplicate and simplify the same features.
-tippecanoe-decode -Z 13 -z 13 -c -l buildings "$input" | gzip -n -c > "$tmp"
+tippecanoe-decode -Z 13 -z 13 -c -l buildings "$input" | python3 scripts/flatten_trex_buildings "${output%.geojson.gz}.summary.json" | gzip -n -c > "$tmp"
 gzip -t "$tmp"
 [ -s "$tmp" ] || { echo "Empty buildings output" >&2; exit 1; }
 mv "$tmp" "$output"
