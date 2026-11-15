@@ -1,0 +1,80 @@
+name: Publish experimental NJ building PMTiles to R2
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/building-overlays.yml'
+      - 'scripts/r2_pmtiles'
+permissions:
+  contents: read
+concurrency:
+  group: building-overlays-r2
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ github.token }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+      R2_BUCKET: ${{ vars.R2_BUCKET }}
+      R2_PUBLIC_URL: ${{ vars.R2_PUBLIC_URL }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate R2 configuration
+        run: |
+          : "${AWS_ACCESS_KEY_ID:?Missing R2_ACCESS_KEY_ID}"
+          : "${AWS_SECRET_ACCESS_KEY:?Missing R2_SECRET_ACCESS_KEY}"
+          : "${R2_ACCOUNT_ID:?Missing R2_ACCOUNT_ID}"
+          : "${R2_BUCKET:?Missing R2_BUCKET}"
+          : "${R2_PUBLIC_URL:?Missing R2_PUBLIC_URL}"
+      - name: Install Tippecanoe and AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tippecanoe awscli
+      - name: Download both retained building datasets
+        run: |
+          mkdir -p build/trex build/overture
+          gh release download trex-buildings-nj --pattern nj_buildings.geojson.gz --dir build/trex
+          gh release download overture-buildings-nj-43763373956-1 --pattern nj_overture_buildings.pmtiles --dir build/overture
+          test -s build/trex/nj_buildings.geojson.gz
+          test -s build/overture/nj_overture_buildings.pmtiles
+      - name: Compile T.REX buildings-only PMTiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          gzip -dc build/trex/nj_buildings.geojson.gz | \
+            tippecanoe -f -P -Z 13 -z 13 -l buildings \
+              --no-feature-limit --no-tile-size-limit \
+              -o build/trex/nj_trex_buildings.pmtiles -
+          test -s build/trex/nj_trex_buildings.pmtiles
+          ls -lh build/trex/nj_trex_buildings.pmtiles build/overture/nj_overture_buildings.pmtiles
+      - name: Publish independent immutable archives and manifests
+        run: |
+          python3 scripts/r2_pmtiles build/trex/nj_trex_buildings.pmtiles \
+            --dataset trex-buildings --bucket "$R2_BUCKET" \
+            --endpoint "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --public-url "$R2_PUBLIC_URL"
+          python3 scripts/r2_pmtiles build/overture/nj_overture_buildings.pmtiles \
+            --dataset overture-buildings --bucket "$R2_BUCKET" \
+            --endpoint "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --public-url "$R2_PUBLIC_URL"
+      - name: Verify both public manifests
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          base=os.environ["R2_PUBLIC_URL"].rstrip("/")
+          for name in ["trex-buildings","overture-buildings"]:
+              with urllib.request.urlopen(base+"/"+name+".json") as response:
+                  data=json.load(response)
+              assert data["url"].startswith(base+"/versions/"), data
+              request=urllib.request.Request(data["url"], headers={"Range":"bytes=0-126"})
+              with urllib.request.urlopen(request) as response:
+                  assert response.status==206, (name,response.status)
+                  assert response.read(7)==b"PMTiles", name
+              print(name,data["url"])
+          PY
